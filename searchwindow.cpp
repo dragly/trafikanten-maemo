@@ -7,10 +7,11 @@
 #include <QtNetwork>
 #include <QtXml>
 
-SearchWindow::SearchWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::SearchWindow)
+SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
+        QMainWindow(parent),
+        ui(new Ui::SearchWindow)
 {
+    setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     ui->setupUi(this);
     setAttribute(Qt::WA_Maemo5StackedWindow);
     manager = new QNetworkAccessManager(this);
@@ -19,11 +20,42 @@ SearchWindow::SearchWindow(QWidget *parent) :
     ui->tblResults->setModel(model);
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
+    ui->txtSearch->setFocus();
+    if(easting != "") {
+        this->setWindowTitle("Search Nearby");
+        ui->btnSearch->hide();
+        ui->txtSearch->hide();
+        QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
+        qDebug() << "requesting" << dataUrl;
+        QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
+        manager->get(request);
+    }
+    connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
+    orientationChanged(); // call this just in case we're in portrait mode from before
 }
 
 SearchWindow::~SearchWindow()
 {
     delete ui;
+}
+
+void SearchWindow::orientationChanged() {
+    // Change the layout of the search controls
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    if (screenGeometry.width() > screenGeometry.height()) {
+        portraitMode = false;
+        ui->searchLayoutV->layout()->removeWidget(ui->btnSearch);
+        ui->searchLayoutV->layout()->removeWidget(ui->txtSearch);
+        ui->searchLayoutH->addWidget(ui->txtSearch);
+        ui->searchLayoutH->addWidget(ui->btnSearch);
+    } else {
+        portraitMode = true;
+        ui->searchLayoutH->removeWidget(ui->txtSearch);
+        ui->searchLayoutH->removeWidget(ui->btnSearch);
+        ui->searchLayoutV->layout()->addWidget(ui->txtSearch);
+        ui->searchLayoutV->layout()->addWidget(ui->btnSearch);
+    }
+
 }
 
 void SearchWindow::changeEvent(QEvent *e)
@@ -44,6 +76,7 @@ void SearchWindow::on_btnSearch_clicked()
     QString dataUrl = "http://reis.trafikanten.no/siri/checkrealtimestop.aspx?name=" + ui->txtSearch->text(); //
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
     manager->get(request);
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 
 void SearchWindow::replyFinished(QNetworkReply *reply) {
@@ -71,7 +104,11 @@ void SearchWindow::replyFinished(QNetworkReply *reply) {
             place = place.nextSiblingElement("Place");
             row++;
         }
+        // size everything for full window scrolling
+        ui->tblResults->resizeRowsToContents();
+        ui->tblResults->setFixedHeight(ui->tblResults->verticalHeader()->length() + 60);
     }
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
 }
 
 void SearchWindow::on_tblResults_clicked(QModelIndex index)
@@ -81,5 +118,15 @@ void SearchWindow::on_tblResults_clicked(QModelIndex index)
     int placeId = itemData.value("placeId").toString().toInt();
     QString placeName = itemData.value("name").toString();
     DeparturesWindow *win = new DeparturesWindow(placeId, placeName, this);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
     win->show();
+}
+
+void SearchWindow::on_txtSearch_returnPressed()
+{
+    on_btnSearch_clicked();
 }

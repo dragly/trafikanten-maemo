@@ -5,6 +5,7 @@ DeparturesWindow::DeparturesWindow(int placeId, QString placeName, QWidget *pare
     QMainWindow(parent),
     ui(new Ui::DeparturesWindow)
 {
+    setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     ui->setupUi(this);
     this->placeId = placeId;
     ui->lblName->setText(placeName);
@@ -68,6 +69,7 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
             visit = visit.nextSiblingElement("MonitoredStopVisit");
             row++;
         }
+        ui->tblResults->resizeRowsToContents();
     }
 }
 

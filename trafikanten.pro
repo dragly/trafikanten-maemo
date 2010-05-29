@@ -24,7 +24,7 @@ FORMS    += trafikantenwindow.ui \
     departureswindow.ui
 
 CONFIG += mobility
-MOBILITY = 
+MOBILITY = location bearer
 
 symbian {
     TARGET.UID3 = 0xe9d84f35
