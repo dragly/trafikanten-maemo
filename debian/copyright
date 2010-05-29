@@ -1,0 +1,43 @@
+This package was debianized by Simon Pickering <S.G.Pickering@bath.ac.uk> on
+Wed, 28 Oct 2009 07:31:06 +0000.
+
+Updates to the packaging have been made by Svenn-Arne Dragly <s@dragly.com> on
+Tue, 30 Mar 2010 23:00:00 +0000
+
+Upstream Author: Simon Pickering <S.G.Pickering@bath.ac.uk> + others
+
+Maemo Barcode Reader and Interpreter (mbarcode or maemo-barcode)
+Copyright (C) 2010 Simon Pickering
+Copyright (C) 2010 Svenn-Arne Dragly
+
+Some source code obtained from other individuals/companies (not affiliated with the project), such as
+Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
+
+Various parts of barcode recognition and GStreamer manipulation code written by:
+      Timothy Terriberry
+      Adam Harwell
+      Jonas Hurrelmann
+
+Original GStreamer code based on the maemo-examples package:
+Copyright (C) 2007-2008 Nokia Corporation. All rights reserved.
+Copyright (C) 2006 INdT.
+@author Talita Menezes <talita.menezes@indt.org.br>
+@author Cidorvan Leite <cidorvan.leite@indt.org.br>
+@author Jami Pekkanen <jami.pekkanen@nokia.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+The Debian packaging is (C) 2010, Simon Pickering <S.G.Pickering@bath.ac.uk> and
+Svenn-Arne Dragly <s@dragly.com> and is licensed under the GPL, see 
+`/usr/share/common-licenses/GPL'.
