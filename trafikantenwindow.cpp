@@ -172,6 +172,8 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
 void TrafikantenWindow::updateTimeout() {
     qDebug() << "Timed out";
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
-    QMessageBox messageBox("Timed out", "We are terribly sorry, but we're unable to locate your position at the current time. Please try again.");
+    QMessageBox messageBox;
+    messageBox.setWindowTitle("Timed out");
+    messageBox.setText("We are terribly sorry, but we're unable to locate your position at the current time. Please try again.");
     messageBox.exec();
 }
