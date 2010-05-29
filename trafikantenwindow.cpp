@@ -71,7 +71,7 @@ void TrafikantenWindow::on_btnNearby_clicked()
     if (positionSource) {
         qDebug() << "Got source";
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
-        positionSource->requestUpdate(30000);
+        positionSource->requestUpdate(45000);
     }
 }
 
@@ -170,6 +170,8 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
 }
 
 void TrafikantenWindow::updateTimeout() {
-    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
     qDebug() << "Timed out";
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+    QMessageBox messageBox("Timed out", "We are terribly sorry, but we're unable to locate your position at the current time. Please try again.");
+    messageBox.exec();
 }
