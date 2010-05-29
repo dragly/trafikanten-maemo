@@ -1,8 +1,32 @@
+trafikanten (0.1.0-5) unstable; urgency=low
+
+  * Added Norwegian translation of description.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 19:58:00 +0000
+
+trafikanten (0.1.0-4) unstable; urgency=low
+
+  * Added description and App manager icon.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 19:58:00 +0000
+
+trafikanten (0.1.0-3) unstable; urgency=low
+
+  * Fixed icon.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 19:58:00 +0000
+
+trafikanten (0.1.0-2) unstable; urgency=low
+
+  * Changed to only build for armel.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 15:58:00 +0000
+
 trafikanten (0.1.0-1) unstable; urgency=low
 
   * Added dependencies
 
- -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 15:55:00 +0000
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 15:57:00 +0000
  
 trafikanten (0.1.0-0) unstable; urgency=low
 

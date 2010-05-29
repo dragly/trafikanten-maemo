@@ -2,12 +2,58 @@ Source: trafikanten
 Section: user/utilities 
 Priority: extra
 Maintainer: Svenn-Arne Dragly <s@dragly.com>
-Build-Depends: 	debhelper (>= 5), libqt4-dev, libqtm-dev, libqtm-bearer, libqtm-location
+Build-Depends: 	debhelper (>= 5), libqt4-dev, libqtm-dev, libqtm-bearer, libqtm-location, libqtm-multimedia
 Standards-Version: 3.7.2
 
 Package: trafikanten
-Architecture: any
+Architecture: armel
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Trafikanten lets you see public transport information in Oslo and Norway.
     This is an early version, but during the summer 2010, the application will be updated with more features.
     Trafikanten now supports GPS search!
+XB-Description-nb_NO: Trafikanten for Maemo gir deg sanntidsinfo i Oslo og omegn.
+    Dette er en tidlig utgave med få muligheter. I løpet av sommeren 2010 vil flere oppdateringer blir tilført.
+    Foreløpig er søk etter stasjoner med GPS eller tekst inkludert.
+XB-Maemo-Icon-26:
+ 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
+ a3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=
+XB-Maemo-Display-Name: Trafikanten for Maemo
