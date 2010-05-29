@@ -20,6 +20,9 @@ protected:
 
 private:
     Ui::TrafikantenWindow *ui;
+
+private slots:
+    void on_btnSearch_clicked();
 };
 
 #endif // TRAFIKANTENWINDOW_H

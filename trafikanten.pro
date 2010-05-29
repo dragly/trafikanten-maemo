@@ -4,18 +4,24 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui maemo5 network xml
 
 TARGET = trafikanten
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        trafikantenwindow.cpp
+        trafikantenwindow.cpp \
+    searchwindow.cpp \
+    departureswindow.cpp
 
-HEADERS  += trafikantenwindow.h
+HEADERS  += trafikantenwindow.h \
+    searchwindow.h \
+    departureswindow.h
 
-FORMS    += trafikantenwindow.ui
+FORMS    += trafikantenwindow.ui \
+    searchwindow.ui \
+    departureswindow.ui
 
 CONFIG += mobility
 MOBILITY = 
