@@ -8,7 +8,7 @@ QT       += core gui maemo5 network xml
 
 TARGET = trafikanten
 TEMPLATE = app
-
+TRANSLATIONS = trafikanten_no.ts
 
 SOURCES += main.cpp\
         trafikantenwindow.cpp \

@@ -1,8 +1,14 @@
+trafikanten (0.1.1-0) unstable; urgency=low
+
+  * Added Norwegian translations.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 20:00:00 +0000
+
 trafikanten (0.1.0-5) unstable; urgency=low
 
   * Added Norwegian translation of description.
 
- -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 19:58:00 +0000
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 19:59:00 +0000
 
 trafikanten (0.1.0-4) unstable; urgency=low
 
