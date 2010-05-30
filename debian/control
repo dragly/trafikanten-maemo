@@ -11,9 +11,10 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Trafikanten lets you see public transport information in Oslo and Norway.
     This is an early version, but during the summer 2010, the application will be updated with more features.
     Trafikanten now supports GPS search!
-XB-Description-nb_NO: Trafikanten for Maemo gir deg sanntidsinfo i Oslo og omegn.
+XB-Description-no_NO: Trafikanten for Maemo gir deg sanntidsinfo i Oslo og omegn.
     Dette er en tidlig utgave med få muligheter. I løpet av sommeren 2010 vil flere oppdateringer blir tilført.
     Foreløpig er søk etter stasjoner med GPS eller tekst inkludert.
+XB-Maemo-Display-Name: Trafikanten for Maemo
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/
  AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAACXZwQWcAAAAwAAAAMADO
@@ -56,4 +57,3 @@ XB-Maemo-Icon-26:
  MTc6Mjk6NDArMDI6MDAn8v84AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEwLTA1
  LTI5VDE3OjI5OjMyKzAyOjAwy/VftAAAABl0RVh0U29mdHdhcmUAd3d3Lmlu
  a3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=
-XB-Maemo-Display-Name: Trafikanten for Maemo

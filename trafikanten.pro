@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui maemo5 network xml
+QT       += core gui network xml
 
 TARGET = trafikanten
 TEMPLATE = app
@@ -24,7 +24,7 @@ FORMS    += trafikantenwindow.ui \
     departureswindow.ui
 
 CONFIG += mobility
-MOBILITY = location bearer
+MOBILITY = location
 
 symbian {
     TARGET.UID3 = 0xe9d84f35
@@ -48,7 +48,8 @@ unix {
         icon26 \
         icon48 \
         icon64 \
-        backup
+        backup \
+        translation
     target.path = $$BINDIR
     desktop.path = $$DATADIR/applications/hildon
     desktop.files += ../debian/hildon/applications/hildon/$${TARGET}.desktop
@@ -62,4 +63,6 @@ unix {
     icon64.files += ../debian/hildon/icons/hicolor/scalable/apps/$${TARGET}.png
     backup.path = /etc/osso-backup/applications
     backup.files += ../debian/hildon/osso-backup/applications/$${TARGET}.conf
+    translation.path = $$DATADIR/$${TARGET}/translations
+    translation.files += $${TARGET}_*.qm
 }

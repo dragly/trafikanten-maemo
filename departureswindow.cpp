@@ -54,6 +54,7 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
         int row = 0;
         while(!visit.isNull()) {
             QDomElement destination = visit.firstChildElement("DestinationName");
+            QDomElement line = visit.firstChildElement("LineRef");
             QDomElement expectedArrival = visit.firstChildElement("ExpectedArrivalTime");
             QDateTime expectedArrivalTime = QDateTime::fromString(expectedArrival.text().left(23), "yyyy-MM-ddThh:mm:ss.zzz");
             QDateTime timestampTime = QDateTime::fromString(timestamp.text().left(23), "yyyy-MM-ddThh:mm:ss.zzz");
@@ -64,7 +65,7 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
             int diffMinutes = difference / 60;
             qDebug() << "diffMinutes" << diffMinutes;
             QString s;
-            QStandardItem *destinationItem = new QStandardItem(expectedArrivalTime.toString("hh:mm") + " - " + destination.text() + " (" + QString::number(diffMinutes) + " min)");
+            QStandardItem *destinationItem = new QStandardItem(expectedArrivalTime.toString("hh:mm") + " - " + line.text() + " " + destination.text() + " (" + QString::number(diffMinutes) + " min)");
             model->setItem(row, 0, destinationItem);
             visit = visit.nextSiblingElement("MonitoredStopVisit");
             row++;
