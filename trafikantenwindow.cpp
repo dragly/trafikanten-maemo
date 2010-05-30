@@ -173,7 +173,7 @@ void TrafikantenWindow::updateTimeout() {
     qDebug() << "Timed out";
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
     QMessageBox messageBox;
-    messageBox.setWindowTitle("Timed out");
-    messageBox.setText("We are terribly sorry, but we're unable to locate your position at the current time. Please try again.");
+    messageBox.setWindowTitle(tr("Timed out"));
+    messageBox.setText(tr("We are terribly sorry, but we're unable to locate your position at the current time. Please try again."));
     messageBox.exec();
 }

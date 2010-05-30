@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="recent.svg"
+   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/gps.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <filter
+       id="filter3696"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-.25"
+       y="-.25">
+      <feGaussianBlur
+         id="feGaussianBlur3698"
+         in="SourceAlpha"
+         stdDeviation="6"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3700"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.750000 0 " />
+      <feOffset
+         id="feOffset3702"
+         in="bluralpha"
+         dx="0.000000"
+         dy="0.000000"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3704">
+        <feMergeNode
+           id="feMergeNode3706"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3708"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <inkscape:perspective
+       id="perspective3747"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.74316405"
+     inkscape:cx="-23.62638"
+     inkscape:cy="150.63369"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)"
+     style="filter:url(#filter3638)">
+    <path
+       style="fill:#f2f2f2;stroke:none;filter:url(#filter3696)"
+       d="m 51.132721,199.48488 -1.345598,29.93956 55.169517,-1.0092 8.40998,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 78.044679,153.06176 78.044679,153.06176 l -26.911958,46.42312 z"
+       id="path3735"
+       transform="matrix(1.1954529,0,0,1.1954529,-19.884091,763.63088)"
+       sodipodi:nodetypes="ccccsscc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:none;filter:url(#filter3696)"
+       id="path3737"
+       sodipodi:cx="174.92773"
+       sodipodi:cy="96.210243"
+       sodipodi:rx="16.819975"
+       sodipodi:ry="13.119579"
+       d="m 191.74771,96.210243 a 16.819975,13.119579 0 1 1 -33.63995,0 16.819975,13.119579 0 1 1 33.63995,0 z"
+       transform="matrix(1.1954529,0,0,1.5939372,-20.688391,711.21736)" />
+  </g>
+  <metadata
+     id="metadata3710">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

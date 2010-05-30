@@ -23,6 +23,9 @@ FORMS    += trafikantenwindow.ui \
     searchwindow.ui \
     departureswindow.ui
 
+RESOURCES += \
+    trafikanten.qrc
+
 CONFIG += mobility
 MOBILITY = location
 

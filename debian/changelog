@@ -1,3 +1,10 @@
+trafikanten (0.1.4-0) unstable; urgency=low
+
+  * New icons.
+  * Added line number.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 20:30:00 +0000
+
 trafikanten (0.1.3-4) unstable; urgency=low
 
   * Reverted icons.

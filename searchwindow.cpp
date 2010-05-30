@@ -22,7 +22,7 @@ SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
             this, SLOT(replyFinished(QNetworkReply*)));
     ui->txtSearch->setFocus();
     if(easting != "") {
-        this->setWindowTitle("Search Nearby");
+        this->setWindowTitle(tr("Search Nearby Places"));
         ui->btnSearch->hide();
         ui->txtSearch->hide();
         QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
