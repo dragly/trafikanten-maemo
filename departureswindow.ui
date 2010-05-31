@@ -42,6 +42,9 @@
     </item>
     <item>
      <widget class="QTableView" name="tblResults">
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::NoSelection</enum>
       </property>
