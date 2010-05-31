@@ -1,5 +1,5 @@
 Source: trafikanten
-Section: user/utilities 
+Section: user/navigation 
 Priority: extra
 Maintainer: Svenn-Arne Dragly <s@dragly.com>
 Build-Depends: debhelper (>= 5), libqt4-dev, libqtm-dev, libqtm-bearer, libqtm-location, libqtm-multimedia
