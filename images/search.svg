@@ -16,11 +16,18 @@
    version="1.1"
    inkscape:version="0.47 r22583"
    sodipodi:docname="search.svg"
-   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/search.png"
+   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/search-pressed.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
      id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 128 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="256 : 128 : 1"
+       inkscape:persp3d-origin="128 : 85.333333 : 1"
+       id="perspective4105" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient3688">
@@ -75,6 +82,87 @@
            in="SourceGraphic" />
       </feMerge>
     </filter>
+    <inkscape:perspective
+       id="perspective4133"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4800"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3688-8"
+       id="linearGradient3694-8"
+       x1="236.47417"
+       y1="1040.4465"
+       x2="4.1085463"
+       y2="792.85657"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3688-8">
+      <stop
+         style="stop-color:#e0e0e0;stop-opacity:1"
+         offset="0"
+         id="stop3690-7" />
+      <stop
+         style="stop-color:#fefefe;stop-opacity:1"
+         offset="1"
+         id="stop3692-3" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter3696-9"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-0.25"
+       y="-0.25">
+      <feGaussianBlur
+         id="feGaussianBlur3698-2"
+         in="SourceAlpha"
+         stdDeviation="6"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3700-9"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.750000 0 " />
+      <feOffset
+         id="feOffset3702-3"
+         in="bluralpha"
+         dx="0.000000"
+         dy="0.000000"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3704-9">
+        <feMergeNode
+           id="feMergeNode3706-4"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3708-2"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4872"
+       x="-0.2316452"
+       width="1.4632904"
+       y="-0.20363714"
+       height="1.4072743">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="16.535005"
+         id="feGaussianBlur4874" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -83,17 +171,29 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4863281"
-     inkscape:cx="71.44833"
-     inkscape:cy="153.14782"
+     inkscape:zoom="0.37158203"
+     inkscape:cx="-248.49507"
+     inkscape:cy="36.733037"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="1025"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="pressed"
+     style="display:inline">
+    <path
+       style="fill:#56f5fe;fill-opacity:1;stroke:none;filter:url(#filter4872)"
+       d="m 65.92943,842.17636 c -28.161113,22.4447 -32.795199,63.46882 -10.350494,91.62994 20.473582,25.68799 56.398394,31.7899 83.926054,15.62976 l 58.6026,73.39994 14.56864,-11.6113 -58.6026,-73.39999 c 21.8936,-23.22912 23.95932,-59.60985 3.48574,-85.29784 -22.4447,-28.16113 -63.468816,-32.7952 -91.62994,-10.35051 z M 77.540792,856.745 c 20.115076,-16.03192 49.418018,-12.72188 65.449948,7.39321 16.03192,20.11509 12.72185,49.41803 -7.39323,65.44995 -20.11508,16.03193 -49.418015,12.72188 -65.449947,-7.39321 C 54.115642,902.07987 57.425704,872.77693 77.540792,856.745 z"
+       id="path2818-1"
+       sodipodi:nodetypes="csccccsccsssc"
+       transform="matrix(0.96873862,0,0,0.96873862,3.9707978,-779.54337)" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -105,7 +205,7 @@
        d="m 65.92943,842.17636 c -28.161113,22.4447 -32.795199,63.46882 -10.350494,91.62994 20.473582,25.68799 56.398394,31.7899 83.926054,15.62976 l 58.6026,73.39994 14.56864,-11.6113 -58.6026,-73.39999 c 21.8936,-23.22912 23.95932,-59.60985 3.48574,-85.29784 -22.4447,-28.16113 -63.468816,-32.7952 -91.62994,-10.35051 z M 77.540792,856.745 c 20.115076,-16.03192 49.418018,-12.72188 65.449948,7.39321 16.03192,20.11509 12.72185,49.41803 -7.39323,65.44995 -20.11508,16.03193 -49.418015,12.72188 -65.449947,-7.39321 C 54.115642,902.07987 57.425704,872.77693 77.540792,856.745 z"
        id="path2818"
        sodipodi:nodetypes="csccccsccsssc"
-       transform="matrix(1.1562204,0,0,1.1562204,-19.843015,-144.56606)" />
+       transform="matrix(0.74778217,0,0,0.74778217,32.036542,221.29146)" />
   </g>
   <metadata
      id="metadata3710">
@@ -113,6 +213,9 @@
       <cc:Work
          rdf:about="">
         <dc:title></dc:title>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:Work>
     </rdf:RDF>
   </metadata>

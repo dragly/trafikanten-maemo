@@ -8,7 +8,7 @@ QT       += core gui network xml
 
 TARGET = trafikanten
 TEMPLATE = app
-TRANSLATIONS = trafikanten_no.ts
+TRANSLATIONS = trafikanten_nb_NO.ts
 
 SOURCES += main.cpp\
         trafikantenwindow.cpp \
@@ -69,3 +69,5 @@ unix {
     translation.path = $$DATADIR/$${TARGET}/translations
     translation.files += $${TARGET}_*.qm
 }
+
+OTHER_FILES +=

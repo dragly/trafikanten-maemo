@@ -13,6 +13,8 @@ SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
 {
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     ui->setupUi(this);
+
+
     setAttribute(Qt::WA_Maemo5StackedWindow);
     manager = new QNetworkAccessManager(this);
     model = new QStandardItemModel(this);

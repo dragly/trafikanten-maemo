@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>287</width>
-    <height>391</height>
+    <width>475</width>
+    <height>464</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,44 +57,86 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QToolButton" name="btnRecent">
+       <widget class="QPushButton" name="btnRecent">
+        <property name="minimumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+border-image: url(:/images/recent.png);
+text-align: bottom center;
+}
+QPushButton::pressed {
+border-image: url(:/images/recent-pressed.png);
+}</string>
+        </property>
         <property name="text">
          <string>Recent</string>
         </property>
-        <property name="icon">
-         <iconset resource="trafikanten.qrc">
-          <normaloff>:/images/recent.png</normaloff>:/images/recent.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btnSearch">
+       <widget class="QPushButton" name="btnSearch">
+        <property name="minimumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+border-image: url(:/images/search.png);
+text-align: bottom center;
+}
+QPushButton::pressed {
+border-image: url(:/images/search-pressed.png);
+}</string>
+        </property>
         <property name="text">
          <string>Search</string>
         </property>
-        <property name="icon">
-         <iconset resource="trafikanten.qrc">
-          <normaloff>:/images/search.png</normaloff>:/images/search.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btnNearby">
+       <widget class="QPushButton" name="btnNearby">
+        <property name="minimumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+border-image: url(:/images/gps.png);
+text-align: bottom center;
+}
+QPushButton::pressed {
+border-image: url(:/images/gps-pressed.png);
+}</string>
+        </property>
         <property name="text">
          <string>Nearby</string>
-        </property>
-        <property name="icon">
-         <iconset resource="trafikanten.qrc">
-          <normaloff>:/images/gps.png</normaloff>:/images/gps.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
        </widget>
       </item>
@@ -104,8 +146,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="trafikanten.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

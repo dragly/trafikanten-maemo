@@ -27,6 +27,11 @@
         <source>Search</source>
         <translation>Søk</translation>
     </message>
+    <message>
+        <location filename="searchwindow.cpp" line="27"/>
+        <source>Search Nearby Places</source>
+        <translation>Søk i nærheten</translation>
+    </message>
 </context>
 <context>
     <name>TrafikantenWindow</name>
@@ -41,19 +46,29 @@
         <translation>Trafikanten for Maemo gir deg sanntidsinfo for kollektivtransporten i Oslo og omegn.</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="62"/>
+        <location filename="trafikantenwindow.ui" line="83"/>
         <source>Recent</source>
         <translation>Nylige søk</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="69"/>
+        <location filename="trafikantenwindow.ui" line="111"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="76"/>
+        <location filename="trafikantenwindow.ui" line="139"/>
         <source>Nearby</source>
         <translation>I nærheten</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="176"/>
+        <source>Timed out</source>
+        <translation>Tidsavbrudd</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="177"/>
+        <source>We are terribly sorry, but we&apos;re unable to locate your position at the current time. Please try again.</source>
+        <translation>Vi beklager, men det var dessverre ikke mulig å lokalisere din posisjon for øyeblikket. Vennligst prøv igjen senere.</translation>
     </message>
 </context>
 </TS>

@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="gps.svg"
-   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/gps.png"
+   sodipodi:docname="recent.svg"
+   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/recent-pressed.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -67,6 +67,105 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4884"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter3696-1"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-0.25"
+       y="-0.25">
+      <feGaussianBlur
+         id="feGaussianBlur3698-0"
+         in="SourceAlpha"
+         stdDeviation="8"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix3700-1"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.750000 0 " />
+      <feOffset
+         id="feOffset3702-6"
+         in="bluralpha"
+         dx="0.000000"
+         dy="0.000000"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge3704-5">
+        <feMergeNode
+           id="feMergeNode3706-4"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3708-8"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4895"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-0.25"
+       y="-0.25">
+      <feGaussianBlur
+         id="feGaussianBlur4897"
+         in="SourceAlpha"
+         stdDeviation="8"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix4899"
+         result="bluralpha"
+         type="matrix"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.750000 0 " />
+      <feOffset
+         id="feOffset4901"
+         in="bluralpha"
+         dx="0.000000"
+         dy="0.000000"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge4903">
+        <feMergeNode
+           id="feMergeNode4905"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode4907"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter5469"
+       x="-0.31214494"
+       width="1.6242899"
+       y="-0.22296065"
+       height="1.4459213">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="17.325006"
+         id="feGaussianBlur5471" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter5473"
+       x="-0.21836065"
+       width="1.4367213"
+       y="-0.1877315"
+       height="1.375463">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="17.325006"
+         id="feGaussianBlur5475" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -76,16 +175,37 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.74316405"
-     inkscape:cx="-23.62638"
+     inkscape:cx="-253.72362"
      inkscape:cy="150.63369"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="1025"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="pressed">
+    <rect
+       style="fill:#30f1eb;fill-opacity:1;stroke:none;filter:url(#filter5469)"
+       id="rect3761-1"
+       width="133.2074"
+       height="186.49037"
+       x="87.536285"
+       y="828.00665"
+       transform="matrix(0.74786454,0,0,0.74786454,27.663448,-577.0581)" />
+    <rect
+       style="fill:#30f1eb;fill-opacity:1;stroke:none;filter:url(#filter5473)"
+       id="rect3761-8-9"
+       width="133.2074"
+       height="186.49037"
+       x="-303.21936"
+       y="823.23291"
+       transform="matrix(0.69981068,-0.26375439,0.26375439,0.69981068,35.490819,-590.43298)" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -98,7 +218,8 @@
        width="133.2074"
        height="186.49037"
        x="87.536285"
-       y="828.00665" />
+       y="828.00665"
+       transform="matrix(0.62635852,0,0,0.62635852,42.111059,331.47294)" />
     <rect
        style="fill:#f2f2f2;fill-opacity:1;stroke:none;filter:url(#filter3696)"
        id="rect3761-8"
@@ -106,7 +227,7 @@
        height="186.49037"
        x="-303.21936"
        y="823.23291"
-       transform="matrix(0.93574524,-0.3526767,0.3526767,0.93574524,10.466296,-17.884072)" />
+       transform="matrix(0.586112,-0.22090205,0.22090205,0.586112,48.666712,320.27109)" />
   </g>
   <metadata
      id="metadata3710">
@@ -114,6 +235,9 @@
       <cc:Work
          rdf:about="">
         <dc:title></dc:title>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:Work>
     </rdf:RDF>
   </metadata>
