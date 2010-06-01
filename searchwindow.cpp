@@ -11,11 +11,12 @@ SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
         QMainWindow(parent),
         ui(new Ui::SearchWindow)
 {
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
+    setAttribute(Qt::WA_Maemo5StackedWindow);
+#endif
     ui->setupUi(this);
 
-
-    setAttribute(Qt::WA_Maemo5StackedWindow);
     manager = new QNetworkAccessManager(this);
     model = new QStandardItemModel(this);
     model->setColumnCount(1);
@@ -25,8 +26,6 @@ SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
     ui->txtSearch->setFocus();
     if(easting != "") {
         this->setWindowTitle(tr("Search Nearby Places"));
-        ui->btnSearch->hide();
-        ui->txtSearch->hide();
         QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
         qDebug() << "requesting" << dataUrl;
         QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
@@ -119,7 +118,7 @@ void SearchWindow::on_tblResults_clicked(QModelIndex index)
     QVariantHash itemData = item->data().toHash();
     int placeId = itemData.value("placeId").toString().toInt();
     QString placeName = itemData.value("name").toString();
-    DeparturesWindow *win = new DeparturesWindow(placeId, placeName, this);
+    DeparturesWindow *win = new DeparturesWindow(Place(placeName, placeId), this);
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {

@@ -1,22 +1,27 @@
 #include "departureswindow.h"
 #include "ui_departureswindow.h"
 
-DeparturesWindow::DeparturesWindow(int placeId, QString placeName, QWidget *parent) :
+#include "routesearchwindow.h"
+
+DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::DeparturesWindow)
 {
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
+    setAttribute(Qt::WA_Maemo5StackedWindow);
+#endif
     ui->setupUi(this);
-    this->placeId = placeId;
-    ui->lblName->setText(placeName);
+    this->place = place;
+    ui->lblName->setText(place.placeName);
 
     ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
-    setAttribute(Qt::WA_Maemo5StackedWindow);
     manager = new QNetworkAccessManager(this);
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
     refreshData();
     connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
+    orientationChanged();
 }
 
 DeparturesWindow::~DeparturesWindow()
@@ -37,8 +42,12 @@ void DeparturesWindow::changeEvent(QEvent *e)
 }
 
 void DeparturesWindow::orientationChanged() {
-    ui->tblResults->repaint();
-    qDebug() << "Orientation changed!";
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    if (screenGeometry.width() > screenGeometry.height()) {
+        portraitMode = false;
+    } else {
+        portraitMode = true;
+    }
 }
 
 void DeparturesWindow::replyFinished(QNetworkReply *reply) {
@@ -79,12 +88,13 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
         ui->tblResults->setModel(model);
         delete(oldModel);
         ui->tblResults->resizeRowsToContents();
+        ui->tblResults->setFixedHeight(ui->tblResults->verticalHeader()->length() + 60);
     }
 }
 
 void DeparturesWindow::refreshData() {
     //Getting data
-    QString dataUrl = "http://reis.trafikanten.no/siri/sm.aspx?id=" + QString::number(placeId); //
+    QString dataUrl = "http://reis.trafikanten.no/siri/sm.aspx?id=" + QString::number(place.placeId); //
     qDebug() << "Requesting" << dataUrl;
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
     manager->get(request);
@@ -134,4 +144,28 @@ void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, e->arrivalTime);
 
     painter->restore();
+}
+
+void DeparturesWindow::on_actionRoute_from_triggered()
+{
+    RouteSearchWindow* win = new RouteSearchWindow(this);
+    win->setPlace(place, true);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
+}
+
+void DeparturesWindow::on_actionRoute_to_triggered()
+{
+    RouteSearchWindow* win = new RouteSearchWindow(this);
+    win->setPlace(place, false);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
 }

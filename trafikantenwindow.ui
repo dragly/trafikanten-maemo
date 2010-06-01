@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>464</height>
+    <width>563</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,9 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="layoutButtonsAdditional"/>
+    </item>
     <item>
      <spacer name="verticalSpacer_2">
       <property name="orientation">
@@ -55,7 +58,7 @@
      </spacer>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="layoutButtons">
       <item>
        <widget class="QPushButton" name="btnRecent">
         <property name="minimumSize">
@@ -81,6 +84,34 @@ border-image: url(:/images/recent-pressed.png);
         </property>
         <property name="text">
          <string>Recent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnRouting">
+        <property name="minimumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+border-image: url(:/images/search.png);
+text-align: bottom center;
+}
+QPushButton::pressed {
+border-image: url(:/images/search-pressed.png);
+}</string>
+        </property>
+        <property name="text">
+         <string>Find route</string>
         </property>
        </widget>
       </item>

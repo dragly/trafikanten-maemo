@@ -31,6 +31,7 @@ private:
     bool portraitMode;
 
 private slots:
+    void on_btnRouting_clicked();
     void on_btnNearby_clicked();
     void on_btnSearch_clicked();
     void positionUpdated(const QGeoPositionInfo &info);

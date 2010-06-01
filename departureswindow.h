@@ -7,36 +7,18 @@
 #include <QtXml>
 #include <QtGui>
 
+#include "common.h"
+
 namespace Ui {
     class DeparturesWindow;
 }
-
-class Departure : public QObject {
-    Q_OBJECT
-public:
-    Departure(QString lineDestination,
-            QString lineNumber,
-            QString arrivalTime,
-            QString arrivalDifference) : QObject() {
-        this->lineDestination = lineDestination;
-        this->lineNumber = lineNumber;
-        this->arrivalTime = arrivalTime;
-        this->arrivalDifference = arrivalDifference;
-    }
-    QString lineDestination;
-    QString lineNumber;
-    QString arrivalTime;
-    QString arrivalDifference;
-};
-
-Q_DECLARE_METATYPE(Departure *)
 
 class DeparturesWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit DeparturesWindow(int placeId, QString placeName, QWidget *parent = 0);
+    explicit DeparturesWindow(Place place, QWidget *parent = 0);
     ~DeparturesWindow();
 
     void refreshData();
@@ -47,9 +29,12 @@ protected:
 private:
     Ui::DeparturesWindow *ui;
     QNetworkAccessManager *manager;
-    int placeId;
+    Place place;
+    bool portraitMode;
 
 private slots:
+    void on_actionRoute_to_triggered();
+    void on_actionRoute_from_triggered();
     void replyFinished(QNetworkReply* reply);
     void orientationChanged();
 };

@@ -7,14 +7,17 @@
 #include "ui_trafikantenwindow.h"
 
 #include "searchwindow.h"
+#include "routesearchwindow.h"
 
 TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::TrafikantenWindow)
 {
-    ui->setupUi(this);
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5StackedWindow);
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
+#endif
+    ui->setupUi(this);
 
     // Set up GPS stuff
     positionSource = QGeoPositionInfoSource::createDefaultSource(this);
@@ -36,8 +39,12 @@ void TrafikantenWindow::orientationChanged() {
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
+        ui->layoutButtonsAdditional->removeWidget(ui->btnRouting);
+        ui->layoutButtons->addWidget(ui->btnRouting);
     } else {
         portraitMode = true;
+        ui->layoutButtons->removeWidget(ui->btnRouting);
+        ui->layoutButtonsAdditional->addWidget(ui->btnRouting);
     }
 }
 
@@ -70,6 +77,7 @@ void TrafikantenWindow::on_btnNearby_clicked()
     qDebug() << "Requesting update";
     if (positionSource) {
         qDebug() << "Got source";
+        positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::AllPositioningMethods); // use all methods
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
         positionSource->requestUpdate(45000);
     }
@@ -176,4 +184,16 @@ void TrafikantenWindow::updateTimeout() {
     messageBox.setWindowTitle(tr("Timed out"));
     messageBox.setText(tr("We are terribly sorry, but we're unable to locate your position at the current time. Please try again."));
     messageBox.exec();
+}
+
+void TrafikantenWindow::on_btnRouting_clicked()
+{
+    positionSource->stopUpdates();
+    RouteSearchWindow* win = new RouteSearchWindow(this);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
 }

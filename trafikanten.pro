@@ -1,49 +1,46 @@
-#-------------------------------------------------
-#
+# -------------------------------------------------
 # Project created by QtCreator 2010-05-29T13:11:08
-#
-#-------------------------------------------------
-
-QT       += core gui network xml
-
+# -------------------------------------------------
+QT += core \
+    gui \
+    network \
+    xml
 TARGET = trafikanten
 TEMPLATE = app
 TRANSLATIONS = trafikanten_nb_NO.ts
-
-SOURCES += main.cpp\
-        trafikantenwindow.cpp \
+SOURCES += main.cpp \
+    trafikantenwindow.cpp \
     searchwindow.cpp \
-    departureswindow.cpp
-
-HEADERS  += trafikantenwindow.h \
+    departureswindow.cpp \
+    routesearchwindow.cpp
+HEADERS += trafikantenwindow.h \
     searchwindow.h \
-    departureswindow.h
-
-FORMS    += trafikantenwindow.ui \
+    departureswindow.h \
+    routesearchwindow.h \
+    common.h
+FORMS += trafikantenwindow.ui \
     searchwindow.ui \
-    departureswindow.ui
-
-RESOURCES += \
-    trafikanten.qrc
-
+    departureswindow.ui \
+    routesearchwindow.ui
+RESOURCES += trafikanten.qrc
 CONFIG += mobility
 MOBILITY = location
-
-symbian {
+symbian { 
     TARGET.UID3 = 0xe9d84f35
-    # TARGET.CAPABILITY += 
+    
+    # TARGET.CAPABILITY +=
     TARGET.EPOCSTACKSIZE = 0x14000
-    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
+    TARGET.EPOCHEAPSIZE = 0x020000 \
+        0x800000
 }
-
-unix {
+unix { 
     # VARIABLES
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     DATADIR = $$PREFIX/share
     DEFINES += DATADIR=\"$$DATADIR\" \
         PKGDATADIR=\"$$PKGDATADIR\"
-
+    
     # MAKE INSTALL
     INSTALLS += target \
         desktop \
@@ -69,5 +66,4 @@ unix {
     translation.path = $$DATADIR/$${TARGET}/translations
     translation.files += $${TARGET}_*.qm
 }
-
-OTHER_FILES +=
+OTHER_FILES += 
