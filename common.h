@@ -10,7 +10,7 @@ public:
     Departure(QString lineDestination,
             QString lineNumber,
             QString arrivalTime,
-            QString arrivalDifference) {
+            int arrivalDifference) {
         this->lineDestination = lineDestination;
         this->lineNumber = lineNumber;
         this->arrivalTime = arrivalTime;
@@ -19,7 +19,7 @@ public:
     QString lineDestination;
     QString lineNumber;
     QString arrivalTime;
-    QString arrivalDifference;
+    int arrivalDifference;
 };
 
 Q_DECLARE_METATYPE(Departure *);

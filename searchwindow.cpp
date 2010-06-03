@@ -76,6 +76,7 @@ void SearchWindow::on_btnSearch_clicked()
     //Getting data
     QString dataUrl = "http://reis.trafikanten.no/siri/checkrealtimestop.aspx?name=" + ui->txtSearch->text(); //
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
+    qDebug() << "requesting" << dataUrl;
     manager->get(request);
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }

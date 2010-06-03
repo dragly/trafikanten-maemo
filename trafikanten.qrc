@@ -3,6 +3,8 @@
         <file>images/search.png</file>
         <file>images/gps.png</file>
         <file>images/recent.png</file>
+        <file>images/route.png</file>
+        <file>images/route-pressed.png</file>
         <file>images/gps-pressed.png</file>
         <file>images/recent-pressed.png</file>
         <file>images/search-pressed.png</file>

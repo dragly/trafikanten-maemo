@@ -13,6 +13,22 @@ namespace Ui {
     class DeparturesWindow;
 }
 
+class DepartureListModel : public QAbstractListModel {
+    Q_OBJECT
+public:
+    DepartureListModel(QObject *parent = 0, QList<Departure *>list = QList<Departure *>())
+        : QAbstractListModel(parent) {
+        departure_list = list;
+    }
+    int rowCount(const QModelIndex &model = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    void doReset();
+public slots:
+
+private:
+    QList<Departure *> departure_list;
+};
+
 class DeparturesWindow : public QMainWindow
 {
     Q_OBJECT
@@ -31,27 +47,13 @@ private:
     QNetworkAccessManager *manager;
     Place place;
     bool portraitMode;
+    DepartureListModel *model;
 
 private slots:
     void on_actionRoute_to_triggered();
     void on_actionRoute_from_triggered();
     void replyFinished(QNetworkReply* reply);
     void orientationChanged();
-};
-
-class DepartureListModel : public QAbstractListModel {
-    Q_OBJECT
-public:
-    DepartureListModel(QObject *parent = 0, QList<Departure *>list = QList<Departure *>())
-        : QAbstractListModel(parent) {
-        departure_list = list;
-    }
-    int rowCount(const QModelIndex &model = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-public slots:
-
-private:
-    QList<Departure *> departure_list;
 };
 
 class DepartureListDelegate : public QStyledItemDelegate {

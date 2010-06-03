@@ -12,16 +12,19 @@ SOURCES += main.cpp \
     trafikantenwindow.cpp \
     searchwindow.cpp \
     departureswindow.cpp \
-    routesearchwindow.cpp
+    routesearchwindow.cpp \
+    aboutdialog.cpp
 HEADERS += trafikantenwindow.h \
     searchwindow.h \
     departureswindow.h \
     routesearchwindow.h \
-    common.h
+    common.h \
+    aboutdialog.h
 FORMS += trafikantenwindow.ui \
     searchwindow.ui \
     departureswindow.ui \
-    routesearchwindow.ui
+    routesearchwindow.ui \
+    aboutdialog.ui
 RESOURCES += trafikanten.qrc
 CONFIG += mobility
 MOBILITY = location

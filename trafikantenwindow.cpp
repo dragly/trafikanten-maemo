@@ -8,6 +8,7 @@
 
 #include "searchwindow.h"
 #include "routesearchwindow.h"
+#include "aboutdialog.h"
 
 TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -196,4 +197,10 @@ void TrafikantenWindow::on_btnRouting_clicked()
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
     win->show();
+}
+
+void TrafikantenWindow::on_actionAbout_triggered()
+{
+    AboutDialog dialog;
+    dialog.exec();
 }

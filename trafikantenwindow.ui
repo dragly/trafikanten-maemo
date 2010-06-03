@@ -103,11 +103,11 @@ border-image: url(:/images/recent-pressed.png);
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-border-image: url(:/images/search.png);
+border-image: url(:/images/route.png);
 text-align: bottom center;
 }
 QPushButton::pressed {
-border-image: url(:/images/search-pressed.png);
+border-image: url(:/images/route-pressed.png);
 }</string>
         </property>
         <property name="text">
@@ -175,6 +175,34 @@ border-image: url(:/images/gps-pressed.png);
     </item>
    </layout>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>563</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionTest"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="text">
+    <string>Test</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
