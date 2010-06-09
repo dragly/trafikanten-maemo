@@ -26,7 +26,7 @@
          <x>0</x>
          <y>0</y>
          <width>375</width>
-         <height>348</height>
+         <height>350</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -67,7 +67,7 @@
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
           <attribute name="horizontalHeaderVisible">
-           <bool>true</bool>
+           <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
@@ -76,7 +76,7 @@
            <bool>false</bool>
           </attribute>
           <attribute name="horizontalHeaderVisible">
-           <bool>true</bool>
+           <bool>false</bool>
           </attribute>
          </widget>
         </item>
@@ -105,7 +105,7 @@
      <x>0</x>
      <y>0</y>
      <width>395</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">

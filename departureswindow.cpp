@@ -16,7 +16,7 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     ui->lblName->setText(place.placeName);
 
     ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
-//    ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     manager = new QNetworkAccessManager(this);
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
@@ -43,6 +43,10 @@ void DeparturesWindow::changeEvent(QEvent *e)
 }
 
 void DeparturesWindow::orientationChanged() {
+//    qDebug() << "table size width" << ui->tblResults->sizeHint().width();
+//    ui->tblResults->resizeColumnsToContents();
+//    ui->tblResults->resizeRowsToContents();
+//    qDebug() << "updated table size width" << ui->tblResults->sizeHint().width();
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
@@ -178,3 +182,6 @@ void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     painter->restore();
 }
 
+QSize DepartureListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) {
+    return QSize();
+}
