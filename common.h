@@ -27,7 +27,7 @@ Q_DECLARE_METATYPE(Departure *);
 class Place {
 //    Q_OBJECT
 public:
-    Place() {}
+    Place() {placeId = NULL;}
     Place(QString placeName,
             int placeId) {
         this->placeId = placeId;

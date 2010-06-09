@@ -4,27 +4,28 @@
 QT += core \
     gui \
     network \
-    xml
+    xml \
+    maemo5
 TARGET = trafikanten
 TEMPLATE = app
 TRANSLATIONS = trafikanten_nb_NO.ts
 SOURCES += main.cpp \
     trafikantenwindow.cpp \
-    searchwindow.cpp \
     departureswindow.cpp \
     routesearchwindow.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    searchdialog.cpp
 HEADERS += trafikantenwindow.h \
-    searchwindow.h \
     departureswindow.h \
     routesearchwindow.h \
     common.h \
-    aboutdialog.h
+    aboutdialog.h \
+    searchdialog.h
 FORMS += trafikantenwindow.ui \
-    searchwindow.ui \
     departureswindow.ui \
     routesearchwindow.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    searchdialog.ui
 RESOURCES += trafikanten.qrc
 CONFIG += mobility
 MOBILITY = location

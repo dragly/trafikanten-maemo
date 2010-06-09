@@ -1,5 +1,5 @@
-#include "searchwindow.h"
-#include "ui_searchwindow.h"
+#include "searchdialog.h"
+#include "ui_searchdialog.h"
 
 #include "departureswindow.h"
 
@@ -7,9 +7,9 @@
 #include <QtNetwork>
 #include <QtXml>
 
-SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
-        QMainWindow(parent),
-        ui(new Ui::SearchWindow)
+SearchDialog::SearchDialog(QWidget *parent, QString easting, QString northing) :
+        QDialog(parent),
+        ui(new Ui::SearchDialog)
 {
 #ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
@@ -24,23 +24,46 @@ SearchWindow::SearchWindow(QWidget *parent, QString easting, QString northing) :
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
     ui->txtSearch->setFocus();
-    if(easting != "") {
-        this->setWindowTitle(tr("Search Nearby Places"));
-        QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
-        qDebug() << "requesting" << dataUrl;
-        QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
-        manager->get(request);
-    }
     connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
     orientationChanged(); // call this just in case we're in portrait mode from before
 }
 
-SearchWindow::~SearchWindow()
+SearchDialog::~SearchDialog()
 {
     delete ui;
 }
 
-void SearchWindow::orientationChanged() {
+void SearchDialog::setNormalSearch() {
+    this->setWindowTitle(tr("Search"));
+    ui->btnSearch->show();
+    ui->txtSearch->show();
+}
+
+void SearchDialog::searchPosition(QString easting, QString northing) {
+    this->setWindowTitle(tr("Places Nearby"));
+    this->easting = easting;
+    this->northing = northing;
+    ui->btnSearch->hide();
+    ui->txtSearch->hide();
+    QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
+    QString data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+                   "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
+                   "  <soap:Body>"
+                   "    <GetClosestStops xmlns=\"http://www.trafikanten.no/\">"
+                   "      <c>"
+                   "        <X>" + easting + "</X>"
+                   "        <Y>" + northing + "</Y>"
+                   "      </c>"
+                   "      <proposals>unsignedByte</proposals>"
+                   "    </GetClosestStops>"
+                   "  </soap:Body>"
+                   "</soap:Envelope>";
+    qDebug() << "requesting" << dataUrl;
+    QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
+    manager->post(request, data);
+}
+
+void SearchDialog::orientationChanged() {
     // Change the layout of the search controls
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
@@ -59,9 +82,9 @@ void SearchWindow::orientationChanged() {
 
 }
 
-void SearchWindow::changeEvent(QEvent *e)
+void SearchDialog::changeEvent(QEvent *e)
 {
-    QMainWindow::changeEvent(e);
+    QDialog::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:
         ui->retranslateUi(this);
@@ -71,7 +94,7 @@ void SearchWindow::changeEvent(QEvent *e)
     }
 }
 
-void SearchWindow::on_btnSearch_clicked()
+void SearchDialog::on_btnSearch_clicked()
 {
     //Getting data
     QString dataUrl = "http://reis.trafikanten.no/siri/checkrealtimestop.aspx?name=" + ui->txtSearch->text(); //
@@ -81,7 +104,7 @@ void SearchWindow::on_btnSearch_clicked()
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 
-void SearchWindow::replyFinished(QNetworkReply *reply) {
+void SearchDialog::replyFinished(QNetworkReply *reply) {
     QString data = QString::fromUtf8(reply->readAll()); // use UTF-8 encoding (why doesn't Qt detect this by itself?)
     qDebug() << "\n\n----Returned data---\n\n" << data << "\n\n\n";
     if(reply->error() == QNetworkReply::NoError) {
@@ -113,22 +136,16 @@ void SearchWindow::replyFinished(QNetworkReply *reply) {
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
 }
 
-void SearchWindow::on_tblResults_clicked(QModelIndex index)
+void SearchDialog::on_tblResults_clicked(QModelIndex index)
 {
     QStandardItem *item = model->itemFromIndex(index);
     QVariantHash itemData = item->data().toHash();
-    int placeId = itemData.value("placeId").toString().toInt();
-    QString placeName = itemData.value("name").toString();
-    DeparturesWindow *win = new DeparturesWindow(Place(placeName, placeId), this);
-    if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
-    } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
-    }
-    win->show();
+    place_ = Place(itemData.value("name").toString(), itemData.value("placeId").toString().toInt());
+    setResult(QDialog::Accepted);
+    hide();
 }
 
-void SearchWindow::on_txtSearch_returnPressed()
+void SearchDialog::on_txtSearch_returnPressed()
 {
     on_btnSearch_clicked();
 }

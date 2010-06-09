@@ -10,6 +10,7 @@
 #include <qnetworkconfigmanager.h>
 #include <qnetworksession.h>
 using namespace QtMobility;
+class SearchDialog;
 namespace Ui {
     class TrafikantenWindow;
 }
@@ -29,6 +30,7 @@ private:
     Ui::TrafikantenWindow *ui;
     QGeoPositionInfoSource *positionSource;
     bool portraitMode;
+    SearchDialog* search;
 
 private slots:
     void on_actionAbout_triggered();

@@ -1,14 +1,18 @@
 /*
  Conversion from longlat to easting/northing is (c) 2006 Jonathan Stott and GPLv3
- Copied from http://code.google.com/p/trafikanten/source/browse/src/uk/me/jstott/jcoord/LatLng.java
+ Rewritten using code from http://code.google.com/p/trafikanten/source/browse/src/uk/me/jstott/jcoord/LatLng.java
 */
+
+#include <QMaemo5InformationBox>
 
 #include "trafikantenwindow.h"
 #include "ui_trafikantenwindow.h"
 
-#include "searchwindow.h"
+#include "searchdialog.h"
 #include "routesearchwindow.h"
 #include "aboutdialog.h"
+#include "departureswindow.h"
+#include "common.h"
 
 TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -19,6 +23,9 @@ TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
 #endif
     ui->setupUi(this);
+
+
+    search = new SearchDialog(this); // there is only one search window :)
 
     // Set up GPS stuff
     positionSource = QGeoPositionInfoSource::createDefaultSource(this);
@@ -64,20 +71,32 @@ void TrafikantenWindow::changeEvent(QEvent *e)
 void TrafikantenWindow::on_btnSearch_clicked()
 {
     positionSource->stopUpdates();
-    SearchWindow* win = new SearchWindow(this);
+    search->setNormalSearch();
     if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        search->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
-    win->show();
+    int result = search->exec();
+
+    if(result == QDialog::Accepted) {
+        DeparturesWindow *win = new DeparturesWindow(search->place(), this);
+        if(portraitMode) {
+            win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        } else {
+            win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        }
+        win->show();
+    }
 }
 
 void TrafikantenWindow::on_btnNearby_clicked()
 {
-    qDebug() << "Requesting update";
+#ifdef Q_WS_MAEMO_5
+    QMaemo5InformationBox::information(this, "Requesting your position using GPS/GSM", QMaemo5InformationBox::DefaultTimeout);
+#endif
+    qDebug() << "Requesting update...";
     if (positionSource) {
-        qDebug() << "Got source";
         positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::AllPositioningMethods); // use all methods
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
         positionSource->requestUpdate(45000);
@@ -103,79 +122,89 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
     // Special zone for Norway
     if (latitude >= 56.0 && latitude < 64.0 && longitude >= 3.0
         && longitude < 12.0) {
-      longitudeZone = 32;
+        longitudeZone = 32;
     }
 
     // Special zones for Svalbard
     if (latitude >= 72.0 && latitude < 84.0) {
-      if (longitude >= 0.0 && longitude < 9.0) {
-        longitudeZone = 31;
-      } else if (longitude >= 9.0 && longitude < 21.0) {
-        longitudeZone = 33;
-      } else if (longitude >= 21.0 && longitude < 33.0) {
-        longitudeZone = 35;
-      } else if (longitude >= 33.0 && longitude < 42.0) {
-        longitudeZone = 37;
-      }
+        if (longitude >= 0.0 && longitude < 9.0) {
+            longitudeZone = 31;
+        } else if (longitude >= 9.0 && longitude < 21.0) {
+            longitudeZone = 33;
+        } else if (longitude >= 21.0 && longitude < 33.0) {
+            longitudeZone = 35;
+        } else if (longitude >= 33.0 && longitude < 42.0) {
+            longitudeZone = 37;
+        }
     }
 
     double longitudeOrigin = (longitudeZone - 1) * 6 - 180 + 3;
     double longitudeOriginRad = longitudeOrigin * (M_PI / 180.0);
 
-//    char UTMZone = UTMRef.getUTMLatitudeZoneLetter(latitude);
+    //    char UTMZone = UTMRef.getUTMLatitudeZoneLetter(latitude);
 
     double ePrimeSquared = (eSquared) / (1 - eSquared);
 
     double n =
-        a
+            a
             / sqrt(1 - eSquared * sin(latitudeRad)
-                * sin(latitudeRad));
+                   * sin(latitudeRad));
     double t = tan(latitudeRad) * tan(latitudeRad);
     double c = ePrimeSquared * cos(latitudeRad) * cos(latitudeRad);
     double A = cos(latitudeRad) * (longitudeRad - longitudeOriginRad);
 
     double M =
-        a
+            a
             * ((1 - eSquared / 4 - 3 * eSquared * eSquared / 64 - 5 * eSquared
                 * eSquared * eSquared / 256)
-                * latitudeRad
-                - (3 * eSquared / 8 + 3 * eSquared * eSquared / 32 + 45
-                    * eSquared * eSquared * eSquared / 1024)
-                * sin(2 * latitudeRad)
-                + (15 * eSquared * eSquared / 256 + 45 * eSquared * eSquared
-                    * eSquared / 1024) * sin(4 * latitudeRad) - (35
-                * eSquared * eSquared * eSquared / 3072)
-                * sin(6 * latitudeRad));
+               * latitudeRad
+               - (3 * eSquared / 8 + 3 * eSquared * eSquared / 32 + 45
+                  * eSquared * eSquared * eSquared / 1024)
+               * sin(2 * latitudeRad)
+               + (15 * eSquared * eSquared / 256 + 45 * eSquared * eSquared
+                  * eSquared / 1024) * sin(4 * latitudeRad) - (35
+                                                               * eSquared * eSquared * eSquared / 3072)
+               * sin(6 * latitudeRad));
 
     double UTMEasting =
-        (UTM_F0
-            * n
-            * (A + (1 - t + c) * pow(A, 3.0) / 6 + (5 - 18 * t + t * t
-                + 72 * c - 58 * ePrimeSquared)
+            (UTM_F0
+             * n
+             * (A + (1 - t + c) * pow(A, 3.0) / 6 + (5 - 18 * t + t * t
+                                                     + 72 * c - 58 * ePrimeSquared)
                 * pow(A, 5.0) / 120) + 500000.0);
 
     double UTMNorthing =
-        (UTM_F0 * (M + n
-            * tan(latitudeRad)
-            * (A * A / 2 + (5 - t + (9 * c) + (4 * c * c)) * pow(A, 4.0)
-                / 24 + (61 - (58 * t) + (t * t) + (600 * c) - (330 * ePrimeSquared))
-                * pow(A, 6.0) / 720)));
+            (UTM_F0 * (M + n
+                       * tan(latitudeRad)
+                       * (A * A / 2 + (5 - t + (9 * c) + (4 * c * c)) * pow(A, 4.0)
+                          / 24 + (61 - (58 * t) + (t * t) + (600 * c) - (330 * ePrimeSquared))
+                          * pow(A, 6.0) / 720)));
 
 
     // Adjust for the southern hemisphere
     if (latitude < 0) {
-      UTMNorthing += 10000000.0;
+        UTMNorthing += 10000000.0;
     }
     QString northing = QString::number((int)UTMNorthing);
     QString easting = QString::number((int)UTMEasting);
     qDebug() << "northing" << northing << "easting" << easting;
-    SearchWindow* win = new SearchWindow(this, easting, northing);
+    search->searchPosition(easting, northing);
     if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        search->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
-    win->show();
+    int result = search->exec();
+
+    if(result == QDialog::Accepted) {
+        DeparturesWindow *win = new DeparturesWindow(search->place(), this);
+        if(portraitMode) {
+            win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        } else {
+            win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        }
+        win->show();
+    }
 }
 
 void TrafikantenWindow::updateTimeout() {

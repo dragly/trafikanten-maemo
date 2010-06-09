@@ -1,7 +1,8 @@
 #ifndef ROUTESEARCHWINDOW_H
 #define ROUTESEARCHWINDOW_H
 
-#include <QMainWindow>
+#include <QtNetwork>
+#include <QtGui>
 
 #include "common.h"
 
@@ -24,6 +25,17 @@ private:
     Ui::RouteSearchWindow *ui;
     Place placeFrom;
     Place placeTo;
+    bool portraitMode;
+    QNetworkAccessManager *manager;
+    QStandardItemModel *model;
+    Place searchPlace();
+
+private slots:
+    void on_pushButton_clicked();
+    void on_btnPlaceTo_clicked();
+    void on_btnPlaceFrom_clicked();
+    void orientationChanged();
+    void replyFinished(QNetworkReply *reply);
 };
 
 #endif // ROUTESEARCHWINDOW_H
