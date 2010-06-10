@@ -17,6 +17,7 @@ SearchDialog::SearchDialog(QWidget *parent, QString easting, QString northing) :
 #endif
     ui->setupUi(this);
 
+    requestType = PlaceSearch;
     manager = new QNetworkAccessManager(this);
     model = new QStandardItemModel(this);
     model->setColumnCount(1);
@@ -45,7 +46,9 @@ void SearchDialog::searchPosition(QString easting, QString northing) {
     this->northing = northing;
     ui->btnSearch->hide();
     ui->txtSearch->hide();
-    QString dataUrl = "http://reis.trafikanten.no/topp2009/getcloseststops.aspx?x=" + easting + "&y=" + northing + "&proposals=10"; //
+    QString dataUrl = "http://reis.trafikanten.no/topp2009/topp2009ws.asmx";
+    QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
+    qDebug() << "requesting" << dataUrl;
     QString data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
                    "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
                    "  <soap:Body>"
@@ -54,13 +57,16 @@ void SearchDialog::searchPosition(QString easting, QString northing) {
                    "        <X>" + easting + "</X>"
                    "        <Y>" + northing + "</Y>"
                    "      </c>"
-                   "      <proposals>unsignedByte</proposals>"
+                   "      <proposals>10</proposals>"
                    "    </GetClosestStops>"
                    "  </soap:Body>"
                    "</soap:Envelope>";
-    qDebug() << "requesting" << dataUrl;
-    QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
-    manager->post(request, data);
+    qDebug() << "request data" << data;
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
+    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toLatin1().length());
+    requestType = ClosestStops;
+    manager->post(request, data.toLatin1());
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 
 void SearchDialog::orientationChanged() {
@@ -97,10 +103,21 @@ void SearchDialog::changeEvent(QEvent *e)
 void SearchDialog::on_btnSearch_clicked()
 {
     //Getting data
-    QString dataUrl = "http://reis.trafikanten.no/siri/checkrealtimestop.aspx?name=" + ui->txtSearch->text(); //
+    QString dataUrl = "http://reis.trafikanten.no/topp2009/topp2009ws.asmx";
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
+    QString data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+                   "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
+                   "  <soap:Body>"
+                   "    <GetMatches xmlns=\"http://www.trafikanten.no/\">"
+                   "      <searchName>" + ui->txtSearch->text() + "</searchName>"
+                   "    </GetMatches>"
+                   "  </soap:Body>"
+                   "</soap:Envelope>";
     qDebug() << "requesting" << dataUrl;
-    manager->get(request);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
+    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toLatin1().length());
+    requestType = PlaceSearch;
+    manager->post(request, data.toLatin1());
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 
@@ -114,20 +131,32 @@ void SearchDialog::replyFinished(QNetworkReply *reply) {
         if(response.isNull()) {
             qDebug("No response found!");
         }
-        QDomElement place = response.firstChildElement("Place");
+        QDomElement placeStop;
+        if(requestType == ClosestStops) {
+            placeStop = response.firstChildElement("soap:Body").firstChildElement("GetClosestStopsResponse").firstChildElement("GetClosestStopsResult").firstChildElement("Stop");
+        } else if(requestType == PlaceSearch) {
+            placeStop = response.firstChildElement("soap:Body").firstChildElement("GetMatchesResponse").firstChildElement("GetMatchesResult").firstChildElement("Place");
+        }
         model->clear();
         int row = 0;
-        while(!place.isNull()) {
-            QDomElement placeId = place.firstChildElement("ID");
-            QDomElement name = place.firstChildElement("Name");
-            QStandardItem *nameItem = new QStandardItem(name.text());
-            QVariantHash itemData;
-            itemData.insert("placeId", placeId.text());
-            itemData.insert("name", name.text());
-            nameItem->setData(itemData);
-            model->setItem(row, 0, nameItem);
-            place = place.nextSiblingElement("Place");
-            row++;
+        while(!placeStop.isNull()) {
+            QDomElement placeId = placeStop.firstChildElement("ID");
+            QDomElement name = placeStop.firstChildElement("Name");
+            QDomElement type = placeStop.firstChildElement("Type");
+            if(type.text() == "Stop") { // TODO: Add support for Area and POI
+                QStandardItem *nameItem = new QStandardItem(name.text());
+                QVariantHash itemData;
+                itemData.insert("placeId", placeId.text());
+                itemData.insert("name", name.text());
+                nameItem->setData(itemData);
+                model->setItem(row, 0, nameItem);
+                row++;
+            }
+            if(requestType == ClosestStops) {
+                placeStop = placeStop.nextSiblingElement("Stop");
+            } else if (requestType == PlaceSearch) {
+                placeStop = placeStop.nextSiblingElement("Place");
+            }
         }
         // size everything for full window scrolling
         ui->tblResults->resizeRowsToContents();

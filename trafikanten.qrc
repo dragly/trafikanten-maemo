@@ -8,5 +8,9 @@
         <file>images/gps-pressed.png</file>
         <file>images/recent-pressed.png</file>
         <file>images/search-pressed.png</file>
+        <file>images/bus.png</file>
+        <file>images/tbane.png</file>
+        <file>images/train.png</file>
+        <file>images/tram.png</file>
     </qresource>
 </RCC>

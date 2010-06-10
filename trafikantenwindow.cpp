@@ -9,7 +9,7 @@
 #include "ui_trafikantenwindow.h"
 
 #include "searchdialog.h"
-#include "routesearchwindow.h"
+#include "travelsearchwindow.h"
 #include "aboutdialog.h"
 #include "departureswindow.h"
 #include "common.h"
@@ -93,7 +93,7 @@ void TrafikantenWindow::on_btnSearch_clicked()
 void TrafikantenWindow::on_btnNearby_clicked()
 {
 #ifdef Q_WS_MAEMO_5
-    QMaemo5InformationBox::information(this, "Requesting your position using GPS/GSM", QMaemo5InformationBox::DefaultTimeout);
+    QMaemo5InformationBox::information(this, tr("Requesting your position using GPS/GSM"), QMaemo5InformationBox::DefaultTimeout);
 #endif
     qDebug() << "Requesting update...";
     if (positionSource) {
@@ -219,7 +219,7 @@ void TrafikantenWindow::updateTimeout() {
 void TrafikantenWindow::on_btnRouting_clicked()
 {
     positionSource->stopUpdates();
-    RouteSearchWindow* win = new RouteSearchWindow(this);
+    TravelSearchWindow* win = new TravelSearchWindow(this);
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {

@@ -17,6 +17,8 @@ public:
     explicit SearchDialog(QWidget *parent = 0, QString easting = "", QString northing = "");
     ~SearchDialog();
 
+    enum RequestType {ClosestStops, PlaceSearch};
+
     Place place() {return place_;}
     void searchPosition(QString easting = "", QString northing = "");
     void setNormalSearch();
@@ -32,6 +34,7 @@ private:
     Place place_;
     QString easting;
     QString northing;
+    int requestType;
 
 private slots:
     void on_txtSearch_returnPressed();

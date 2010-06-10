@@ -119,12 +119,12 @@
   </widget>
   <action name="actionRoute_from">
    <property name="text">
-    <string>Route from here</string>
+    <string>Travel from here</string>
    </property>
   </action>
   <action name="actionRoute_to">
    <property name="text">
-    <string>Route to here</string>
+    <string>Travel to here</string>
    </property>
   </action>
  </widget>

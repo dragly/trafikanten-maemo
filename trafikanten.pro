@@ -12,20 +12,23 @@ TRANSLATIONS = trafikanten_nb_NO.ts
 SOURCES += main.cpp \
     trafikantenwindow.cpp \
     departureswindow.cpp \
-    routesearchwindow.cpp \
+    travelsearchwindow.cpp \
     aboutdialog.cpp \
-    searchdialog.cpp
+    searchdialog.cpp \
+    travelinfodialog.cpp
 HEADERS += trafikantenwindow.h \
     departureswindow.h \
-    routesearchwindow.h \
+    travelsearchwindow.h \
     common.h \
     aboutdialog.h \
-    searchdialog.h
+    searchdialog.h \
+    travelinfodialog.h
 FORMS += trafikantenwindow.ui \
     departureswindow.ui \
-    routesearchwindow.ui \
+    travelsearchwindow.ui \
     aboutdialog.ui \
-    searchdialog.ui
+    searchdialog.ui \
+    travelinfodialog.ui
 RESOURCES += trafikanten.qrc
 CONFIG += mobility
 MOBILITY = location

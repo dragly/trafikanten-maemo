@@ -111,7 +111,7 @@ border-image: url(:/images/route-pressed.png);
 }</string>
         </property>
         <property name="text">
-         <string>Find route</string>
+         <string>Find travel</string>
         </property>
        </widget>
       </item>
@@ -181,7 +181,7 @@ border-image: url(:/images/gps-pressed.png);
      <x>0</x>
      <y>0</y>
      <width>563</width>
-     <height>18</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
@@ -189,7 +189,6 @@ border-image: url(:/images/gps-pressed.png);
      <string>Menu</string>
     </property>
     <addaction name="actionAbout"/>
-    <addaction name="actionTest"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>

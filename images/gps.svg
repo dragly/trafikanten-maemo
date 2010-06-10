@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.47 r22583"
    sodipodi:docname="gps.svg"
-   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/gps.png"
+   inkscape:export-filename="./gps.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -113,6 +113,33 @@
          stdDeviation="14.857985"
          id="feGaussianBlur4731" />
     </filter>
+    <inkscape:perspective
+       id="perspective2843"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3638"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter4729-0"
+       x="-0.24558719"
+       width="1.4911745"
+       y="-0.19183785"
+       height="1.3836757">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="14.857985"
+         id="feGaussianBlur4731-6" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -121,40 +148,47 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.74316405"
-     inkscape:cx="55.091098"
-     inkscape:cy="150.63369"
+     inkscape:zoom="1.0509927"
+     inkscape:cx="-99.894615"
+     inkscape:cy="248.85637"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1025"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1600"
+     inkscape:window-height="1092"
+     inkscape:window-x="1680"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="pressed">
+     inkscape:label="pressed"
+     style="display:none">
     <path
-       style="fill:#52d8e0;stroke:none;fill-opacity:1;filter:url(#filter4729)"
+       style="fill:#52d8e0;fill-opacity:1;stroke:none;filter:url(#filter4729)"
        d="m 51.132721,199.48488 -1.345598,29.93956 55.169517,-1.0092 8.40998,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 78.044679,153.06176 78.044679,153.06176 l -26.911958,46.42312 z"
        id="path3735-4"
        transform="matrix(0.72419568,0,0,0.63009895,41.82843,33.665429)"
        sodipodi:nodetypes="ccccsscc" />
+    <path
+       style="fill:#52d8e0;fill-opacity:1;stroke:none;display:inline;filter:url(#filter4729-0)"
+       d="m 102.85585,162.21948 c 0,0 3.52963,-21.43215 29.09599,-39.26132 C 157.51821,105.12899 113.60777,43.350566 83.331814,63.534534 53.055861,83.718503 53.08161,124.3708 53.08161,124.3708 l 49.77424,37.84868 z"
+       id="path3735-4-0"
+       transform="matrix(0.72419568,0,0,0.63009895,95.003829,20.619281)"
+       sodipodi:nodetypes="csscc" />
   </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-796.36218)"
-     style="filter:url(#filter3638)">
+     style="display:inline;filter:url(#filter3638)">
     <path
        style="fill:#f2f2f2;stroke:none;filter:url(#filter3696)"
-       d="m 51.132721,199.48488 -1.345598,29.93956 55.169517,-1.0092 8.40998,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 78.044679,153.06176 78.044679,153.06176 l -26.911958,46.42312 z"
+       d="m 49.787123,229.42444 73.563357,-1.0092 -9.98386,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 92.909147,174.4171 92.909147,174.4171 l -43.122024,55.00734 z"
        id="path3735"
        transform="matrix(0.72419568,0,0,0.63009895,41.82843,830.02761)"
-       sodipodi:nodetypes="ccccsscc" />
+       sodipodi:nodetypes="cccsscc" />
     <path
        sodipodi:type="arc"
        style="fill:#f2f2f2;fill-opacity:1;stroke:none;filter:url(#filter3696)"
@@ -164,14 +198,17 @@
        sodipodi:rx="16.819975"
        sodipodi:ry="13.119579"
        d="m 191.74771,96.210243 a 16.819975,13.119579 0 1 1 -33.63995,0 16.819975,13.119579 0 1 1 33.63995,0 z"
-       transform="matrix(0.72419568,0,0,0.84013186,41.341192,802.40152)" />
+       transform="matrix(0.72419568,0,0,0.84013186,43.341192,800.40152)" />
   </g>
   <metadata
      id="metadata3710">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
-        <dc:title></dc:title>
+        <dc:title />
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:Work>
     </rdf:RDF>
   </metadata>

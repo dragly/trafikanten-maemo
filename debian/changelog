@@ -1,9 +1,29 @@
+trafikanten (0.1.8-0) unstable; urgency=low
+
+  * Fixed minor translation bug.
+  * UI enhancements
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 10 June 2010 23:50:00 +0200
+
+trafikanten (0.1.7-0) unstable; urgency=low
+
+  * Full routing support (non-advanced search).
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 10 June 2010 23:48:00 +0200
+
+trafikanten (0.1.6-0) unstable; urgency=low
+
+  * Early routing support (still missing route info).
+  * Fixed delegate rotation.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 09 June 2010 19:48:00 +0200
+
 trafikanten (0.1.5-0) unstable; urgency=low
 
   * New buttons.
   * Added formatting in list.
 
- -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 20:30:00 +0000
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 29 May 2010 20:35:00 +0000
 
 trafikanten (0.1.4-0) unstable; urgency=low
 

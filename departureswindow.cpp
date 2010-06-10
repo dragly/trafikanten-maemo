@@ -1,7 +1,7 @@
 #include "departureswindow.h"
 #include "ui_departureswindow.h"
 
-#include "routesearchwindow.h"
+#include "travelsearchwindow.h"
 
 DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
         QMainWindow(parent),
@@ -107,7 +107,7 @@ void DeparturesWindow::refreshData() {
 
 void DeparturesWindow::on_actionRoute_from_triggered()
 {
-    RouteSearchWindow* win = new RouteSearchWindow(this);
+    TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, true);
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
@@ -119,7 +119,7 @@ void DeparturesWindow::on_actionRoute_from_triggered()
 
 void DeparturesWindow::on_actionRoute_to_triggered()
 {
-    RouteSearchWindow* win = new RouteSearchWindow(this);
+    TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, false);
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
