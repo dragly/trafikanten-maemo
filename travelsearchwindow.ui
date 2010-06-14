@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DeparturesWindow</class>
- <widget class="QMainWindow" name="DeparturesWindow">
+ <class>TravelSearchWindow</class>
+ <widget class="QMainWindow" name="TravelSearchWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>395</width>
-    <height>389</height>
+    <width>446</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Departures</string>
+   <string>Travel Search</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -25,43 +25,57 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>375</width>
-         <height>348</height>
+         <width>426</width>
+         <height>367</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Departures from</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>From:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnPlaceFrom">
+            <property name="text">
+             <string>Select Departure</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>To:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="btnPlaceTo">
+            <property name="text">
+             <string>Select Destination</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="dateTimeContainer"/>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QLabel" name="lblName">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-           </font>
-          </property>
+         <widget class="QPushButton" name="pushButton">
           <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <string>Search</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QTableView" name="tblResults">
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::NoSelection</enum>
+           <enum>QAbstractItemView::SingleSelection</enum>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
@@ -88,7 +102,7 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>12</height>
            </size>
           </property>
          </spacer>
@@ -104,7 +118,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>395</width>
+     <width>446</width>
      <height>21</height>
     </rect>
    </property>
@@ -112,22 +126,10 @@
     <property name="title">
      <string>Menu</string>
     </property>
-    <addaction name="actionRoute_from"/>
-    <addaction name="actionRoute_to"/>
     <addaction name="actionAddFavorite"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
-  <action name="actionRoute_from">
-   <property name="text">
-    <string>Travel from here</string>
-   </property>
-  </action>
-  <action name="actionRoute_to">
-   <property name="text">
-    <string>Travel to here</string>
-   </property>
-  </action>
   <action name="actionAddFavorite">
    <property name="text">
     <string>Add as favorite</string>

@@ -14,7 +14,7 @@
    <string>Trafikanten</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="layoutButtonsAdditional"/>
     </item>
@@ -84,6 +84,34 @@ border-image: url(:/images/recent-pressed.png);
         </property>
         <property name="text">
          <string>Recent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnFavorites">
+        <property name="minimumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>128</width>
+          <height>128</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+border-image: url(:/images/recent.png);
+text-align: bottom center;
+}
+QPushButton::pressed {
+border-image: url(:/images/recent-pressed.png);
+}</string>
+        </property>
+        <property name="text">
+         <string>Favorites</string>
         </property>
        </widget>
       </item>

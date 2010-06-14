@@ -5,6 +5,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    // Settings
+    QCoreApplication::setOrganizationName("Dragly");
+    QCoreApplication::setOrganizationDomain("dragly.org");
+    QCoreApplication::setApplicationName("Trafikanten");
+
+    // Locale and translations
     QString locale = QLocale::system().name();
     QTranslator translator;
     translator.load(QString("trafikanten_") + locale);

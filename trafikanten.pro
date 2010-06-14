@@ -15,20 +15,23 @@ SOURCES += main.cpp \
     travelsearchwindow.cpp \
     aboutdialog.cpp \
     searchdialog.cpp \
-    travelinfodialog.cpp
+    travelinfodialog.cpp \
+    recentwindow.cpp
 HEADERS += trafikantenwindow.h \
     departureswindow.h \
     travelsearchwindow.h \
     common.h \
     aboutdialog.h \
     searchdialog.h \
-    travelinfodialog.h
+    travelinfodialog.h \
+    recentwindow.h
 FORMS += trafikantenwindow.ui \
     departureswindow.ui \
     travelsearchwindow.ui \
     aboutdialog.ui \
     searchdialog.ui \
-    travelinfodialog.ui
+    travelinfodialog.ui \
+    recentwindow.ui
 RESOURCES += trafikanten.qrc
 CONFIG += mobility
 MOBILITY = location

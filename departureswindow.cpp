@@ -15,6 +15,14 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     this->place = place;
     ui->lblName->setText(place.placeName);
 
+    QList<Search*> searches = Search::recent();
+    Search *search = new Search();
+    search->placeFrom = place;
+    search->type = Search::Realtime;
+    qDebug() << search->placeFrom.placeName;
+    searches.append(search);
+    Search::saveRecent(searches);
+
     ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     manager = new QNetworkAccessManager(this);
@@ -184,4 +192,14 @@ void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
 
 QSize DepartureListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) {
     return QSize();
+}
+
+void DeparturesWindow::on_actionAddFavorite_triggered()
+{
+    QList<Search*> searches = Search::favorites();
+    Search *search = new Search();
+    search->placeFrom = place;
+    search->type = Search::Realtime;
+    searches.append(search);
+    Search::saveFavorites(searches);
 }

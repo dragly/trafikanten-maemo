@@ -114,6 +114,7 @@ void SearchDialog::on_btnSearch_clicked()
                    "  </soap:Body>"
                    "</soap:Envelope>";
     qDebug() << "requesting" << dataUrl;
+    qDebug() << "request data" << data;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
     request.setHeader(QNetworkRequest::ContentLengthHeader, data.toLatin1().length());
     requestType = PlaceSearch;

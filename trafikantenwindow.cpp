@@ -13,6 +13,7 @@
 #include "aboutdialog.h"
 #include "departureswindow.h"
 #include "common.h"
+#include "recentwindow.h"
 
 TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -232,4 +233,28 @@ void TrafikantenWindow::on_actionAbout_triggered()
 {
     AboutDialog dialog;
     dialog.exec();
+}
+
+void TrafikantenWindow::on_btnRecent_clicked()
+{
+    positionSource->stopUpdates();
+    RecentWindow* win = new RecentWindow(RecentWindow::Recent, this);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
+}
+
+void TrafikantenWindow::on_btnFavorites_clicked()
+{
+    positionSource->stopUpdates();
+    RecentWindow* win = new RecentWindow(RecentWindow::Favorites, this);
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
 }

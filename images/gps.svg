@@ -148,9 +148,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0509927"
-     inkscape:cx="-99.894615"
-     inkscape:cy="248.85637"
+     inkscape:zoom="0.37158203"
+     inkscape:cx="-490.63815"
+     inkscape:cy="661.30752"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -185,7 +185,7 @@
      style="display:inline;filter:url(#filter3638)">
     <path
        style="fill:#f2f2f2;stroke:none;filter:url(#filter3696)"
-       d="m 49.787123,229.42444 73.563357,-1.0092 -9.98386,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 92.909147,174.4171 92.909147,174.4171 l -43.122024,55.00734 z"
+       d="m 61.611734,229.42444 61.738746,-1.0092 -9.98386,-35.99474 c 0,0 52.14192,17.82917 77.70828,0 C 216.64127,174.59133 109.66623,25.229957 79.390277,45.413925 49.114324,65.597894 92.909147,174.4171 92.909147,174.4171 l -31.297413,55.00734 z"
        id="path3735"
        transform="matrix(0.72419568,0,0,0.63009895,41.82843,830.02761)"
        sodipodi:nodetypes="cccsscc" />

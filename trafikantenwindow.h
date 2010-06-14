@@ -33,6 +33,7 @@ private:
     SearchDialog* search;
 
 private slots:
+    void on_btnRecent_clicked();
     void on_actionAbout_triggered();
     void on_btnRouting_clicked();
     void on_btnNearby_clicked();
