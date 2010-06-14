@@ -15,15 +15,17 @@ class SearchListModel : public QAbstractListModel {
 public:
     SearchListModel(QObject *parent = 0, QList<Search *>list = QList<Search *>())
         : QAbstractListModel(parent) {
-        searches = list;
+        searches_ = list;
     }
     int rowCount(const QModelIndex &model = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     void doReset();
+    void setSearches(QList<Search *> searches) { this->searches_ = searches; }
+    QList<Search*> searches() { return searches_; }
 public slots:
 
 private:
-    QList<Search *> searches;
+    QList<Search *> searches_;
 };
 
 class SearchListDelegate : public QStyledItemDelegate {
@@ -54,16 +56,18 @@ protected:
 private:
     Ui::RecentWindow *ui;
 
-    QStandardItemModel* model;
+    SearchListModel *model;
     QSettings settings;
-    QList<Search*> searches;
 
     bool portraitMode;
     int mode;
 
 private slots:
+    void on_actionDelete_all_triggered();
+    void on_tblResults_customContextMenuRequested(QPoint pos);
     void on_tblResults_clicked(QModelIndex index);
     void orientationChanged();
+    void removeFavorite();
 };
 
 #endif // RECENTWINDOW_H

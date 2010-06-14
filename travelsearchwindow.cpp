@@ -271,11 +271,9 @@ void TravelSearchWindow::on_tblResults_clicked(QModelIndex index)
 
 void TravelSearchWindow::on_actionAddFavorite_triggered()
 {
-    QList<Search*> searches = Search::favorites();
     Search *search = new Search();
     search->placeFrom = placeFrom;
     search->placeTo = placeTo;
     search->type = Search::Travel;
-    searches.append(search);
-    Search::saveFavorites(searches);
+    Search::prependRecent(search);
 }

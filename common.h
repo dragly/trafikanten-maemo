@@ -86,8 +86,6 @@ public:
         for (int i = 0; i < size; ++i) {
             settings.setArrayIndex(i);
             Search *search = new Search();
-            QString placeName = settings.value("placeFromName").toString();
-            qDebug() << placeName;
             search->placeFrom = Place(settings.value("placeFromName").toString(), settings.value("placeFromId").toInt());
             search->placeTo = Place(settings.value("placeToName").toString(), settings.value("placeToId").toInt());
             qDebug() << search->placeFrom.placeName;
@@ -108,10 +106,8 @@ public:
         for (int i = 0; i < size; ++i) {
             settings.setArrayIndex(i);
             Search *search = new Search();
-            search->placeFrom.placeName = settings.value("placeFromName").toString();
-            search->placeFrom.placeName = settings.value("placeFromId").toInt();
-            search->placeTo.placeName = settings.value("placeToName").toString();
-            search->placeTo.placeName = settings.value("placeToId").toInt();
+            search->placeFrom = Place(settings.value("placeFromName").toString(), settings.value("placeFromId").toInt());
+            search->placeTo = Place(settings.value("placeToName").toString(), settings.value("placeToId").toInt());
 
             search->type = settings.value("type").toInt();
 
@@ -130,10 +126,9 @@ public:
 
             settings.setArrayIndex(i);
             settings.setValue("placeFromName", search->placeFrom.placeName);
-            settings.setValue("placeFromId", search->placeFrom.placeName);
-
+            settings.setValue("placeFromId", search->placeFrom.placeId);
             settings.setValue("placeToName", search->placeTo.placeName);
-            settings.setValue("placeToId", search->placeTo.placeName);
+            settings.setValue("placeToId", search->placeTo.placeId);
 
             settings.setValue("type", search->type);
         }
@@ -149,14 +144,30 @@ public:
             settings.setArrayIndex(i);
 
             settings.setValue("placeFromName", search->placeFrom.placeName);
-            settings.setValue("placeFromId", search->placeFrom.placeName);
-
+            settings.setValue("placeFromId", search->placeFrom.placeId);
             settings.setValue("placeToName", search->placeTo.placeName);
-            settings.setValue("placeToId", search->placeTo.placeName);
+            settings.setValue("placeToId", search->placeTo.placeId);
 
             settings.setValue("type", search->type);
         }
         settings.endArray();
+    }
+
+    static void prependRecent(Search* search) {
+        QList<Search*> searches = recent();
+        bool alreadyExists = false;
+        foreach(Search *oldSearch, searches) {
+            if(oldSearch->type == search->type && oldSearch->placeFrom.placeId == search->placeFrom.placeId) {
+                alreadyExists = true;
+            }
+        }
+        if(!alreadyExists) {
+            searches.prepend(search);
+        }
+        if(searches.size() > 20) {
+            searches.removeFirst();
+        }
+        saveRecent(searches);
     }
 
 };

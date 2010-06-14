@@ -1,3 +1,10 @@
+trafikanten (1.0.0-alpha1-0) unstable; urgency=low
+
+  * Added favorite/recent searches.
+  * Feature freeze for 1.0
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 14 June 2010 23:50:00 +0200
+
 trafikanten (0.1.8-0) unstable; urgency=low
 
   * Fixed minor translation bug.

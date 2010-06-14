@@ -12,5 +12,7 @@
         <file>images/tbane.png</file>
         <file>images/train.png</file>
         <file>images/tram.png</file>
+        <file>images/favorites.png</file>
+        <file>images/favorites-pressed.png</file>
     </qresource>
 </RCC>

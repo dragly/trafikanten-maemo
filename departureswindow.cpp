@@ -15,13 +15,10 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     this->place = place;
     ui->lblName->setText(place.placeName);
 
-    QList<Search*> searches = Search::recent();
     Search *search = new Search();
     search->placeFrom = place;
     search->type = Search::Realtime;
-    qDebug() << search->placeFrom.placeName;
-    searches.append(search);
-    Search::saveRecent(searches);
+    Search::prependRecent(search);
 
     ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);

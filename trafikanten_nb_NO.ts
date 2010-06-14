@@ -40,12 +40,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DepartureListDelegate</name>
     <message>
-        <location filename="departureswindow.cpp" line="170"/>
+        <location filename="departureswindow.cpp" line="175"/>
         <source>now</source>
         <translation>nå</translation>
     </message>
     <message>
-        <location filename="departureswindow.cpp" line="172"/>
+        <location filename="departureswindow.cpp" line="177"/>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -73,14 +73,75 @@ p, li { white-space: pre-wrap; }
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="122"/>
-        <source>Route from here</source>
-        <translation>Rute fra denne holdeplassen</translation>
+        <location filename="departureswindow.ui" line="123"/>
+        <source>Travel from here</source>
+        <translation>Reis herfra</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="127"/>
+        <location filename="departureswindow.ui" line="128"/>
+        <source>Travel to here</source>
+        <translation>Reis hit</translation>
+    </message>
+    <message>
+        <location filename="departureswindow.ui" line="133"/>
+        <source>Add as favorite</source>
+        <translation>Legg til favoritt</translation>
+    </message>
+    <message>
+        <source>Route from here</source>
+        <translation type="obsolete">Rute fra denne holdeplassen</translation>
+    </message>
+    <message>
         <source>Route to here</source>
-        <translation>Rute til denne holdeplassen</translation>
+        <translation type="obsolete">Rute til denne holdeplassen</translation>
+    </message>
+</context>
+<context>
+    <name>RecentWindow</name>
+    <message>
+        <location filename="recentwindow.ui" line="14"/>
+        <source>Recent Searches</source>
+        <translation>Nylige søk</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.ui" line="56"/>
+        <source>Menu</source>
+        <translation>Meny</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.ui" line="64"/>
+        <source>Delete all</source>
+        <translation>Slett alle</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="21"/>
+        <source>Recent searches</source>
+        <translation>Nylige søk</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="24"/>
+        <source>Favorite searches</source>
+        <translation>Favorittsøk</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="133"/>
+        <source>Delete</source>
+        <translation>Slett</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="152"/>
+        <source>Are you sure?</source>
+        <translation>Er du sikker?</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="156"/>
+        <source>This will remove all your favorite searches and is an irriversible action. Are you sure that you want to continue?</source>
+        <translation>Dette vil slette alle dine favorittsøk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="158"/>
+        <source>This will remove all your recent searches and is an irriversible action. Are you sure that you want to continue?</source>
+        <translation>Dette vil slette alle dine nylige søk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
     </message>
 </context>
 <context>
@@ -130,6 +191,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SearchListDelegate</name>
+    <message>
+        <location filename="recentwindow.cpp" line="96"/>
+        <source>Realtime</source>
+        <translation>Sanntid</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="99"/>
+        <source>Travel</source>
+        <translation>Reise</translation>
+    </message>
+</context>
+<context>
     <name>SearchWindow</name>
     <message>
         <source>Search</source>
@@ -159,42 +233,51 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="trafikantenwindow.ui" line="114"/>
+        <source>Favorites</source>
+        <translation>Favoritter</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.ui" line="142"/>
         <source>Find travel</source>
         <oldsource>Find route</oldsource>
         <translation>Finn rute</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="142"/>
+        <location filename="trafikantenwindow.ui" line="170"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="170"/>
+        <location filename="trafikantenwindow.ui" line="198"/>
         <source>Nearby</source>
         <translation>I nærheten</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="189"/>
+        <location filename="trafikantenwindow.ui" line="217"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="197"/>
+        <location filename="trafikantenwindow.ui" line="225"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="202"/>
         <source>Test</source>
-        <translation>Test</translation>
+        <translation type="obsolete">Test</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="214"/>
+        <location filename="trafikantenwindow.cpp" line="101"/>
+        <source>Requesting your position using GPS/GSM</source>
+        <translation>Henter din posisjon ved hjelp av GPS/GSM</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="219"/>
         <source>Timed out</source>
         <translation>Tidsavbrudd</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="215"/>
+        <location filename="trafikantenwindow.cpp" line="220"/>
         <source>We are terribly sorry, but we&apos;re unable to locate your position at the current time. Please try again.</source>
         <translation>Vi beklager, men det var dessverre ikke mulig å lokalisere din posisjon for øyeblikket. Vennligst prøv igjen senere.</translation>
     </message>
@@ -210,7 +293,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TravelListDelegate</name>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="229"/>
+        <location filename="travelsearchwindow.cpp" line="246"/>
         <source>%n switche(s)</source>
         <translation>
             <numerusform>%n bytte</numerusform>
@@ -218,7 +301,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="238"/>
+        <location filename="travelsearchwindow.cpp" line="255"/>
         <source>%n min</source>
         <translation>
             <numerusform>% min</numerusform>
@@ -254,14 +337,33 @@ p, li { white-space: pre-wrap; }
         <translation>Velg destinasjon</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="69"/>
-        <source>Departure:</source>
-        <translation>Tidspunkt:</translation>
+        <location filename="travelsearchwindow.ui" line="127"/>
+        <source>Menu</source>
+        <translation>Meny</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="78"/>
+        <location filename="travelsearchwindow.ui" line="135"/>
+        <source>Add as favorite</source>
+        <translation>Legg til favoritt</translation>
+    </message>
+    <message>
+        <source>Departure:</source>
+        <translation type="obsolete">Tidspunkt:</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.ui" line="71"/>
         <source>Search</source>
         <translation>Søk</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.cpp" line="20"/>
+        <source>Date</source>
+        <translation>Dato</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.cpp" line="21"/>
+        <source>Time</source>
+        <translation>Tidspunkt</translation>
     </message>
 </context>
 <context>
@@ -273,7 +375,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message numerus="yes">
         <location filename="travelinfodialog.cpp" line="108"/>
-        <location filename="travelinfodialog.cpp" line="123"/>
+        <location filename="travelinfodialog.cpp" line="121"/>
         <source>%n min</source>
         <translation>
             <numerusform>%n min</numerusform>

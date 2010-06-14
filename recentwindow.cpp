@@ -6,8 +6,8 @@
 #include "common.h"
 
 RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::RecentWindow)
+        QMainWindow(parent),
+        ui(new Ui::RecentWindow)
 {
 #ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
@@ -25,7 +25,7 @@ RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
         searches = Search::favorites();
     }
 
-    SearchListModel *model = new SearchListModel(this, searches);
+    model = new SearchListModel(this, searches);
     ui->tblResults->setModel(model);
     ui->tblResults->setItemDelegate(new SearchListDelegate(this));
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
@@ -62,7 +62,7 @@ void RecentWindow::changeEvent(QEvent *e)
     }
 }
 int SearchListModel::rowCount(const QModelIndex &) const {
-    return searches.size();;
+    return searches_.size();;
 }
 
 QVariant SearchListModel::data(const QModelIndex &index, int role) const {
@@ -73,14 +73,14 @@ QVariant SearchListModel::data(const QModelIndex &index, int role) const {
     }
 
     if(role == Qt::DisplayRole) {
-        return qVariantFromValue(searches.at(index.row()));
+        return qVariantFromValue(searches_.at(index.row()));
     }
 
     return QVariant();
 }
 
 void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                              const QModelIndex &index) const {
+                               const QModelIndex &index) const {
     QStyledItemDelegate::paint(painter, option, index);
 
     Search *e = qVariantValue<Search *>(index.data());
@@ -124,5 +124,48 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
         win->show();
+    }
+}
+
+void RecentWindow::on_tblResults_customContextMenuRequested(QPoint pos)
+{
+    QMenu *menu = new QMenu;
+    QAction *action  = menu->addAction(tr("Delete"), this, SLOT(removeFavorite()));
+    menu->exec(mapToGlobal(pos));
+}
+
+void RecentWindow::removeFavorite() {
+    Search *search = qVariantValue<Search *>(ui->tblResults->selectionModel()->selectedIndexes().first().data());
+    QList<Search*> newSearches = model->searches();
+    newSearches.removeAll(search);
+    model->setSearches(newSearches);
+    if(mode == Favorites) {
+        Search::saveFavorites(newSearches);
+    } else {
+        Search::saveRecent(newSearches);
+    }
+}
+
+void RecentWindow::on_actionDelete_all_triggered()
+{
+    QMessageBox msg;
+    msg.setWindowTitle(tr("Are you sure?"));
+    msg.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msg.setDefaultButton(QMessageBox::Ok);
+    if(mode == Favorites) {
+        msg.setText(tr("This will remove all your favorite searches and is an irriversible action. Are you sure that you want to continue?"));
+    } else {
+        msg.setText(tr("This will remove all your recent searches and is an irriversible action. Are you sure that you want to continue?"));
+    }
+    int ret = msg.exec();
+    qDebug() << ret;
+    if(ret == QMessageBox::Ok) {
+        qDebug() << "Accepted";
+        model->setSearches(QList<Search*>());
+        if(mode == Favorites) {
+            Search::saveFavorites(QList<Search*>());
+        } else {
+            Search::saveRecent(QList<Search*>());
+        }
     }
 }

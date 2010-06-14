@@ -48,11 +48,15 @@ void TrafikantenWindow::orientationChanged() {
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
+        ui->layoutButtonsAdditional->removeWidget(ui->btnNearby);
         ui->layoutButtonsAdditional->removeWidget(ui->btnRouting);
+        ui->layoutButtons->addWidget(ui->btnNearby);
         ui->layoutButtons->addWidget(ui->btnRouting);
     } else {
         portraitMode = true;
+        ui->layoutButtons->removeWidget(ui->btnNearby);
         ui->layoutButtons->removeWidget(ui->btnRouting);
+        ui->layoutButtonsAdditional->addWidget(ui->btnNearby);
         ui->layoutButtonsAdditional->addWidget(ui->btnRouting);
     }
 }
