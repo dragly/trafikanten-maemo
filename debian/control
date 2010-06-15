@@ -8,12 +8,12 @@ Standards-Version: 3.7.2
 Package: trafikanten
 Architecture: armel
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Trafikanten lets you see public transport information in Oslo and Norway.
-    This is an early version, but during the summer 2010, the application will be updated with more features.
-    Trafikanten now supports GPS search!
-XB-Description-no_NO: Trafikanten for Maemo gir deg sanntidsinfo i Oslo og omegn.
-    Dette er en tidlig utgave med få muligheter. I løpet av sommeren 2010 vil flere oppdateringer blir tilført.
-    Foreløpig er søk etter stasjoner med GPS eller tekst inkludert.
+Description: Trafikanten provides public transport information in certain parts of Norway.
+    The application gives you realtime information, travel search and nearest stops for the public transport 
+    in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold.
+XB-Description-no_NO: Trafikanten for Maemo gir deg informasjon om kollektivtransporten i enkelte deler av Norge.
+    Applikasjonen gir deg sanntidsinformasjon, reisesøk og nærmeste holdeplasser for kollektivtransporten i 
+    Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold.
 XB-Maemo-Display-Name: Trafikanten for Maemo
 XB-Maemo-Icon-26:
     iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/
