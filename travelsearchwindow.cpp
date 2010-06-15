@@ -24,6 +24,9 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
     ui->dateTimeContainer->addWidget(dateButton);
     ui->dateTimeContainer->addWidget(timeButton);
 
+    searchToDialog = new SearchDialog(this);
+    searchFromDialog = new SearchDialog(this);
+
     manager = new QNetworkAccessManager(this);
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->tblResults->setItemDelegate(new TravelListDelegate(this));
@@ -77,8 +80,7 @@ void TravelSearchWindow::changeEvent(QEvent *e)
     }
 }
 
-Place TravelSearchWindow::searchPlace() {
-    SearchDialog *search = new SearchDialog(this);
+Place TravelSearchWindow::searchPlace(SearchDialog *search) {
     search->setNormalSearch();
     if(portraitMode) {
         search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
@@ -96,7 +98,7 @@ Place TravelSearchWindow::searchPlace() {
 
 void TravelSearchWindow::on_btnPlaceFrom_clicked()
 {
-    Place place = searchPlace();
+    Place place = searchPlace(searchFromDialog);
     if(place.placeId != 0) {
         ui->btnPlaceFrom->setText(place.placeName);
         placeFrom = place;
@@ -105,7 +107,7 @@ void TravelSearchWindow::on_btnPlaceFrom_clicked()
 
 void TravelSearchWindow::on_btnPlaceTo_clicked()
 {
-    Place place = searchPlace();
+    Place place = searchPlace(searchToDialog);
     if(place.placeId != 0) {
         ui->btnPlaceTo->setText(place.placeName);
         placeTo = place;

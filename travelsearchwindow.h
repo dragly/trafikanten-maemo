@@ -9,6 +9,8 @@
 
 #include "common.h"
 
+class SearchDialog;
+
 namespace Ui {
     class TravelSearchWindow;
 }
@@ -60,9 +62,11 @@ private:
     Place placeTo;
     bool portraitMode;
     QNetworkAccessManager *manager;
-    Place searchPlace();
+    Place searchPlace(SearchDialog *search);
     QMaemo5DatePickSelector *datePicker;
     QMaemo5TimePickSelector *timePicker;
+    SearchDialog *searchFromDialog;
+    SearchDialog *searchToDialog;
 
 private slots:
     void on_actionAddFavorite_triggered();

@@ -222,43 +222,49 @@ p, li { white-space: pre-wrap; }
         <translation>Trafikanten</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="37"/>
-        <source>Trafikanten for Maemo gives you real time information about the public transport system in Oslo and other areas of Norway.</source>
-        <translation>Trafikanten for Maemo gir deg sanntidsinfo for kollektivtransporten i Oslo og omegn.</translation>
+        <location filename="trafikantenwindow.ui" line="42"/>
+        <source>Trafikanten for Maemo</source>
+        <translation>Trafikanten for Maemo</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="86"/>
+        <location filename="trafikantenwindow.ui" line="173"/>
+        <source>Your guide to the public transport system in Oslo and Akershus.</source>
+        <oldsource>Trafikanten for Maemo provides you with information about the public transport system in Oslo and other areas of Norway.</oldsource>
+        <translation>Din guide til kollektivtransporten i Oslo og Akershus.</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.ui" line="237"/>
         <source>Recent</source>
         <translation>Nylige søk</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="114"/>
+        <location filename="trafikantenwindow.ui" line="265"/>
         <source>Favorites</source>
         <translation>Favoritter</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="142"/>
+        <location filename="trafikantenwindow.ui" line="293"/>
         <source>Find travel</source>
         <oldsource>Find route</oldsource>
         <translation>Finn rute</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="170"/>
+        <location filename="trafikantenwindow.ui" line="321"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="198"/>
+        <location filename="trafikantenwindow.ui" line="349"/>
         <source>Nearby</source>
         <translation>I nærheten</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="217"/>
+        <location filename="trafikantenwindow.ui" line="368"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.ui" line="225"/>
+        <location filename="trafikantenwindow.ui" line="376"/>
         <source>About</source>
         <translation>Om</translation>
     </message>

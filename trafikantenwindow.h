@@ -11,6 +11,7 @@
 #include <qnetworksession.h>
 using namespace QtMobility;
 class SearchDialog;
+class TravelSearchWindow;
 namespace Ui {
     class TrafikantenWindow;
 }
@@ -31,6 +32,9 @@ private:
     QGeoPositionInfoSource *positionSource;
     bool portraitMode;
     SearchDialog* search;
+    TravelSearchWindow* travelSearch;
+    bool positionSearchPerformed;
+    QTime lastPositionSearch;
 
 private slots:
     void on_btnFavorites_clicked();

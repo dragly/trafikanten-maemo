@@ -27,6 +27,7 @@ TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
 
 
     search = new SearchDialog(this); // there is only one search window :)
+    travelSearch = new TravelSearchWindow(this);
 
     // Set up GPS stuff
     positionSource = QGeoPositionInfoSource::createDefaultSource(this);
@@ -101,7 +102,22 @@ void TrafikantenWindow::on_btnNearby_clicked()
     QMaemo5InformationBox::information(this, tr("Requesting your position using GPS/GSM"), QMaemo5InformationBox::DefaultTimeout);
 #endif
     qDebug() << "Requesting update...";
-    if (positionSource) {
+    bool usePositionSource = true;
+    if (positionSearchPerformed && lastPositionSearch.elapsed() < 5 * 60 * 1000) { // position requested within the last 5 minutes
+        QMessageBox msg;
+        msg.setWindowTitle(tr("Reuse last result?"));
+        msg.setText(tr("Your position was found recently.\nWould you like to reuse you previous position?"));
+        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+        int ret = msg.exec();
+        if(ret == QMessageBox::Yes) {
+            qDebug() << "Reusing last result";
+            positionUpdated(positionSource->lastKnownPosition());
+            usePositionSource = false;
+        } else if(ret == QMessageBox::Cancel) {
+            usePositionSource = false;
+        }
+    }
+    if (positionSource && usePositionSource) {
         positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::AllPositioningMethods); // use all methods
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
         positionSource->requestUpdate(45000);
@@ -109,6 +125,8 @@ void TrafikantenWindow::on_btnNearby_clicked()
 }
 
 void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
+    positionSearchPerformed = true;
+    lastPositionSearch.start();
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
     qDebug() << "Position updated:" << info;
     // TODO: Convert from latlong to easting and northing. See http://code.google.com/p/trafikanten/source/browse/src/uk/me/jstott/jcoord/UTMRef.java
@@ -224,13 +242,12 @@ void TrafikantenWindow::updateTimeout() {
 void TrafikantenWindow::on_btnRouting_clicked()
 {
     positionSource->stopUpdates();
-    TravelSearchWindow* win = new TravelSearchWindow(this);
     if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        travelSearch->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        travelSearch->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
-    win->show();
+    travelSearch->show();
 }
 
 void TrafikantenWindow::on_actionAbout_triggered()
