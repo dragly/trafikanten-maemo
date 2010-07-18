@@ -170,7 +170,7 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Your guide to the public transport system in Oslo and Akershus.</string>
+         <string>Your guide to the public transport system in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark and Østfold.</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -360,7 +360,7 @@ border-image: url(:/images/gps-pressed.png);
      <x>0</x>
      <y>0</y>
      <width>684</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
