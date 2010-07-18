@@ -8,6 +8,9 @@ Standards-Version: 3.7.2
 Package: trafikanten
 Architecture: armel
 Depends: ${shlibs:Depends}, ${misc:Depends}
+
+XSBC-Bugtracker: http://github.com/dragly/trafikanten-maemo/issues
+
 Description: Trafikanten lets you see public transport information in Oslo and Norway.
     This is an early version, but during the summer 2010, the application will be updated with more features.
     Trafikanten now supports GPS search!

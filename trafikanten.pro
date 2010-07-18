@@ -76,4 +76,4 @@ unix {
     translation.path = $$DATADIR/$${TARGET}/translations
     translation.files += $${TARGET}_*.qm
 }
-OTHER_FILES += 
+OTHER_FILES += debian/control
