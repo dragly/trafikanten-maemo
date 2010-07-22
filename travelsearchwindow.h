@@ -69,6 +69,7 @@ private:
     SearchDialog *searchToDialog;
 
 private slots:
+    void on_actionSwitch_direction_triggered();
     void on_actionAddFavorite_triggered();
     void on_tblResults_clicked(QModelIndex index);
     void on_pushButton_clicked();

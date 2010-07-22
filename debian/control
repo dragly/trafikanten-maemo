@@ -8,9 +8,7 @@ Standards-Version: 3.7.2
 Package: trafikanten
 Architecture: armel
 Depends: ${shlibs:Depends}, ${misc:Depends}
-
 XSBC-Bugtracker: http://github.com/dragly/trafikanten-maemo/issues
-
 Description: Trafikanten provides public transport information in certain parts of Norway.
     The application gives you realtime information, travel search and nearest stops for the public transport 
     in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold.

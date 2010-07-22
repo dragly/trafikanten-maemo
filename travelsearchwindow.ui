@@ -26,7 +26,7 @@
          <x>0</x>
          <y>0</y>
          <width>426</width>
-         <height>367</height>
+         <height>369</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -86,12 +86,6 @@
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
-          <attribute name="verticalHeaderVisible">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="horizontalHeaderVisible">
-           <bool>false</bool>
-          </attribute>
          </widget>
         </item>
         <item>
@@ -119,7 +113,7 @@
      <x>0</x>
      <y>0</y>
      <width>446</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
@@ -127,12 +121,18 @@
      <string>Menu</string>
     </property>
     <addaction name="actionAddFavorite"/>
+    <addaction name="actionSwitch_direction"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
   <action name="actionAddFavorite">
    <property name="text">
     <string>Add as favorite</string>
+   </property>
+  </action>
+  <action name="actionSwitch_direction">
+   <property name="text">
+    <string>Switch direction</string>
    </property>
   </action>
  </widget>

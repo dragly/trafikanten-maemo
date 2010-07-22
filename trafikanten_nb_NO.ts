@@ -68,24 +68,29 @@ p, li { white-space: pre-wrap; }
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="113"/>
+        <location filename="departureswindow.ui" line="107"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="123"/>
+        <location filename="departureswindow.ui" line="118"/>
         <source>Travel from here</source>
         <translation>Reis herfra</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="128"/>
+        <location filename="departureswindow.ui" line="123"/>
         <source>Travel to here</source>
         <translation>Reis hit</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="133"/>
+        <location filename="departureswindow.ui" line="128"/>
         <source>Add as favorite</source>
         <translation>Legg til favoritt</translation>
+    </message>
+    <message>
+        <location filename="departureswindow.ui" line="133"/>
+        <source>Refresh</source>
+        <translation>Oppdater</translation>
     </message>
     <message>
         <source>Route from here</source>
@@ -180,12 +185,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="searchdialog.ui" line="14"/>
         <location filename="searchdialog.ui" line="46"/>
-        <location filename="searchdialog.cpp" line="38"/>
+        <location filename="searchdialog.cpp" line="40"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="searchdialog.cpp" line="44"/>
+        <location filename="searchdialog.cpp" line="46"/>
         <source>Places Nearby</source>
         <translation>Steder i nærheten</translation>
     </message>
@@ -226,11 +231,11 @@ p, li { white-space: pre-wrap; }
         <source>Trafikanten for Maemo</source>
         <translation>Trafikanten for Maemo</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="trafikantenwindow.ui" line="173"/>
-        <source>Your guide to the public transport system in Oslo and Akershus.</source>
-        <oldsource>Trafikanten for Maemo provides you with information about the public transport system in Oslo and other areas of Norway.</oldsource>
-        <translation>Din guide til kollektivtransporten i Oslo og Akershus.</translation>
+        <source>Your guide to the public transport system in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark and Østfold.</source>
+        <oldsource>Your guide to the public transport system in Oslo and Akershus.</oldsource>
+        <translation>Din guide til kollektivtransporten i Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold.</translation>
     </message>
     <message>
         <location filename="trafikantenwindow.ui" line="237"/>
@@ -273,17 +278,29 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Test</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="101"/>
+        <location filename="trafikantenwindow.cpp" line="102"/>
         <source>Requesting your position using GPS/GSM</source>
         <translation>Henter din posisjon ved hjelp av GPS/GSM</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="219"/>
+        <location filename="trafikantenwindow.cpp" line="108"/>
+        <source>Reuse last result?</source>
+        <translation>GJenbruke siste resultat?</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="109"/>
+        <source>Your position was found recently.
+Would you like to reuse you previous position?</source>
+        <translation>Din posisjon ble nylig funnet.
+Vil du gjenbruke forrige posisjon?</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="237"/>
         <source>Timed out</source>
         <translation>Tidsavbrudd</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="220"/>
+        <location filename="trafikantenwindow.cpp" line="238"/>
         <source>We are terribly sorry, but we&apos;re unable to locate your position at the current time. Please try again.</source>
         <translation>Vi beklager, men det var dessverre ikke mulig å lokalisere din posisjon for øyeblikket. Vennligst prøv igjen senere.</translation>
     </message>
@@ -299,7 +316,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TravelListDelegate</name>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="246"/>
+        <location filename="travelsearchwindow.cpp" line="248"/>
         <source>%n switche(s)</source>
         <translation>
             <numerusform>%n bytte</numerusform>
@@ -307,7 +324,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="255"/>
+        <location filename="travelsearchwindow.cpp" line="257"/>
         <source>%n min</source>
         <translation>
             <numerusform>% min</numerusform>
@@ -343,14 +360,19 @@ p, li { white-space: pre-wrap; }
         <translation>Velg destinasjon</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="127"/>
+        <location filename="travelsearchwindow.ui" line="121"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="135"/>
+        <location filename="travelsearchwindow.ui" line="130"/>
         <source>Add as favorite</source>
         <translation>Legg til favoritt</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.ui" line="135"/>
+        <source>Switch direction</source>
+        <translation>Bytt retning</translation>
     </message>
     <message>
         <source>Departure:</source>

@@ -11,6 +11,8 @@ SearchDialog::SearchDialog(QWidget *parent, QString easting, QString northing) :
         QDialog(parent),
         ui(new Ui::SearchDialog)
 {
+    Q_UNUSED(easting)
+    Q_UNUSED(northing)
 #ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     setAttribute(Qt::WA_Maemo5StackedWindow);

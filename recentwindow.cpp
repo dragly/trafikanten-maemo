@@ -130,7 +130,7 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
 void RecentWindow::on_tblResults_customContextMenuRequested(QPoint pos)
 {
     QMenu *menu = new QMenu;
-    QAction *action  = menu->addAction(tr("Delete"), this, SLOT(removeFavorite()));
+    menu->addAction(tr("Delete"), this, SLOT(removeFavorite()));
     menu->exec(mapToGlobal(pos));
 }
 

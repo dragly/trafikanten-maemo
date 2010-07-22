@@ -50,6 +50,7 @@ private:
     DepartureListModel *model;
 
 private slots:
+    void on_actionRefresh_triggered();
     void on_actionAddFavorite_triggered();
     void on_actionRoute_to_triggered();
     void on_actionRoute_from_triggered();

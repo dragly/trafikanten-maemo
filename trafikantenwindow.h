@@ -7,8 +7,6 @@
 #include <qgeosatelliteinfosource.h>
 #include <qgeopositioninfo.h>
 #include <qgeosatelliteinfo.h>
-#include <qnetworkconfigmanager.h>
-#include <qnetworksession.h>
 using namespace QtMobility;
 class SearchDialog;
 class TravelSearchWindow;

@@ -1,5 +1,7 @@
 #include <QtGui/QApplication>
 #include <QTranslator>
+#include <QDebug>
+#include <QLocale>
 #include "trafikantenwindow.h"
 
 int main(int argc, char *argv[])
