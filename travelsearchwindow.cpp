@@ -279,3 +279,12 @@ void TravelSearchWindow::on_actionAddFavorite_triggered()
     search->type = Search::Travel;
     Search::prependRecent(search);
 }
+
+void TravelSearchWindow::on_actionSwitch_direction_triggered()
+{
+    Place tmpPlace = placeFrom;
+    placeFrom = placeTo;
+    placeTo = tmpPlace;
+    ui->btnPlaceFrom->setText(placeFrom.placeName);
+    ui->btnPlaceTo->setText(placeTo.placeName);
+}
