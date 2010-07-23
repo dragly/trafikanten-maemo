@@ -2,14 +2,10 @@
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
-Name=Trafikanten
+Name=Journey Planner
 Exec=/usr/bin/trafikanten
 Type=Application
 Icon=trafikanten
 X-Window-Icon=trafikanten
-#X-Window-Icon-Dimmed=mbarcode-qt
-#StartupWMClass=mbarcode-qt
-#X-Osso-Service=org.maemo.mbarcode-qt
 X-Osso-Type=application/x-executable
-#StartupNotify=false
-Name[en_US]=trafikanten.desktop
+X-Text-Domain=trafikanten

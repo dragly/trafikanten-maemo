@@ -59,7 +59,8 @@ unix {
         icon48 \
         icon64 \
         backup \
-        translation
+        translation \
+        locale
     target.path = $$BINDIR
     desktop.path = $$DATADIR/applications/hildon
     desktop.files += ../debian/hildon/applications/hildon/$${TARGET}.desktop
@@ -75,6 +76,9 @@ unix {
     backup.files += ../debian/hildon/osso-backup/applications/$${TARGET}.conf
     translation.path = $$DATADIR/$${TARGET}/translations
     translation.files += $${TARGET}_*.qm
+    locale.path = $$DATADIR/locale/no_NO/LC_MESSAGES/
+    locale.files += ../debian/hildon/locale/no_NO/LC_MESSAGES/trafikanten.mo
 }
 OTHER_FILES +=  debian/control \
+    debian/hildon/applications/hildon/trafikanten.desktop \
     debian/changelog

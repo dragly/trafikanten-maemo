@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
         <location filename="trafikantenwindow.ui" line="14"/>
         <location filename="trafikantenwindow.ui" line="42"/>
         <source>Journey Planner for Norway</source>
-        <translation>Reiseplanleggeren</translation>
+        <translation>Reiseplanlegger</translation>
     </message>
     <message utf8="true">
         <location filename="trafikantenwindow.ui" line="173"/>
