@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Trafikanten</string>
+   <string>Journey Planner for Norway</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -39,7 +39,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Trafikanten for Maemo</string>
+       <string>Journey Planner for Norway</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

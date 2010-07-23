@@ -188,6 +188,8 @@ void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
 }
 
 QSize DepartureListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) {
+    Q_UNUSED(option)
+    Q_UNUSED(index)
     return QSize();
 }
 
@@ -199,4 +201,9 @@ void DeparturesWindow::on_actionAddFavorite_triggered()
     search->type = Search::Realtime;
     searches.append(search);
     Search::saveFavorites(searches);
+}
+
+void DeparturesWindow::on_actionRefresh_triggered()
+{
+    refreshData();
 }

@@ -1,3 +1,21 @@
+trafikanten (1.0.0-beta1-4) unstable; urgency=low
+
+  * Added more norwegian translations.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 23 July 2010 12:49:00 +0200
+
+trafikanten (1.0.0-beta1-3) unstable; urgency=low
+
+  * Changed the description of the application to include "Trafikanten" as a possible search term.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 23 July 2010 02:09:00 +0200
+
+trafikanten (1.0.0-beta1-2) unstable; urgency=low
+
+  * Changed the name of the application to avoid trademark issues (Maemo and Trafikanten).
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 23 July 2010 01:09:00 +0200
+
 trafikanten (1.0.0-beta1-1) unstable; urgency=low
 
   * Added optification.
