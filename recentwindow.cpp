@@ -136,13 +136,13 @@ void RecentWindow::on_tblResults_customContextMenuRequested(QPoint pos)
 
 void RecentWindow::removeFavorite() {
     Search *search = qVariantValue<Search *>(ui->tblResults->selectionModel()->selectedIndexes().first().data());
-    QList<Search*> newSearches = model->searches();
-    newSearches.removeAll(search);
-    model->setSearches(newSearches);
+    QList<Search*> emptySearches = model->searches();
+    emptySearches.removeAll(search);
+    model->setSearches(emptySearches);
     if(mode == Favorites) {
-        Search::saveFavorites(newSearches);
+        Search::saveFavorites(emptySearches);
     } else {
-        Search::saveRecent(newSearches);
+        Search::saveRecent(emptySearches);
     }
 }
 

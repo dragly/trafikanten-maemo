@@ -18,7 +18,7 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     Search *search = new Search();
     search->placeFrom = place;
     search->type = Search::Realtime;
-    Search::prependRecent(search);
+    Search::savePrepended(search);
 
     ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
@@ -195,12 +195,10 @@ QSize DepartureListDelegate::sizeHint(const QStyleOptionViewItem &option, const 
 
 void DeparturesWindow::on_actionAddFavorite_triggered()
 {
-    QList<Search*> searches = Search::favorites();
     Search *search = new Search();
     search->placeFrom = place;
     search->type = Search::Realtime;
-    searches.append(search);
-    Search::saveFavorites(searches);
+    Search::savePrepended(search, Search::Favorites);
 }
 
 void DeparturesWindow::on_actionRefresh_triggered()

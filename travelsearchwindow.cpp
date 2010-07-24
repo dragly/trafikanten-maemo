@@ -116,13 +116,11 @@ void TravelSearchWindow::on_btnPlaceTo_clicked()
 
 void TravelSearchWindow::on_pushButton_clicked()
 {
-    QList<Search*> searches = Search::recent();
     Search *search = new Search();
     search->placeFrom = placeFrom;
     search->placeTo = placeTo;
     search->type = Search::Travel;
-    searches.append(search);
-    Search::saveRecent(searches);
+    Search::savePrepended(search);
 
     QString dataUrl = "http://reis.trafikanten.no/topp2009/topp2009ws.asmx"; //
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
@@ -277,7 +275,7 @@ void TravelSearchWindow::on_actionAddFavorite_triggered()
     search->placeFrom = placeFrom;
     search->placeTo = placeTo;
     search->type = Search::Travel;
-    Search::prependRecent(search);
+    Search::savePrepended(search, Search::Favorites);
 }
 
 void TravelSearchWindow::on_actionSwitch_direction_triggered()

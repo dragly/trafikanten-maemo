@@ -5,12 +5,12 @@
 #include <QPoint>
 
 class Departure{
-//    Q_OBJECT
+    //    Q_OBJECT
 public:
     Departure(QString lineDestination,
-            QString lineNumber,
-            QString arrivalTime,
-            int arrivalDifference) {
+              QString lineNumber,
+              QString arrivalTime,
+              int arrivalDifference) {
         this->lineDestination = lineDestination;
         this->lineNumber = lineNumber;
         this->arrivalTime = arrivalTime;
@@ -25,11 +25,11 @@ public:
 Q_DECLARE_METATYPE(Departure *);
 
 class Place {
-//    Q_OBJECT
+    //    Q_OBJECT
 public:
     Place() {placeId = NULL;}
     Place(QString placeName,
-            int placeId) {
+          int placeId) {
         this->placeId = placeId;
         this->placeName = placeName;
     }
@@ -40,7 +40,7 @@ public:
 Q_DECLARE_METATYPE(Place *);
 
 class TravelStage {
-//    Q_OBJECT
+    //    Q_OBJECT
 public:
     TravelStage() {}
     Place departureStop;
@@ -57,12 +57,12 @@ public:
 Q_DECLARE_METATYPE(TravelStage *);
 
 class Travel {
-//    Q_OBJECT
+    //    Q_OBJECT
 public:
     Travel(QDateTime departureTime, QDateTime arrivalTime, QList<TravelStage*> travelStages) {
-    this->arrivalTime = arrivalTime;
-    this->departureTime = departureTime;
-    this->travelStages = travelStages;
+        this->arrivalTime = arrivalTime;
+        this->departureTime = departureTime;
+        this->travelStages = travelStages;
     }
     QList<TravelStage*> travelStages;
     QDateTime departureTime;
@@ -74,6 +74,7 @@ Q_DECLARE_METATYPE(Travel *);
 class Search {
 public:
     enum SearchType {Realtime, Travel};
+    enum ListType {Recent, Favorites};
     Place placeFrom;
     Place placeTo;
     int type;
@@ -118,27 +119,25 @@ public:
     }
 
     static void saveFavorites(QList<Search*> searches) {
-        qDebug() << "saving to favorites";
-        QSettings settings;
-        settings.beginWriteArray("favorites");
-        for (int i = 0; i < searches.size(); ++i) {
-            Search *search = searches.at(i);
-
-            settings.setArrayIndex(i);
-            settings.setValue("placeFromName", search->placeFrom.placeName);
-            settings.setValue("placeFromId", search->placeFrom.placeId);
-            settings.setValue("placeToName", search->placeTo.placeName);
-            settings.setValue("placeToId", search->placeTo.placeId);
-
-            settings.setValue("type", search->type);
-        }
-        settings.endArray();
+        save(searches, Favorites);
     }
 
     static void saveRecent(QList<Search*> searches) {
-        qDebug() << "saving to recent";
+        save(searches, Recent);
+    }
+
+    static void save(QList<Search*> searches, int listType = Recent) {
+        if(listType == Recent) {
+            qDebug() << "saving to recent";
+        } else {
+            qDebug() << "saving to favorites";
+        }
         QSettings settings;
-        settings.beginWriteArray("recent");
+        if(listType == Recent) {
+            settings.beginWriteArray("recent");
+        } else {
+            settings.beginWriteArray("favorites");
+        }
         for (int i = 0; i < searches.size(); ++i) {
             Search *search = searches.at(i);
             settings.setArrayIndex(i);
@@ -153,21 +152,34 @@ public:
         settings.endArray();
     }
 
-    static void prependRecent(Search* search) {
-        QList<Search*> searches = recent();
-        bool alreadyExists = false;
+    static void savePrepended(Search* search, int listType = Recent) {
+        QList<Search*> searches;
+        if(listType == Recent) {
+            searches = recent();
+        } else {
+            searches = favorites();
+        }
+        Search *alreadySearch = NULL;
         foreach(Search *oldSearch, searches) {
-            if(oldSearch->type == search->type && oldSearch->placeFrom.placeId == search->placeFrom.placeId) {
-                alreadyExists = true;
+            if(oldSearch->type == search->type &&
+               oldSearch->placeFrom.placeId == search->placeFrom.placeId &&
+               oldSearch->placeTo.placeId == search->placeTo.placeId) {
+                alreadySearch = oldSearch;
             }
         }
-        if(!alreadyExists) {
-            searches.prepend(search);
+        if(alreadySearch != NULL) {
+            searches.removeAll(alreadySearch);
         }
+        searches.prepend(search);
+
         if(searches.size() > 20) {
-            searches.removeFirst();
+            searches.removeLast();
         }
-        saveRecent(searches);
+        if(listType == Recent) {
+            saveRecent(searches);
+        } else {
+            saveFavorites(searches);
+        }
     }
 
 };
