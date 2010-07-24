@@ -139,8 +139,8 @@ void TravelSearchWindow::on_pushButton_clicked()
                    "</soap12:Envelope>";
     qDebug() << "request data" << data;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
-    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toLatin1().length());
-    manager->post(request, data.toLatin1());
+    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toUtf8().length());
+    manager->post(request, data.toUtf8());
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 

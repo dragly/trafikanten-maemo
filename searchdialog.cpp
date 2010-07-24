@@ -65,9 +65,9 @@ void SearchDialog::searchPosition(QString easting, QString northing) {
                    "</soap:Envelope>";
     qDebug() << "request data" << data;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
-    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toLatin1().length());
+    request.setHeader(QNetworkRequest::ContentLengthHeader, data.toUtf8().length());
     requestType = ClosestStops;
-    manager->post(request, data.toLatin1());
+    manager->post(request, data.toUtf8());
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
 }
 
