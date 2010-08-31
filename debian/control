@@ -11,14 +11,14 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 XSBC-Bugtracker: http://github.com/dragly/trafikanten-maemo/issues
 XB-Maemo-Display-Name: Journey Planner for Norway
 Description: Journey Planner for Norway provides public transport information from Trafikanten's information systems.
-    The application gives you realtime information, travel search and nearest stops for the public transport
-    in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold. The information is gathered
-    from the Trafikanten API.
+ The application gives you realtime information, travel search and nearest stops for the public transport
+ in Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold. The information is gathered
+ from the Trafikanten API.
 XB-Maemo-Display-Name-no_NO: Reiseplanlegger
 XB-Description-no_NO: Reiseplanleggeren gir deg informasjon om kollektivtransporten fra Trafikantens datasystemer.
-    Applikasjonen gir deg sanntidsinformasjon, reisesøk og nærmeste holdeplasser for kollektivtransporten i 
-    Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold. Dataene hentes ned til telefonen
-    ved hjelp av Trafikantens API.
+ Applikasjonen gir deg sanntidsinformasjon, reisesøk og nærmeste holdeplasser for kollektivtransporten i 
+ Akershus, Buskerud, Hedmark, Oppland, Oslo, Vestfold, Telemark og Østfold. Dataene hentes ned til telefonen
+ ved hjelp av Trafikantens API.
 XB-Maemo-Icon-26:
     iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/
     AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAACXZwQWcAAAAwAAAAMADO
