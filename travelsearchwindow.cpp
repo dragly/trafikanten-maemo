@@ -14,6 +14,7 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
 #endif
     ui->setupUi(this);
+    ui->lblNoResultsFounds->hide();
 
     timePicker = new QMaemo5TimePickSelector(this);
     datePicker = new QMaemo5DatePickSelector(this);
@@ -116,6 +117,7 @@ void TravelSearchWindow::on_btnPlaceTo_clicked()
 
 void TravelSearchWindow::on_pushButton_clicked()
 {
+    ui->lblNoResultsFounds->hide();
     Search *search = new Search();
     search->placeFrom = placeFrom;
     search->placeTo = placeTo;
@@ -155,6 +157,11 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
         QDomElement travel = response.firstChildElement("soap:Body").firstChildElement("GetTravelsAfterResponse").firstChildElement("GetTravelsAfterResult").firstChildElement("TravelProposal");
         if(travel.isNull()) {
             qDebug() << "No travel proposals";
+        }
+        if(travel.isNull() || response.isNull()) {
+            ui->lblNoResultsFounds->show();
+        } else {
+            ui->lblNoResultsFounds->hide();
         }
         int row = 0;
         QList<Travel*> travels;

@@ -1,6 +1,7 @@
 #include "departureswindow.h"
 #include "ui_departureswindow.h"
 
+#include <QMaemo5InformationBox>
 #include "travelsearchwindow.h"
 
 DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
@@ -14,7 +15,7 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     ui->setupUi(this);
     this->place = place;
     ui->lblName->setText(place.placeName);
-
+    ui->lblNoDepartures->hide();
     Search *search = new Search();
     search->placeFrom = place;
     search->type = Search::Realtime;
@@ -48,10 +49,10 @@ void DeparturesWindow::changeEvent(QEvent *e)
 }
 
 void DeparturesWindow::orientationChanged() {
-//    qDebug() << "table size width" << ui->tblResults->sizeHint().width();
-//    ui->tblResults->resizeColumnsToContents();
-//    ui->tblResults->resizeRowsToContents();
-//    qDebug() << "updated table size width" << ui->tblResults->sizeHint().width();
+    //    qDebug() << "table size width" << ui->tblResults->sizeHint().width();
+    //    ui->tblResults->resizeColumnsToContents();
+    //    ui->tblResults->resizeRowsToContents();
+    //    qDebug() << "updated table size width" << ui->tblResults->sizeHint().width();
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
@@ -61,6 +62,7 @@ void DeparturesWindow::orientationChanged() {
 }
 
 void DeparturesWindow::replyFinished(QNetworkReply *reply) {
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
     QString data = QString::fromUtf8(reply->readAll()); // use UTF-8 encoding (why doesn't Qt detect this by itself?)
     qDebug() << "\n\n----Returned data---\n\n" << data << "\n\n\n";
     if(reply->error() == QNetworkReply::NoError) {
@@ -76,6 +78,12 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
         QDomElement visit = stop.firstChildElement("MonitoredStopVisit");
         int row = 0;
         QList<Departure*> departures;
+
+        if(visit.isNull() || response.isNull()) {
+            qDebug("No visits found!");
+            ui->lblNoDepartures->show();
+        }
+
         while(!visit.isNull()) {
             QDomElement destination = visit.firstChildElement("DestinationName");
             QDomElement line = visit.firstChildElement("LineRef");
@@ -104,6 +112,8 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
 
 void DeparturesWindow::refreshData() {
     //Getting data
+    setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+    ui->lblNoDepartures->hide();
     QString dataUrl = "http://reis.trafikanten.no/siri/sm.aspx?id=" + QString::number(place.placeId); //
     qDebug() << "Requesting" << dataUrl;
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
@@ -157,7 +167,7 @@ QVariant DepartureListModel::data(const QModelIndex &index, int role) const {
 }
 
 void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                              const QModelIndex &index) const {
+                                  const QModelIndex &index) const {
     QStyledItemDelegate::paint(painter, option, index);
 
     Departure *e = qVariantValue<Departure *>(index.data());

@@ -98,18 +98,17 @@ void TrafikantenWindow::on_btnSearch_clicked()
 
 void TrafikantenWindow::on_btnNearby_clicked()
 {
-#ifdef Q_WS_MAEMO_5
-    QMaemo5InformationBox::information(this, tr("Requesting your position using GPS/GSM"), QMaemo5InformationBox::DefaultTimeout);
-#endif
     qDebug() << "Requesting update...";
     bool usePositionSource = true;
     if (positionSearchPerformed && lastPositionSearch.elapsed() < 5 * 60 * 1000) { // position requested within the last 5 minutes
         QMessageBox msg;
         msg.setWindowTitle(tr("Reuse last result?"));
         msg.setText(tr("Your position was found recently.\nWould you like to reuse you previous position?"));
-        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+        msg.setStandardButtons(QMessageBox::Cancel);
+        QPushButton *yesButton = msg.addButton(tr("Yes"), QMessageBox::YesRole);
+        QPushButton *noButton = msg.addButton(tr("No"), QMessageBox::NoRole);
         int ret = msg.exec();
-        if(ret == QMessageBox::Yes) {
+        if(msg.clickedButton() == yesButton) {
             qDebug() << "Reusing last result";
             positionUpdated(positionSource->lastKnownPosition());
             usePositionSource = false;
@@ -118,6 +117,9 @@ void TrafikantenWindow::on_btnNearby_clicked()
         }
     }
     if (positionSource && usePositionSource) {
+#ifdef Q_WS_MAEMO_5
+        QMaemo5InformationBox::information(this, tr("Requesting your position using GPS/GSM"), QMaemo5InformationBox::DefaultTimeout);
+#endif
         positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::SatellitePositioningMethods); // use all methods
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
         positionSource->requestUpdate(45000);
