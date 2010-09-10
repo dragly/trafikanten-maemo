@@ -118,7 +118,7 @@ void TrafikantenWindow::on_btnNearby_clicked()
         }
     }
     if (positionSource && usePositionSource) {
-        positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::AllPositioningMethods); // use all methods
+        positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::SatellitePositioningMethods); // use all methods
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
         positionSource->requestUpdate(45000);
     }
