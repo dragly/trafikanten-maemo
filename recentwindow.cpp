@@ -90,15 +90,17 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     QFont font = option.font;
     QRect rect = option.rect;
-    rect.adjust(10, 10, -20, -7);
+    rect.adjust(10, 6, -20, -4);
 
     painter->save();
+    font.setPointSizeF(font.pointSizeF() * 0.8);
 
     if(e->type == Search::Realtime) {
         painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->placeFrom.placeName);
         painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("Realtime"));
     } else {
-        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->placeFrom.placeName + " -- " + e->placeTo.placeName);
+        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->placeFrom.placeName);
+        painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, e->placeTo.placeName);
         painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("Travel"));
     }
 
