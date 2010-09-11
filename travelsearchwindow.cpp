@@ -295,14 +295,6 @@ void TravelSearchWindow::on_actionSwitch_direction_triggered()
     ui->btnPlaceTo->setText(placeTo.placeName);
 }
 
-void TravelSearchWindow::on_btnFromFavorite_clicked()
-{
-    favoriteSelectMode = FavoriteFrom;
-    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
-    connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
-    win->show();
-}
-
 void TravelSearchWindow::favoritePlaceSelected(Place place) {
     if(favoriteSelectMode == FavoriteFrom) {
         placeFrom = place;
@@ -313,10 +305,28 @@ void TravelSearchWindow::favoritePlaceSelected(Place place) {
     }
 }
 
+void TravelSearchWindow::on_btnFromFavorite_clicked()
+{
+    favoriteSelectMode = FavoriteFrom;
+    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
+    connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
+    win->show();
+}
+
 void TravelSearchWindow::on_btnToFavorite_clicked()
 {
     favoriteSelectMode = FavoriteTo;
     RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
     connect(win, SIGNAL(placeSelected(Place)), this, SLOT(favoritePlaceSelected(Place)));
+    if(portraitMode) {
+        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+    } else {
+        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+    }
     win->show();
 }

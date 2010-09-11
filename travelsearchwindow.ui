@@ -31,7 +31,10 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -40,43 +43,47 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QPushButton" name="btnPlaceFrom">
-            <property name="text">
-             <string>Select Departure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="btnFromFavorite">
-            <property name="minimumSize">
-             <size>
-              <width>64</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>64</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="trafikanten.qrc">
-              <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>48</width>
-              <height>48</height>
-             </size>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="btnPlaceFrom">
+              <property name="text">
+               <string>Select Departure</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnFromFavorite">
+              <property name="minimumSize">
+               <size>
+                <width>64</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="trafikanten.qrc">
+                <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>48</width>
+                <height>48</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_3">
@@ -92,43 +99,47 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QPushButton" name="btnPlaceTo">
-            <property name="text">
-             <string>Select Destination</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="btnPlaceTo">
+              <property name="text">
+               <string>Select Destination</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnToFavorite">
+              <property name="minimumSize">
+               <size>
+                <width>64</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="trafikanten.qrc">
+                <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>48</width>
+                <height>48</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="2" column="1">
            <layout class="QHBoxLayout" name="dateTimeContainer"/>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="btnToFavorite">
-            <property name="minimumSize">
-             <size>
-              <width>64</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>64</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="trafikanten.qrc">
-              <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>48</width>
-              <height>48</height>
-             </size>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>

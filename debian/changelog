@@ -1,11 +1,17 @@
-trafikanten (1.0.0-RC1-0) unstable; urgency=low
+trafikanten (1.0.0-rc2-0) unstable; urgency=low
+
+  * Fixed portrait mode design in travel search.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sun, 12 Sep 2010 00:44:11 +0200
+
+trafikanten (1.0.0-rc1-0) unstable; urgency=low
 
   * Final version release candidate.
   * Added feedback to the user for scenarios that do not return any results.
   * Added favorite buttons to travel search window.
   * Added more Norwegian translations.
 
- -- Svenn-Arne Dragly <s@dragly.com>  Fri, 11 Sep 2010 23:53:11 +0200
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 11 Sep 2010 23:53:11 +0200
 
 trafikanten (1.0.0-beta3-0) unstable; urgency=low
 
