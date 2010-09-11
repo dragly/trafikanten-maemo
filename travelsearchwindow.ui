@@ -26,12 +26,12 @@
          <x>0</x>
          <y>0</y>
          <width>426</width>
-         <height>367</height>
+         <height>369</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <layout class="QFormLayout" name="formLayout">
+         <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -46,8 +46,46 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="btnFromFavorite">
+            <property name="minimumSize">
+             <size>
+              <width>64</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>64</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="trafikanten.qrc">
+              <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_3">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="text">
              <string>To:</string>
             </property>
@@ -62,6 +100,35 @@
           </item>
           <item row="2" column="1">
            <layout class="QHBoxLayout" name="dateTimeContainer"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="btnToFavorite">
+            <property name="minimumSize">
+             <size>
+              <width>64</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>64</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="trafikanten.qrc">
+              <normaloff>:/images/favorites.png</normaloff>:/images/favorites.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -123,7 +190,7 @@
      <x>0</x>
      <y>0</y>
      <width>446</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
@@ -146,6 +213,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="trafikanten.qrc"/>
+ </resources>
  <connections/>
 </ui>

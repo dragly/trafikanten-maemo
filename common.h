@@ -118,6 +118,28 @@ public:
         return searches;
     }
 
+    static QList<Search*> favoritesRealtime() {
+        qDebug() << "loading favorites";
+        QSettings settings;
+        QList<Search*> searches;
+        int size = settings.beginReadArray("favorites");
+        for (int i = 0; i < size; ++i) {
+            settings.setArrayIndex(i);
+            Search *search = new Search();
+            search->placeFrom = Place(settings.value("placeFromName").toString(), settings.value("placeFromId").toInt());
+            search->placeTo = Place(settings.value("placeToName").toString(), settings.value("placeToId").toInt());
+
+            search->type = settings.value("type").toInt();
+
+
+            if(search->type == Realtime) {
+                searches.append(search);
+            }
+        }
+        settings.endArray();
+        return searches;
+    }
+
     static void saveFavorites(QList<Search*> searches) {
         save(searches, Favorites);
     }

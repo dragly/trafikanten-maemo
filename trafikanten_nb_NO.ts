@@ -68,12 +68,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DepartureListDelegate</name>
     <message>
-        <location filename="departureswindow.cpp" line="175"/>
+        <location filename="departureswindow.cpp" line="185"/>
         <source>now</source>
         <translation>nå</translation>
     </message>
     <message>
-        <location filename="departureswindow.cpp" line="177"/>
+        <location filename="departureswindow.cpp" line="187"/>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -96,27 +96,32 @@ p, li { white-space: pre-wrap; }
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="107"/>
+        <location filename="departureswindow.ui" line="61"/>
+        <source>Could not find any departures.</source>
+        <translation>Fant ingen avganger.</translation>
+    </message>
+    <message>
+        <location filename="departureswindow.ui" line="117"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="118"/>
+        <location filename="departureswindow.ui" line="128"/>
         <source>Travel from here</source>
         <translation>Reis herfra</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="123"/>
+        <location filename="departureswindow.ui" line="133"/>
         <source>Travel to here</source>
         <translation>Reis hit</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="128"/>
+        <location filename="departureswindow.ui" line="138"/>
         <source>Add as favorite</source>
         <translation>Legg til favoritt</translation>
     </message>
     <message>
-        <location filename="departureswindow.ui" line="133"/>
+        <location filename="departureswindow.ui" line="143"/>
         <source>Refresh</source>
         <translation>Oppdater</translation>
     </message>
@@ -157,22 +162,27 @@ p, li { white-space: pre-wrap; }
         <translation>Favorittsøk</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="133"/>
+        <location filename="recentwindow.cpp" line="27"/>
+        <source>Favorite places</source>
+        <translation>Favorittsteder</translation>
+    </message>
+    <message>
+        <location filename="recentwindow.cpp" line="139"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="152"/>
+        <location filename="recentwindow.cpp" line="158"/>
         <source>Are you sure?</source>
         <translation>Er du sikker?</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="156"/>
+        <location filename="recentwindow.cpp" line="162"/>
         <source>This will remove all your favorite searches and is an irriversible action. Are you sure that you want to continue?</source>
         <translation>Dette vil slette alle dine favorittsøk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="158"/>
+        <location filename="recentwindow.cpp" line="164"/>
         <source>This will remove all your recent searches and is an irriversible action. Are you sure that you want to continue?</source>
         <translation>Dette vil slette alle dine nylige søk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
     </message>
@@ -213,12 +223,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="searchdialog.ui" line="14"/>
         <location filename="searchdialog.ui" line="46"/>
-        <location filename="searchdialog.cpp" line="40"/>
+        <location filename="searchdialog.cpp" line="41"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="searchdialog.cpp" line="46"/>
+        <location filename="searchdialog.ui" line="57"/>
+        <source>No results found.</source>
+        <translation>Ingen resultater funnet.</translation>
+    </message>
+    <message>
+        <location filename="searchdialog.cpp" line="49"/>
         <source>Places Nearby</source>
         <translation>Steder i nærheten</translation>
     </message>
@@ -226,12 +241,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchListDelegate</name>
     <message>
-        <location filename="recentwindow.cpp" line="96"/>
+        <location filename="recentwindow.cpp" line="99"/>
         <source>Realtime</source>
         <translation>Sanntid</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="99"/>
+        <location filename="recentwindow.cpp" line="102"/>
         <source>Travel</source>
         <translation>Reise</translation>
     </message>
@@ -310,29 +325,39 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Test</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="102"/>
+        <location filename="trafikantenwindow.cpp" line="121"/>
         <source>Requesting your position using GPS/GSM</source>
         <translation>Henter din posisjon ved hjelp av GPS/GSM</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="108"/>
+        <location filename="trafikantenwindow.cpp" line="105"/>
         <source>Reuse last result?</source>
         <translation>GJenbruke siste resultat?</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="109"/>
+        <location filename="trafikantenwindow.cpp" line="106"/>
         <source>Your position was found recently.
 Would you like to reuse you previous position?</source>
         <translation>Din posisjon ble nylig funnet.
 Vil du gjenbruke forrige posisjon?</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="237"/>
+        <location filename="trafikantenwindow.cpp" line="108"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="109"/>
+        <source>No</source>
+        <translation>Nei</translation>
+    </message>
+    <message>
+        <location filename="trafikantenwindow.cpp" line="239"/>
         <source>Timed out</source>
         <translation>Tidsavbrudd</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="238"/>
+        <location filename="trafikantenwindow.cpp" line="240"/>
         <source>We are terribly sorry, but we&apos;re unable to locate your position at the current time. Please try again.</source>
         <translation>Vi beklager, men det var dessverre ikke mulig å lokalisere din posisjon for øyeblikket. Vennligst prøv igjen senere.</translation>
     </message>
@@ -348,7 +373,7 @@ Vil du gjenbruke forrige posisjon?</translation>
 <context>
     <name>TravelListDelegate</name>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="248"/>
+        <location filename="travelsearchwindow.cpp" line="254"/>
         <source>%n switche(s)</source>
         <translation>
             <numerusform>%n bytte</numerusform>
@@ -356,7 +381,7 @@ Vil du gjenbruke forrige posisjon?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="257"/>
+        <location filename="travelsearchwindow.cpp" line="263"/>
         <source>%n min</source>
         <translation>
             <numerusform>%n min</numerusform>
@@ -382,27 +407,32 @@ Vil du gjenbruke forrige posisjon?</translation>
         <translation>Velg avreise</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="52"/>
+        <location filename="travelsearchwindow.ui" line="90"/>
         <source>To:</source>
         <translation>Til:</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="59"/>
+        <location filename="travelsearchwindow.ui" line="97"/>
         <source>Select Destination</source>
         <translation>Velg destinasjon</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="121"/>
+        <location filename="travelsearchwindow.ui" line="145"/>
+        <source>No travels found.</source>
+        <translation>Ingen reiser funnet.</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.ui" line="198"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="130"/>
+        <location filename="travelsearchwindow.ui" line="207"/>
         <source>Add as favorite</source>
         <translation>Legg til favoritt</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="135"/>
+        <location filename="travelsearchwindow.ui" line="212"/>
         <source>Switch direction</source>
         <translation>Bytt retning</translation>
     </message>
@@ -411,17 +441,17 @@ Vil du gjenbruke forrige posisjon?</translation>
         <translation type="obsolete">Tidspunkt:</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="71"/>
+        <location filename="travelsearchwindow.ui" line="138"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.cpp" line="20"/>
+        <location filename="travelsearchwindow.cpp" line="22"/>
         <source>Date</source>
         <translation>Dato</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.cpp" line="21"/>
+        <location filename="travelsearchwindow.cpp" line="23"/>
         <source>Time</source>
         <translation>Tidspunkt</translation>
     </message>

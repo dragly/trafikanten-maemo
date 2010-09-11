@@ -45,13 +45,16 @@ class RecentWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    enum Mode {Recent, Favorites};
+    enum Mode {Recent, Favorites, FavoritesRealtime};
 
     explicit RecentWindow(Mode mode, QWidget *parent = 0);
     ~RecentWindow();
 
 protected:
     void changeEvent(QEvent *e);
+
+signals:
+    void placeSelected(Place place);
 
 private:
     Ui::RecentWindow *ui;

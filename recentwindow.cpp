@@ -20,9 +20,12 @@ RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
     if(mode == Recent) {
         setWindowTitle(tr("Recent searches"));
         searches = Search::recent();
-    } else {
+    } else if(mode == Favorites){
         setWindowTitle(tr("Favorite searches"));
         searches = Search::favorites();
+    } else if(mode == FavoritesRealtime) {
+        setWindowTitle(tr("Favorite places"));
+        searches = Search::favoritesRealtime();
     }
 
     model = new SearchListModel(this, searches);
@@ -105,7 +108,10 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 void RecentWindow::on_tblResults_clicked(QModelIndex index)
 {
     Search *search = qVariantValue<Search *>(index.data());
-
+    if(mode == FavoritesRealtime) {
+        emit placeSelected(search->placeFrom);
+        close();
+    } else if(mode == Recent || mode == Favorites)
     if(search->type == Search::Realtime) {
         DeparturesWindow *win = new DeparturesWindow(search->placeFrom, this);
         if(portraitMode) {

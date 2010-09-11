@@ -2,6 +2,7 @@
 #include "ui_travelsearchwindow.h"
 #include "searchdialog.h"
 #include "travelinfodialog.h"
+#include "recentwindow.h"
 
 #include <QtXml>
 
@@ -292,4 +293,30 @@ void TravelSearchWindow::on_actionSwitch_direction_triggered()
     placeTo = tmpPlace;
     ui->btnPlaceFrom->setText(placeFrom.placeName);
     ui->btnPlaceTo->setText(placeTo.placeName);
+}
+
+void TravelSearchWindow::on_btnFromFavorite_clicked()
+{
+    favoriteSelectMode = FavoriteFrom;
+    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
+    connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
+    win->show();
+}
+
+void TravelSearchWindow::favoritePlaceSelected(Place place) {
+    if(favoriteSelectMode == FavoriteFrom) {
+        placeFrom = place;
+        ui->btnPlaceFrom->setText(place.placeName);
+    } else if(favoriteSelectMode == FavoriteTo) {
+        placeTo = place;
+        ui->btnPlaceTo->setText(place.placeName);
+    }
+}
+
+void TravelSearchWindow::on_btnToFavorite_clicked()
+{
+    favoriteSelectMode = FavoriteTo;
+    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
+    connect(win, SIGNAL(placeSelected(Place)), this, SLOT(favoritePlaceSelected(Place)));
+    win->show();
 }

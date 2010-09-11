@@ -49,6 +49,10 @@ public:
     TravelSearchWindow(QWidget *parent = 0);
     ~TravelSearchWindow();
 
+    enum FavoriteSelectMode {FavoriteTo, FavoriteFrom};
+
+    int favoriteSelectMode;
+
     void setPlace(Place place, bool isFrom);
     void setPlaceFrom(Place place);
     void setPlaceTo(Place place);
@@ -69,6 +73,8 @@ private:
     SearchDialog *searchToDialog;
 
 private slots:
+    void on_btnToFavorite_clicked();
+    void on_btnFromFavorite_clicked();
     void on_actionSwitch_direction_triggered();
     void on_actionAddFavorite_triggered();
     void on_tblResults_clicked(QModelIndex index);
@@ -77,6 +83,7 @@ private slots:
     void on_btnPlaceFrom_clicked();
     void orientationChanged();
     void replyFinished(QNetworkReply *reply);
+    void favoritePlaceSelected(Place place);
 };
 
 #endif // ROUTESEARCHWINDOW_H
