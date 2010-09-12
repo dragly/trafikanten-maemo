@@ -314,7 +314,7 @@ void TravelSearchWindow::showFavoriteMessage(Place place, int mode) {
     search->type = Search::Realtime;
     bool contains = Search::contains(Search::favoritesRealtime(), search);
     if(!place.isNull() && !contains) {
-        QMessageBox msg;
+        QMessageBox msg(this);
         msg.setText(tr("Do you wish to save the current selection as a favorite or select "
                        "a different place from your list of favorites?"));
         msg.setWindowTitle(tr("Save selection or find favorite?"));

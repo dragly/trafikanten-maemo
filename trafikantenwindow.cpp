@@ -101,7 +101,7 @@ void TrafikantenWindow::on_btnNearby_clicked()
     qDebug() << "Requesting update...";
     bool usePositionSource = true;
     if (positionSearchPerformed && lastPositionSearch.elapsed() < 5 * 60 * 1000) { // position requested within the last 5 minutes
-        QMessageBox msg;
+        QMessageBox msg(this);
         msg.setWindowTitle(tr("Reuse last result?"));
         msg.setText(tr("Your position was found recently.\nWould you like to reuse you previous position?"));
         msg.setStandardButtons(QMessageBox::Cancel);
