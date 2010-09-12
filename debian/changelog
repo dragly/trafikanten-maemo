@@ -1,3 +1,10 @@
+trafikanten (1.0.0-rc3-0) unstable; urgency=low
+
+  * Made it possible to save favorite places during travel selection.
+  * Fixed images for aiport train and bus.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sun, 12 Sep 2010 03:00:00 +0200
+
 trafikanten (1.0.0-rc2-0) unstable; urgency=low
 
   * Fixed portrait mode design in travel search.

@@ -71,6 +71,7 @@ private:
     QMaemo5TimePickSelector *timePicker;
     SearchDialog *searchFromDialog;
     SearchDialog *searchToDialog;
+    void showFavoriteMessage(Place place, int mode);
 
 private slots:
     void on_btnToFavorite_clicked();

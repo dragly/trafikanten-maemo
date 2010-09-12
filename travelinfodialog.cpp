@@ -121,7 +121,7 @@ void TravelStageListDelegate::paint(QPainter *painter, const QStyleOptionViewIte
         painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, tr("%n min", "", minutes));
     }
 
-    if(e->transportation == "Bus") {
+    if(e->transportation == "Bus" || e->transportation == "AirportBus") {
         QImage icon = QImage(":/images/bus.png").scaled(iconSize);
         painter->drawImage(iconPosition, icon);
     } else if(e->transportation == "Tram") {
@@ -130,7 +130,7 @@ void TravelStageListDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     } else if(e->transportation == "Metro") {
         QImage icon = QImage(":/images/tbane.png").scaled(iconSize);
         painter->drawImage(iconPosition, icon);
-    } else if(e->transportation == "Train") {
+    } else if(e->transportation == "Train" || e->transportation == "AirportTrain") {
         QImage icon = QImage(":/images/train.png").scaled(iconSize);
         painter->drawImage(iconPosition, icon);
     }

@@ -33,6 +33,7 @@ public:
         this->placeId = placeId;
         this->placeName = placeName;
     }
+    bool isNull() {return !placeId;}
     QString placeName;
     int placeId;
 };
@@ -63,8 +64,15 @@ public:
         this->arrivalTime = arrivalTime;
         this->departureTime = departureTime;
         this->travelStages = travelStages;
+        this->travelStagesNum = 0;
+        foreach(TravelStage* travelStage, this->travelStages) {
+            if(travelStage->transportation != "Walking") {
+                this->travelStagesNum++;
+            }
+        }
     }
     QList<TravelStage*> travelStages;
+    int travelStagesNum;
     QDateTime departureTime;
     QDateTime arrivalTime;
 };
@@ -174,13 +182,7 @@ public:
         settings.endArray();
     }
 
-    static void savePrepended(Search* search, int listType = Recent) {
-        QList<Search*> searches;
-        if(listType == Recent) {
-            searches = recent();
-        } else {
-            searches = favorites();
-        }
+    static Search* contains(QList<Search*> searches, Search* search) {
         Search *alreadySearch = NULL;
         foreach(Search *oldSearch, searches) {
             if(oldSearch->type == search->type &&
@@ -189,12 +191,22 @@ public:
                 alreadySearch = oldSearch;
             }
         }
-        if(alreadySearch != NULL) {
-            searches.removeAll(alreadySearch);
+        return alreadySearch;
+    }
+
+    static void savePrepended(Search* search, int listType = Recent) {
+        QList<Search*> searches;
+        if(listType == Recent) {
+            searches = recent();
+        } else {
+            searches = favorites();
+        }
+        if(Search* contain = contains(searches, search)) {
+            searches.removeAll(contain);
         }
         searches.prepend(search);
 
-        if(searches.size() > 20) {
+        if(searches.size() > 20 && listType == Recent) {
             searches.removeLast();
         }
         if(listType == Recent) {

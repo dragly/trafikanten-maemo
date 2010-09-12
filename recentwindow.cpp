@@ -26,6 +26,7 @@ RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
     } else if(mode == FavoritesRealtime) {
         setWindowTitle(tr("Favorite places"));
         searches = Search::favoritesRealtime();
+        ui->menuMenu->removeAction(ui->actionDelete_all);
     }
 
     model = new SearchListModel(this, searches);
@@ -147,7 +148,7 @@ void RecentWindow::removeFavorite() {
     QList<Search*> emptySearches = model->searches();
     emptySearches.removeAll(search);
     model->setSearches(emptySearches);
-    if(mode == Favorites) {
+    if(mode == Favorites || mode == FavoritesRealtime) {
         Search::saveFavorites(emptySearches);
     } else {
         Search::saveRecent(emptySearches);

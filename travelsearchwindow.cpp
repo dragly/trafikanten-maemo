@@ -7,8 +7,8 @@
 #include <QtXml>
 
 TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::TravelSearchWindow)
+        QMainWindow(parent),
+        ui(new Ui::TravelSearchWindow)
 {
 #ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5StackedWindow);
@@ -238,7 +238,7 @@ QVariant TravelListModel::data(const QModelIndex &index, int role) const {
 }
 
 void TravelListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                              const QModelIndex &index) const {
+                               const QModelIndex &index) const {
     QStyledItemDelegate::paint(painter, option, index);
 
     Travel *e = qVariantValue<Travel *>(index.data());
@@ -250,8 +250,8 @@ void TravelListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     painter->save();
 
     painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->departureTime.toString("hh:mm") + " - " + e->arrivalTime.toString("hh:mm"));
-    if(e->travelStages.size() > 1) {
-        painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("%n switche(s)", "", e->travelStages.size() - 1));
+    if(e->travelStagesNum > 1) {
+        painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("%n switche(s)", "", e->travelStagesNum - 1));
     }
 
     painter->setPen(option.palette.mid().color());
@@ -305,28 +305,49 @@ void TravelSearchWindow::favoritePlaceSelected(Place place) {
     }
 }
 
+void TravelSearchWindow::showFavoriteMessage(Place place, int mode) {
+
+    bool listFavorites = false;
+    Search *search = new Search();
+    search->placeFrom = place;
+    search->placeTo = Place();
+    search->type = Search::Realtime;
+    bool contains = Search::contains(Search::favoritesRealtime(), search);
+    if(!place.isNull() && !contains) {
+        QMessageBox msg;
+        msg.setText(tr("Do you wish to save the current selection as a favorite or select "
+                       "a different place from your list of favorites?"));
+        msg.setWindowTitle(tr("Save selection or find favorite?"));
+        QPushButton *saveButton = msg.addButton("Save as favorite", QMessageBox::YesRole);
+        QPushButton *selectButton = msg.addButton("Select favorite", QMessageBox::YesRole);
+        msg.setStandardButtons(QMessageBox::Cancel);
+        msg.exec();
+        if(msg.clickedButton() == saveButton) {
+            Search::savePrepended(search, Search::Favorites);
+        } else if(msg.clickedButton() == selectButton) {
+            listFavorites = true;
+        }
+    }
+
+    if(place.isNull() || contains || listFavorites){
+        favoriteSelectMode = mode;
+        RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
+        connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
+        if(portraitMode) {
+            win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+        } else {
+            win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+        }
+        win->show();
+    }
+}
+
 void TravelSearchWindow::on_btnFromFavorite_clicked()
 {
-    favoriteSelectMode = FavoriteFrom;
-    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
-    connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
-    if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
-    } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
-    }
-    win->show();
+    showFavoriteMessage(placeFrom, FavoriteFrom);
 }
 
 void TravelSearchWindow::on_btnToFavorite_clicked()
 {
-    favoriteSelectMode = FavoriteTo;
-    RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
-    connect(win, SIGNAL(placeSelected(Place)), this, SLOT(favoritePlaceSelected(Place)));
-    if(portraitMode) {
-        win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
-    } else {
-        win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
-    }
-    win->show();
+    showFavoriteMessage(placeTo, FavoriteTo);
 }
