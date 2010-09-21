@@ -167,22 +167,22 @@ p, li { white-space: pre-wrap; }
         <translation>Favorittsteder</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="139"/>
+        <location filename="recentwindow.cpp" line="142"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="158"/>
+        <location filename="recentwindow.cpp" line="161"/>
         <source>Are you sure?</source>
         <translation>Er du sikker?</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="162"/>
+        <location filename="recentwindow.cpp" line="165"/>
         <source>This will remove all your favorite searches and is an irriversible action. Are you sure that you want to continue?</source>
         <translation>Dette vil slette alle dine favorittsøk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="164"/>
+        <location filename="recentwindow.cpp" line="167"/>
         <source>This will remove all your recent searches and is an irriversible action. Are you sure that you want to continue?</source>
         <translation>Dette vil slette alle dine nylige søk og kan ikke angres. Er du sikker på at du vil fortsette?</translation>
     </message>
@@ -241,12 +241,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchListDelegate</name>
     <message>
-        <location filename="recentwindow.cpp" line="99"/>
+        <location filename="recentwindow.cpp" line="101"/>
         <source>Realtime</source>
         <translation>Sanntid</translation>
     </message>
     <message>
-        <location filename="recentwindow.cpp" line="102"/>
+        <location filename="recentwindow.cpp" line="105"/>
         <source>Travel</source>
         <translation>Reise</translation>
     </message>
@@ -325,39 +325,39 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Test</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="121"/>
+        <location filename="trafikantenwindow.cpp" line="123"/>
         <source>Requesting your position using GPS/GSM</source>
         <translation>Henter din posisjon ved hjelp av GPS/GSM</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="105"/>
+        <location filename="trafikantenwindow.cpp" line="107"/>
         <source>Reuse last result?</source>
         <translation>GJenbruke siste resultat?</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="106"/>
+        <location filename="trafikantenwindow.cpp" line="108"/>
         <source>Your position was found recently.
 Would you like to reuse you previous position?</source>
         <translation>Din posisjon ble nylig funnet.
 Vil du gjenbruke forrige posisjon?</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="108"/>
+        <location filename="trafikantenwindow.cpp" line="110"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="109"/>
+        <location filename="trafikantenwindow.cpp" line="111"/>
         <source>No</source>
         <translation>Nei</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="239"/>
+        <location filename="trafikantenwindow.cpp" line="255"/>
         <source>Timed out</source>
         <translation>Tidsavbrudd</translation>
     </message>
     <message>
-        <location filename="trafikantenwindow.cpp" line="240"/>
+        <location filename="trafikantenwindow.cpp" line="256"/>
         <source>We are terribly sorry, but we&apos;re unable to locate your position at the current time. Please try again.</source>
         <translation>Vi beklager, men det var dessverre ikke mulig å lokalisere din posisjon for øyeblikket. Vennligst prøv igjen senere.</translation>
     </message>
@@ -373,7 +373,7 @@ Vil du gjenbruke forrige posisjon?</translation>
 <context>
     <name>TravelListDelegate</name>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="254"/>
+        <location filename="travelsearchwindow.cpp" line="268"/>
         <source>%n switche(s)</source>
         <translation>
             <numerusform>%n bytte</numerusform>
@@ -381,7 +381,7 @@ Vil du gjenbruke forrige posisjon?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="travelsearchwindow.cpp" line="263"/>
+        <location filename="travelsearchwindow.cpp" line="277"/>
         <source>%n min</source>
         <translation>
             <numerusform>%n min</numerusform>
@@ -397,42 +397,47 @@ Vil du gjenbruke forrige posisjon?</translation>
         <translation>Reisesøk</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="38"/>
+        <location filename="travelsearchwindow.ui" line="41"/>
         <source>From:</source>
         <translation>Fra:</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="45"/>
+        <location filename="travelsearchwindow.ui" line="50"/>
         <source>Select Departure</source>
         <translation>Velg avreise</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="90"/>
+        <location filename="travelsearchwindow.ui" line="97"/>
         <source>To:</source>
         <translation>Til:</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="97"/>
+        <location filename="travelsearchwindow.ui" line="106"/>
         <source>Select Destination</source>
         <translation>Velg destinasjon</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="145"/>
+        <location filename="travelsearchwindow.ui" line="150"/>
+        <source>Now</source>
+        <translation>Nå</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.ui" line="168"/>
         <source>No travels found.</source>
         <translation>Ingen reiser funnet.</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="198"/>
+        <location filename="travelsearchwindow.ui" line="221"/>
         <source>Menu</source>
         <translation>Meny</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="207"/>
+        <location filename="travelsearchwindow.ui" line="230"/>
         <source>Add as favorite</source>
         <translation>Legg til favoritt</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="212"/>
+        <location filename="travelsearchwindow.ui" line="235"/>
         <source>Switch direction</source>
         <translation>Bytt retning</translation>
     </message>
@@ -441,7 +446,7 @@ Vil du gjenbruke forrige posisjon?</translation>
         <translation type="obsolete">Tidspunkt:</translation>
     </message>
     <message>
-        <location filename="travelsearchwindow.ui" line="138"/>
+        <location filename="travelsearchwindow.ui" line="161"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
@@ -454,6 +459,17 @@ Vil du gjenbruke forrige posisjon?</translation>
         <location filename="travelsearchwindow.cpp" line="23"/>
         <source>Time</source>
         <translation>Tidspunkt</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.cpp" line="332"/>
+        <source>Do you wish to save the current selection as a favorite or select a different place from your list of favorites?</source>
+        <translatorcomment>Attempted to shorten the sentence down to the size of the English one.</translatorcomment>
+        <translation>Ønsker du å lagre denne holdeplassen som en favoritt eller velge en annen holdeplass fra dine favoritter?</translation>
+    </message>
+    <message>
+        <location filename="travelsearchwindow.cpp" line="334"/>
+        <source>Save selection or find favorite?</source>
+        <translation>Lagre holdeplass eller velge favoritt?</translation>
     </message>
 </context>
 <context>

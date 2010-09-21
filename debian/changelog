@@ -1,3 +1,12 @@
+trafikanten (1.0.0) unstable; urgency=low
+
+  * Version 1.0.0
+  * Added "Now" button to travel search (in case the window has been open a while)
+  * Added accuracy to GPS search to make sure the retrieved position is within a radius of 300 metres. This avoids searching for nonsense positions, when the correct position might be retrieved within a few more seconds.
+  * Updated Norwegian translations
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sun, 12 Sep 2010 03:00:00 +0200
+
 trafikanten (1.0.0-rc3-0) unstable; urgency=low
 
   * Made it possible to save favorite places during travel selection.

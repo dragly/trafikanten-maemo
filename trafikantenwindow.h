@@ -2,6 +2,7 @@
 #define TRAFIKANTENWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 #include <qnmeapositioninfosource.h>
 #include <qgeopositioninfosource.h>
 #include <qgeosatelliteinfosource.h>
@@ -33,6 +34,7 @@ private:
     TravelSearchWindow* travelSearch;
     bool positionSearchPerformed;
     QTime lastPositionSearch;
+    QTimer updateRequestTimer;
 
 private slots:
     void on_btnFavorites_clicked();

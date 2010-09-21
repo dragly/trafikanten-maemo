@@ -72,8 +72,11 @@ private:
     SearchDialog *searchFromDialog;
     SearchDialog *searchToDialog;
     void showFavoriteMessage(Place place, int mode);
+    QMaemo5ValueButton *dateButton;
+    QMaemo5ValueButton *timeButton;
 
 private slots:
+    void on_btnNow_clicked();
     void on_btnToFavorite_clicked();
     void on_btnFromFavorite_clicked();
     void on_actionSwitch_direction_triggered();

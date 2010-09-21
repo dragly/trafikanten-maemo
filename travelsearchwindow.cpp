@@ -19,12 +19,14 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
 
     timePicker = new QMaemo5TimePickSelector(this);
     datePicker = new QMaemo5DatePickSelector(this);
-    QMaemo5ValueButton *dateButton = new QMaemo5ValueButton(tr("Date"), this);
-    QMaemo5ValueButton *timeButton = new QMaemo5ValueButton(tr("Time"), this);
+    dateButton = new QMaemo5ValueButton(tr("Date"), this);
+    timeButton = new QMaemo5ValueButton(tr("Time"), this);
     dateButton->setPickSelector(datePicker);
     timeButton->setPickSelector(timePicker);
-    ui->dateTimeContainer->addWidget(dateButton);
-    ui->dateTimeContainer->addWidget(timeButton);
+    ui->dateTimeHorizontalContainer->removeWidget(ui->btnNow);
+    ui->dateTimeHorizontalContainer->addWidget(dateButton);
+    ui->dateTimeHorizontalContainer->addWidget(timeButton);
+    ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
 
     searchToDialog = new SearchDialog(this);
     searchFromDialog = new SearchDialog(this);
@@ -42,8 +44,20 @@ void TravelSearchWindow::orientationChanged() {
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
+        ui->dateTimeVerticalContainer->removeWidget(dateButton);
+        ui->dateTimeHorizontalContainer->removeWidget(timeButton);
+        ui->dateTimeHorizontalContainer->removeWidget(ui->btnNow);
+        ui->dateTimeHorizontalContainer->addWidget(dateButton);
+        ui->dateTimeHorizontalContainer->addWidget(timeButton);
+        ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
     } else {
         portraitMode = true;
+        ui->dateTimeVerticalContainer->removeWidget(dateButton);
+        ui->dateTimeHorizontalContainer->removeWidget(ui->btnNow);
+        ui->dateTimeHorizontalContainer->removeWidget(timeButton);
+        ui->dateTimeVerticalContainer->insertWidget(0, dateButton);
+        ui->dateTimeHorizontalContainer->addWidget(timeButton);
+        ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
     }
 }
 
@@ -350,4 +364,10 @@ void TravelSearchWindow::on_btnFromFavorite_clicked()
 void TravelSearchWindow::on_btnToFavorite_clicked()
 {
     showFavoriteMessage(placeTo, FavoriteTo);
+}
+
+void TravelSearchWindow::on_btnNow_clicked()
+{
+    datePicker->setCurrentDate(QDate::currentDate());
+    timePicker->setCurrentTime(QTime::currentTime());
 }
