@@ -1,3 +1,9 @@
+trafikanten (1:1.0.1-0) unstable; urgency=low
+
+  * Changed version number to help import.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 2 Oct 2010 10:00:00 +0200
+
 trafikanten (1.0.0) unstable; urgency=low
 
   * Version 1.0.0
@@ -5,7 +11,7 @@ trafikanten (1.0.0) unstable; urgency=low
   * Added accuracy to GPS search to make sure the retrieved position is within a radius of 300 metres. This avoids searching for nonsense positions, when the correct position might be retrieved within a few more seconds.
   * Updated Norwegian translations
 
- -- Svenn-Arne Dragly <s@dragly.com>  Sun, 12 Sep 2010 03:00:00 +0200
+ -- Svenn-Arne Dragly <s@dragly.com>  Tue, 21 Sep 2010 19:00:00 +0200
 
 trafikanten (1.0.0-rc3-0) unstable; urgency=low
 
