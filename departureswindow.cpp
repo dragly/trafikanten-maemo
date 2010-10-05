@@ -83,13 +83,12 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
             qDebug("No visits found!");
             ui->lblNoDepartures->show();
         }
-
         while(!visit.isNull()) {
             QDomElement destination = visit.firstChildElement("DestinationName");
             QDomElement line = visit.firstChildElement("LineRef");
             QDomElement expectedArrival = visit.firstChildElement("ExpectedArrivalTime");
-            QDateTime expectedArrivalTime = QDateTime::fromString(expectedArrival.text().left(23), "yyyy-MM-ddThh:mm:ss.zzz");
-            QDateTime timestampTime = QDateTime::fromString(timestamp.text().left(23), "yyyy-MM-ddThh:mm:ss.zzz");
+            QDateTime expectedArrivalTime = QDateTime::fromString(expectedArrival.text().left(19), "yyyy-MM-ddThh:mm:ss");
+            QDateTime timestampTime = QDateTime::fromString(timestamp.text().left(19), "yyyy-MM-ddThh:mm:ss");
             qDebug() << "expectedArrival" << expectedArrival.text();
             qDebug() << "times now expected" << timestampTime << expectedArrivalTime;
             int difference = timestampTime.secsTo(expectedArrivalTime);
@@ -101,6 +100,17 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
             visit = visit.nextSiblingElement("MonitoredStopVisit");
             row++;
         }
+        bool swapped = true; // let's perform a bubble sort! :D
+        while(swapped) {
+            swapped = false;
+            for(int i = 0; i < departures.count() - 1; i++) {
+                if(departures.at(i)->arrivalDifference > departures.at(i + 1)->arrivalDifference) {
+                    departures.swap(i,i+1);
+                    swapped = true;
+                }
+            }
+        }
+
         QAbstractItemModel *oldModel = ui->tblResults->model();
         DepartureListModel *model = new DepartureListModel(this, departures);
         ui->tblResults->setModel(model);

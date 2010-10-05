@@ -1,3 +1,10 @@
+trafikanten (1:1.0.2-0) unstable; urgency=low
+
+  * Updated to the new API datetime. Not using microseconds any longer, so if the API changes back, nothing goes wrong.
+  * Added manual sort of departure times. The API changed for realtime searches - might also change for travel searches.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Tue, 5 Oct 2010 22:26:00 +0200
+
 trafikanten (1:1.0.1-0) unstable; urgency=low
 
   * Changed version number to help import.

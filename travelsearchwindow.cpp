@@ -183,8 +183,8 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
         while(!travel.isNull()) {
             QDomElement departureElement = travel.firstChildElement("DepartureTime");
             QDomElement arrivalElement = travel.firstChildElement("ArrivalTime");
-            QDateTime departureTime = QDateTime::fromString(departureElement.text(), "yyyy-MM-ddThh:mm:ss");
-            QDateTime arrivalTime = QDateTime::fromString(arrivalElement.text(), "yyyy-MM-ddThh:mm:ss");
+            QDateTime departureTime = QDateTime::fromString(departureElement.text().left(19), "yyyy-MM-ddThh:mm:ss");
+            QDateTime arrivalTime = QDateTime::fromString(arrivalElement.text().left(19), "yyyy-MM-ddThh:mm:ss");
             QList<TravelStage*> travelStages;
             QDomElement travelStagesElement = travel.firstChildElement("TravelStages");
             QDomElement travelStageElement = travelStagesElement.firstChildElement("TravelStage");
@@ -205,9 +205,9 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
                 QDomElement stageLineNameElement = travelStageElement.firstChildElement("LineName");
                 travelStage->lineName = stageLineNameElement.text();
                 QDomElement stageDepartureTime = travelStageElement.firstChildElement("DepartureTime");
-                travelStage->departureTime = QDateTime::fromString(stageDepartureTime.text(), "yyyy-MM-ddThh:mm:ss");
+                travelStage->departureTime = QDateTime::fromString(stageDepartureTime.text().left(19), "yyyy-MM-ddThh:mm:ss");
                 QDomElement stageArrivalTime = travelStageElement.firstChildElement("ArrivalTime");
-                travelStage->arrivalTime = QDateTime::fromString(stageArrivalTime.text(), "yyyy-MM-ddThh:mm:ss");
+                travelStage->arrivalTime = QDateTime::fromString(stageArrivalTime.text().left(19), "yyyy-MM-ddThh:mm:ss");
                 QDomElement stageTourIDElement = travelStageElement.firstChildElement("TourID");
                 travelStage->tourID = stageTourIDElement.text().toInt();
                 QDomElement stageTransportationElement = travelStageElement.firstChildElement("Transportation");
@@ -216,12 +216,32 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
 
                 travelStageElement = travelStageElement.nextSiblingElement("TravelStage");
             }
+            bool swapped = true; // let's perform a bubble sort! :D
+            while(swapped) {
+                swapped = false;
+                for(int i = 0; i < travelStages.count() - 1; i++) {
+                    if(travelStages.at(i)->departureTime > travelStages.at(i + 1)->departureTime) {
+                        travelStages.swap(i,i+1);
+                        swapped = true;
+                    }
+                }
+            }
 
             Travel* travelItem = new Travel(departureTime, arrivalTime, travelStages);
             travels.append(travelItem);
             qDebug() << "departure" << departureElement.text() << departureTime.toString("hh:mm");
             travel = travel.nextSiblingElement("TravelProposal");
             row++;
+        }
+        bool swappedTravels = true; // let's perform a bubble sort! :D
+        while(swappedTravels) {
+            swappedTravels = false;
+            for(int i = 0; i < travels.count() - 1; i++) {
+                if(travels.at(i)->departureTime > travels.at(i + 1)->departureTime) {
+                    travels.swap(i,i+1);
+                    swappedTravels = true;
+                }
+            }
         }
         QAbstractItemModel *oldModel = ui->tblResults->model();
         TravelListModel *model = new TravelListModel(this, travels);
