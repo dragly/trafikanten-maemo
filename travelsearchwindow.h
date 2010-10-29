@@ -56,6 +56,7 @@ public:
     void setPlace(Place place, bool isFrom);
     void setPlaceFrom(Place place);
     void setPlaceTo(Place place);
+    void updateButtonText();
 
 protected:
     void changeEvent(QEvent *e);

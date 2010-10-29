@@ -31,7 +31,8 @@ RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
 
     model = new SearchListModel(this, searches);
     ui->tblResults->setModel(model);
-    ui->tblResults->setItemDelegate(new SearchListDelegate(this));
+    delegate = new SearchListDelegate(this);
+    ui->tblResults->setItemDelegate(delegate);
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->tblResults->resizeRowsToContents();
     connect(QApplication::desktop(), SIGNAL(resized(int)), this, SLOT(orientationChanged()));
@@ -42,9 +43,9 @@ void RecentWindow::orientationChanged() {
     // Change the layout of the search controls
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
-        portraitMode = false;
+        _portraitMode = false;
     } else {
-        portraitMode = true;
+        _portraitMode = true;
     }
 
 }
@@ -96,12 +97,29 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     painter->save();
     font.setPointSizeF(font.pointSizeF() * 0.8);
 
+    int maxLabelLength = 40;
+    if (recentWindow->portraitMode()) {
+        maxLabelLength = 24;
+    }
+    QString placeFromText;
+    QString placeToText;
+    if(e->placeFrom.placeName.length() > maxLabelLength) {
+        placeFromText = e->placeFrom.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        placeFromText = e->placeFrom.placeName;
+    }
+    if(e->placeTo.placeName.length() > maxLabelLength) {
+        placeToText = e->placeTo.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        placeToText = e->placeTo.placeName;
+    }
+
     if(e->type == Search::Realtime) {
-        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->placeFrom.placeName);
+        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, placeFromText);
         painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("Realtime"));
     } else {
-        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->placeFrom.placeName);
-        painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, e->placeTo.placeName);
+        painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, placeFromText);
+        painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, placeToText);
         painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("Travel"));
     }
 
@@ -117,7 +135,7 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
     } else if(mode == Recent || mode == Favorites)
     if(search->type == Search::Realtime) {
         DeparturesWindow *win = new DeparturesWindow(search->placeFrom, this);
-        if(portraitMode) {
+        if(_portraitMode) {
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
         } else {
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
@@ -127,7 +145,7 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
         TravelSearchWindow *win = new TravelSearchWindow(this);
         win->setPlaceFrom(search->placeFrom);
         win->setPlaceTo(search->placeTo);
-        if(portraitMode) {
+        if(_portraitMode) {
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
         } else {
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);

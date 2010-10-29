@@ -14,14 +14,14 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
 #endif
     ui->setupUi(this);
     this->place = place;
-    ui->lblName->setText(place.placeName);
     ui->lblNoDepartures->hide();
     Search *search = new Search();
     search->placeFrom = place;
     search->type = Search::Realtime;
     Search::savePrepended(search);
 
-    ui->tblResults->setItemDelegate(new DepartureListDelegate(this));
+    delegate = new DepartureListDelegate(this);
+    ui->tblResults->setItemDelegate(delegate);
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     manager = new QNetworkAccessManager(this);
     connect(manager, SIGNAL(finished(QNetworkReply*)),
@@ -54,11 +54,21 @@ void DeparturesWindow::orientationChanged() {
     //    ui->tblResults->resizeRowsToContents();
     //    qDebug() << "updated table size width" << ui->tblResults->sizeHint().width();
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    int maxLabelLength;
     if (screenGeometry.width() > screenGeometry.height()) {
-        portraitMode = false;
+        _portraitMode = false;
+        maxLabelLength = 43;
     } else {
-        portraitMode = true;
+        _portraitMode = true;
+        maxLabelLength = 24;
     }
+    QString labelText;
+    if(place.placeName.length() > maxLabelLength) {
+        labelText = place.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        labelText = place.placeName;
+    }
+    ui->lblName->setText(labelText);
 }
 
 void DeparturesWindow::replyFinished(QNetworkReply *reply) {
@@ -134,7 +144,7 @@ void DeparturesWindow::on_actionRoute_from_triggered()
 {
     TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, true);
-    if(portraitMode) {
+    if(_portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
@@ -146,7 +156,7 @@ void DeparturesWindow::on_actionRoute_to_triggered()
 {
     TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, false);
-    if(portraitMode) {
+    if(_portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
@@ -186,9 +196,20 @@ void DepartureListDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     QRect rect = option.rect;
     rect.adjust(10, 10, -20, -7);
 
+    int maxLabelLength = 40;
+    if (departuresWindow->portraitMode()) {
+        maxLabelLength = 24;
+    }
+    QString lineDestination;
+    if(e->lineDestination.length() > maxLabelLength) {
+        lineDestination = e->lineDestination.left(maxLabelLength - 2) + "...";
+    } else {
+        lineDestination = e->lineDestination;
+    }
+
     painter->save();
 
-    painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->lineNumber + " " + e->lineDestination);
+    painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, e->lineNumber + " " + lineDestination);
 
     QString timeText;
     if(e->arrivalDifference < 1) {
@@ -222,6 +243,11 @@ void DeparturesWindow::on_actionAddFavorite_triggered()
 }
 
 void DeparturesWindow::on_actionRefresh_triggered()
+{
+    refreshData();
+}
+
+void DeparturesWindow::on_refreshButton_clicked()
 {
     refreshData();
 }

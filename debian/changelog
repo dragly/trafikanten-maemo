@@ -1,3 +1,10 @@
+trafikanten (1:1.0.3-0) unstable; urgency=low
+
+  * Added refresh button for realtime results.
+  * Made sure that a lot of strings are shortened with an ellipsis indicator if they are too big for the screen space.
+
+ -- Svenn-Arne Dragly <s@dragly.com>  Sat, 30 Oct 2010 01:00:00 +0200
+
 trafikanten (1:1.0.2-0) unstable; urgency=low
 
   * Updated to the new API datetime. Not using microseconds any longer, so if the API changes back, nothing goes wrong.

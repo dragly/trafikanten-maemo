@@ -9,6 +9,7 @@
 namespace Ui {
     class RecentWindow;
 }
+class RecentWindow;
 
 class SearchListModel : public QAbstractListModel {
     Q_OBJECT
@@ -32,12 +33,14 @@ class SearchListDelegate : public QStyledItemDelegate {
     Q_OBJECT
 
 public:
-    SearchListDelegate(QObject *parent = 0)
-        : QStyledItemDelegate(parent) {}
+    SearchListDelegate(RecentWindow *parent)
+        : QStyledItemDelegate((QObject*)parent) {recentWindow = parent;}
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index);
+
+    RecentWindow* recentWindow;
 };
 
 class RecentWindow : public QMainWindow
@@ -49,6 +52,8 @@ public:
 
     explicit RecentWindow(Mode mode, QWidget *parent = 0);
     ~RecentWindow();
+
+    bool portraitMode() {return _portraitMode;}
 
 protected:
     void changeEvent(QEvent *e);
@@ -62,8 +67,9 @@ private:
     SearchListModel *model;
     QSettings settings;
 
-    bool portraitMode;
+    bool _portraitMode;
     int mode;
+    SearchListDelegate* delegate;
 
 private slots:
     void on_actionDelete_all_triggered();

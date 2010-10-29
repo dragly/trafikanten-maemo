@@ -90,11 +90,36 @@ void TravelStageListDelegate::paint(QPainter *painter, const QStyleOptionViewIte
 
     painter->save();
 
+    int maxLabelLength;
+    if (dialog->portraitMode()) {
+        maxLabelLength = 24;
+    } else {
+        maxLabelLength = 40;
+    }
+
     QString lineAndDestination;
     if(e->transportation == "Walking") {
         lineAndDestination = tr("Walking");
     } else {
-        lineAndDestination = e->lineName + " " + e->destination;
+        QString lineDestination;
+        if(e->destination.length() > maxLabelLength) {
+            lineDestination = e->destination.left(maxLabelLength - 2) + "...";
+        } else {
+            lineDestination = e->destination;
+        }
+        lineAndDestination = e->lineName + " " + lineDestination;
+    }
+    QString departureStopPlaceName;
+    if(e->departureStop.placeName.length() > maxLabelLength) {
+        departureStopPlaceName = e->departureStop.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        departureStopPlaceName = e->departureStop.placeName;
+    }
+    QString arrivalStopPlaceName;
+    if(e->arrivalStop.placeName.length() > maxLabelLength) {
+        arrivalStopPlaceName = e->arrivalStop.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        arrivalStopPlaceName = e->arrivalStop.placeName;
     }
 
     int minutes = (int)((double)e->departureTime.secsTo(e->arrivalTime) / 60.0);
@@ -107,17 +132,17 @@ void TravelStageListDelegate::paint(QPainter *painter, const QStyleOptionViewIte
         painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, lineAndDestination);
         painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, tr("%n min", "", minutes));
         painter->setPen(option.palette.mid().color());
-        painter->drawText(rect, Qt::AlignVCenter | Qt::AlignLeft, e->departureStop.placeName + " " + e->departureTime.toString("hh:mm"));
-        painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, e->arrivalStop.placeName + " " + e->arrivalTime.toString("hh:mm"));
+        painter->drawText(rect, Qt::AlignVCenter | Qt::AlignLeft, departureStopPlaceName + " " + e->departureTime.toString("hh:mm"));
+        painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, arrivalStopPlaceName + " " + e->arrivalTime.toString("hh:mm"));
     } else {
         painter->drawText(rect, Qt::AlignTop | Qt::AlignLeft, lineAndDestination);
-        painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, e->departureStop.placeName + " " + e->departureTime.toString("hh:mm"));
+        painter->drawText(rect, Qt::AlignTop | Qt::AlignRight, departureStopPlaceName + " " + e->departureTime.toString("hh:mm"));
 
         painter->setPen(option.palette.mid().color());
         font.setPointSizeF(font.pointSizeF() * 0.70);
         painter->setFont(font);
 
-        painter->drawText(rect, Qt::AlignBottom | Qt::AlignRight, e->arrivalStop.placeName + " " + e->arrivalTime.toString("hh:mm"));
+        painter->drawText(rect, Qt::AlignBottom | Qt::AlignRight, arrivalStopPlaceName + " " + e->arrivalTime.toString("hh:mm"));
         painter->drawText(rect, Qt::AlignBottom | Qt::AlignLeft, tr("%n min", "", minutes));
     }
 

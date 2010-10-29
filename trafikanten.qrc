@@ -14,5 +14,7 @@
         <file>images/tram.png</file>
         <file>images/favorites.png</file>
         <file>images/favorites-pressed.png</file>
+        <file>images/refresh.png</file>
+        <file>images/refresh-pressed.png</file>
     </qresource>
 </RCC>

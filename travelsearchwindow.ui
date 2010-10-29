@@ -26,7 +26,7 @@
          <x>0</x>
          <y>0</y>
          <width>426</width>
-         <height>367</height>
+         <height>364</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -47,7 +47,7 @@
             <item>
              <widget class="QPushButton" name="btnPlaceFrom">
               <property name="text">
-               <string>Select Departure</string>
+               <string>Text set in .cpp</string>
               </property>
              </widget>
             </item>
@@ -103,7 +103,7 @@
             <item>
              <widget class="QPushButton" name="btnPlaceTo">
               <property name="text">
-               <string>Select Destination</string>
+               <string>Text set in .cpp</string>
               </property>
              </widget>
             </item>
@@ -213,7 +213,7 @@
      <x>0</x>
      <y>0</y>
      <width>446</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">

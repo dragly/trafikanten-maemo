@@ -59,16 +59,17 @@ void TravelSearchWindow::orientationChanged() {
         ui->dateTimeHorizontalContainer->addWidget(timeButton);
         ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
     }
+    updateButtonText();
 }
 
 void TravelSearchWindow::setPlaceFrom(Place place) {
     this->placeFrom = place;
-    ui->btnPlaceFrom->setText(place.placeName);
+    updateButtonText();
 }
 
 void TravelSearchWindow::setPlaceTo(Place place) {
     this->placeTo = place;
-    ui->btnPlaceTo->setText(place.placeName);
+    updateButtonText();
 }
 
 void TravelSearchWindow::setPlace(Place place, bool isFrom) {
@@ -116,18 +117,18 @@ void TravelSearchWindow::on_btnPlaceFrom_clicked()
 {
     Place place = searchPlace(searchFromDialog);
     if(place.placeId != 0) {
-        ui->btnPlaceFrom->setText(place.placeName);
         placeFrom = place;
     }
+    updateButtonText();
 }
 
 void TravelSearchWindow::on_btnPlaceTo_clicked()
 {
     Place place = searchPlace(searchToDialog);
     if(place.placeId != 0) {
-        ui->btnPlaceTo->setText(place.placeName);
         placeTo = place;
     }
+    updateButtonText();
 }
 
 void TravelSearchWindow::on_pushButton_clicked()
@@ -254,7 +255,7 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
 }
 
 int TravelListModel::rowCount(const QModelIndex &) const {
-    return travels.size();;
+    return travels.size();
 }
 
 QVariant TravelListModel::data(const QModelIndex &index, int role) const {
@@ -320,23 +321,53 @@ void TravelSearchWindow::on_actionAddFavorite_triggered()
     Search::savePrepended(search, Search::Favorites);
 }
 
+void TravelSearchWindow::updateButtonText() {
+    int maxLabelLength;
+    if (portraitMode) {
+        maxLabelLength = 24;
+    } else {
+        maxLabelLength = 40;
+    }
+    QString placeFromText;
+    if(placeFrom.placeName.length() > maxLabelLength) {
+        placeFromText = placeFrom.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        placeFromText = placeFrom.placeName;
+    }
+    QString placeToText;
+    if(placeTo.placeName.length() > maxLabelLength) {
+        placeToText = placeTo.placeName.left(maxLabelLength - 2) + "...";
+    } else {
+        placeToText = placeTo.placeName;
+    }
+    if(placeFromText.isNull()) {
+        ui->btnPlaceFrom->setText(tr("Select Departure"));
+    } else {
+        ui->btnPlaceFrom->setText(placeFromText);
+    }
+    if(placeToText.isNull()) {
+        ui->btnPlaceTo->setText(tr("Select Destination"));
+    } else {
+        ui->btnPlaceTo->setText(placeToText);
+    }
+}
+
 void TravelSearchWindow::on_actionSwitch_direction_triggered()
 {
     Place tmpPlace = placeFrom;
     placeFrom = placeTo;
     placeTo = tmpPlace;
-    ui->btnPlaceFrom->setText(placeFrom.placeName);
-    ui->btnPlaceTo->setText(placeTo.placeName);
+
+    updateButtonText();
 }
 
 void TravelSearchWindow::favoritePlaceSelected(Place place) {
     if(favoriteSelectMode == FavoriteFrom) {
         placeFrom = place;
-        ui->btnPlaceFrom->setText(place.placeName);
     } else if(favoriteSelectMode == FavoriteTo) {
         placeTo = place;
-        ui->btnPlaceTo->setText(place.placeName);
     }
+    updateButtonText();
 }
 
 void TravelSearchWindow::showFavoriteMessage(Place place, int mode) {
