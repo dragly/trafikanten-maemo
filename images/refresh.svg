@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="refresh.svg"
+   inkscape:export-filename="/home/svenni/Prosjekter/Programmer/Maemo/trafikanten/images/refresh-pressed.png"
+   inkscape:export-xdpi="90.000008"
+   inkscape:export-ydpi="90.000008">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2991"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2987"
+       is_visible="true" />
+    <filter
+       id="filter3048"
+       inkscape:label="Glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:menu-tooltip="Glow of object's own color at the edges"
+       color-interpolation-filters="sRGB">
+      <feColorMatrix
+         id="feColorMatrix3054"
+         values="0.5 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 " />
+      <feGaussianBlur
+         id="feGaussianBlur3050"
+         stdDeviation="22"
+         result="result91" />
+      <feComposite
+         id="feComposite3052"
+         in2="result91"
+         in="SourceGraphic"
+         operator="over" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.59255548"
+     inkscape:cx="104.98069"
+     inkscape:cy="274.38105"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="1089"
+     inkscape:window-x="1680"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-552.36218)">
+    <path
+       id="path2995"
+       style="fill:#f2f2f2;stroke:none;stroke-width:0.99999994000000003px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3048)"
+       d="m 444.60307,636.28987 -8.93226,152.59885 -138.36124,-55.09162 60.94224,-29.90773 c 0,0 -47.18609,-64.98176 -137.95687,-52.80159 -90.77076,12.18019 -136.8231,82.11292 -130.03351,158.36349 6.789602,76.25056 76.78853,143.36975 144.02479,143.88097 87.56835,0.66581 129.77395,-55.65813 129.77395,-55.65813 l 22.56264,84.45825 c 0,0 -120.03052,50.51104 -215.63299,12.10847 C 75.387372,955.83829 40.255511,885.64841 36.562694,797.9597 32.869876,710.27101 110.66177,611.27359 206.45369,601.48134 c 132.87543,-13.58306 195.80093,77.0628 195.80093,77.0628 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccssscczzscc" />
+  </g>
+</svg>
