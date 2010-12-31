@@ -78,7 +78,21 @@ unix {
     translation.files += $${TARGET}_*.qm
     locale.path = $$DATADIR/locale/no_NO/LC_MESSAGES/
     locale.files += ../debian/hildon/locale/no_NO/LC_MESSAGES/trafikanten.mo
+
+    # Versioning
+    APP_VERSION = $$system(head -1 debian/changelog | sed 's:.*(.*\:\(.*\)).*:\1:')
+    APP_REVISION = $$system(cat debian/revision)
 }
+!unix {
+    APP_VERSION = "(unknown\ version)"
+    APP_REVISION = "unknown"
+}
+APP_AUTHOR="Svenn-Arne\ Dragly"
+APP_YEAR="2010-2011"
+DEFINES += APP_AUTHOR=\\\"$${APP_AUTHOR}\\\"
+DEFINES += APP_YEAR=\\\"$${APP_YEAR}\\\"
+DEFINES += APP_VERSION=\\\"$${APP_VERSION}\\\"
+DEFINES += APP_REVISION=\\\"$${APP_REVISION}\\\"
 OTHER_FILES +=  debian/control \
     debian/hildon/applications/hildon/trafikanten.desktop \
     debian/changelog

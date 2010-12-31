@@ -2,6 +2,10 @@
 
 
 APPNAME := trafikanten
+
+before-build:
+		touch blah
+
 builddir:
 		mkdir -p builddir
 
@@ -17,12 +21,14 @@ build-stamp: builddir/Makefile
 		touch $@
 
 clean:
+		# Do normal cleaning
 		dh_testdir
 		dh_testroot
 		rm -f build-stamp
 		# Add here commands to clean up after the build process.
 		rm -rf builddir
 		dh_clean
+		
 install: build
 		dh_testdir
 		dh_testroot
