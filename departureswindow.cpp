@@ -1,7 +1,9 @@
 #include "departureswindow.h"
 #include "ui_departureswindow.h"
 
+#ifdef Q_WS_MAEMO_5
 #include <QMaemo5InformationBox>
+#endif
 #include "travelsearchwindow.h"
 
 DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
@@ -72,7 +74,9 @@ void DeparturesWindow::orientationChanged() {
 }
 
 void DeparturesWindow::replyFinished(QNetworkReply *reply) {
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+#endif
     QString data = QString::fromUtf8(reply->readAll()); // use UTF-8 encoding (why doesn't Qt detect this by itself?)
     qDebug() << "\n\n----Returned data---\n\n" << data << "\n\n\n";
     if(reply->error() == QNetworkReply::NoError) {
@@ -132,7 +136,9 @@ void DeparturesWindow::replyFinished(QNetworkReply *reply) {
 
 void DeparturesWindow::refreshData() {
     //Getting data
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+#endif
     ui->lblNoDepartures->hide();
     QString dataUrl = "http://reis.trafikanten.no/siri/sm.aspx?id=" + QString::number(place.placeId); //
     qDebug() << "Requesting" << dataUrl;
@@ -145,9 +151,13 @@ void DeparturesWindow::on_actionRoute_from_triggered()
     TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, true);
     if(_portraitMode) {
+#ifdef Q_WS_MAEMO_5
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
     } else {
+#ifdef Q_WS_MAEMO_5
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
     }
     win->show();
 }
@@ -157,9 +167,13 @@ void DeparturesWindow::on_actionRoute_to_triggered()
     TravelSearchWindow* win = new TravelSearchWindow(this);
     win->setPlace(place, false);
     if(_portraitMode) {
+#ifdef Q_WS_MAEMO_5
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
     } else {
+#ifdef Q_WS_MAEMO_5
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
     }
     win->show();
 }

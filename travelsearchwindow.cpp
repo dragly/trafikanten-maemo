@@ -17,6 +17,7 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->lblNoResultsFounds->hide();
 
+#ifdef Q_WS_MAEMO_5
     timePicker = new QMaemo5TimePickSelector(this);
     datePicker = new QMaemo5DatePickSelector(this);
     dateButton = new QMaemo5ValueButton(tr("Date"), this);
@@ -27,6 +28,7 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
     ui->dateTimeHorizontalContainer->addWidget(dateButton);
     ui->dateTimeHorizontalContainer->addWidget(timeButton);
     ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
+#endif
 
     searchToDialog = new SearchDialog(this);
     searchFromDialog = new SearchDialog(this);
@@ -44,20 +46,24 @@ void TravelSearchWindow::orientationChanged() {
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     if (screenGeometry.width() > screenGeometry.height()) {
         portraitMode = false;
+#ifdef Q_WS_MAEMO_5
         ui->dateTimeVerticalContainer->removeWidget(dateButton);
         ui->dateTimeHorizontalContainer->removeWidget(timeButton);
         ui->dateTimeHorizontalContainer->removeWidget(ui->btnNow);
         ui->dateTimeHorizontalContainer->addWidget(dateButton);
         ui->dateTimeHorizontalContainer->addWidget(timeButton);
         ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
+#endif
     } else {
         portraitMode = true;
+#ifdef Q_WS_MAEMO_5
         ui->dateTimeVerticalContainer->removeWidget(dateButton);
         ui->dateTimeHorizontalContainer->removeWidget(ui->btnNow);
         ui->dateTimeHorizontalContainer->removeWidget(timeButton);
         ui->dateTimeVerticalContainer->insertWidget(0, dateButton);
         ui->dateTimeHorizontalContainer->addWidget(timeButton);
         ui->dateTimeHorizontalContainer->addWidget(ui->btnNow);
+#endif
     }
     updateButtonText();
 }
@@ -100,9 +106,13 @@ void TravelSearchWindow::changeEvent(QEvent *e)
 Place TravelSearchWindow::searchPlace(SearchDialog *search) {
     search->setNormalSearch();
     if(portraitMode) {
+#ifdef Q_WS_MAEMO_5
         search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
     } else {
+#ifdef Q_WS_MAEMO_5
         search->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
     }
     int result = search->exec();
 
@@ -143,13 +153,18 @@ void TravelSearchWindow::on_pushButton_clicked()
     QString dataUrl = "http://reis.trafikanten.no/topp2009/topp2009ws.asmx"; //
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
     qDebug() << "requesting" << dataUrl;
+
+    QString departureTime;
+#ifdef Q_WS_MAEMO_5
+    departureTime = QDateTime(datePicker->currentDate(), timePicker->currentTime()).toString("yyyy-MM-ddThh:mm:ss");
+#endif
     QString data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
                    "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">"
                    "  <soap12:Body>"
                    "    <GetTravelsAfter xmlns=\"http://www.trafikanten.no/\">"
                    "      <from>" + QString::number(placeFrom.placeId) + "</from>"
                    "      <to>" + QString::number(placeTo.placeId) + "</to>"
-                   "      <departureTime>" + QDateTime(datePicker->currentDate(), timePicker->currentTime()).toString("yyyy-MM-ddThh:mm:ss") + "</departureTime>"
+                   "      <departureTime>" + departureTime + "</departureTime>"
                    "    </GetTravelsAfter>"
                    "  </soap12:Body>"
                    "</soap12:Envelope>";
@@ -157,7 +172,9 @@ void TravelSearchWindow::on_pushButton_clicked()
     request.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=\"UTF-8\"");
     request.setHeader(QNetworkRequest::ContentLengthHeader, data.toUtf8().length());
     manager->post(request, data.toUtf8());
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+#endif
 }
 
 void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
@@ -251,7 +268,9 @@ void TravelSearchWindow::replyFinished(QNetworkReply *reply) {
         ui->tblResults->resizeRowsToContents();
         ui->tblResults->setFixedHeight(ui->tblResults->verticalHeader()->length() + 60);
     }
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+#endif
 }
 
 int TravelListModel::rowCount(const QModelIndex &) const {
@@ -305,9 +324,13 @@ void TravelSearchWindow::on_tblResults_clicked(QModelIndex index)
     Travel *travel = qVariantValue<Travel *>(index.data());
     TravelInfoDialog* dialog = new TravelInfoDialog(travel, this);
     if(portraitMode) {
+#ifdef Q_WS_MAEMO_5
         dialog->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
     } else {
+#ifdef Q_WS_MAEMO_5
         dialog->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
     }
     dialog->exec();
 }
@@ -399,9 +422,13 @@ void TravelSearchWindow::showFavoriteMessage(Place place, int mode) {
         RecentWindow* win = new RecentWindow(RecentWindow::FavoritesRealtime, this);
         connect(win, SIGNAL(placeSelected(Place)), SLOT(favoritePlaceSelected(Place)));
         if(portraitMode) {
+#ifdef Q_WS_MAEMO_5
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
         } else {
+#ifdef Q_WS_MAEMO_5
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
         }
         win->show();
     }
@@ -419,6 +446,9 @@ void TravelSearchWindow::on_btnToFavorite_clicked()
 
 void TravelSearchWindow::on_btnNow_clicked()
 {
+
+#ifdef Q_WS_MAEMO_5
     datePicker->setCurrentDate(QDate::currentDate());
     timePicker->setCurrentTime(QTime::currentTime());
+#endif
 }

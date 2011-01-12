@@ -3,7 +3,6 @@
  Rewritten using code from http://code.google.com/p/trafikanten/source/browse/src/uk/me/jstott/jcoord/LatLng.java
 */
 
-#include <QMaemo5InformationBox>
 
 #include "trafikantenwindow.h"
 #include "ui_trafikantenwindow.h"
@@ -14,6 +13,9 @@
 #include "departureswindow.h"
 #include "common.h"
 #include "recentwindow.h"
+#ifdef Q_WS_MAEMO_5
+#include <QMaemo5InformationBox>
+#endif
 
 TrafikantenWindow::TrafikantenWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -81,18 +83,26 @@ void TrafikantenWindow::on_btnSearch_clicked()
     updateRequestTimer.stop();
     search->setNormalSearch();
     if(portraitMode) {
+#ifdef Q_WS_MAEMO_5
         search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
     } else {
+#ifdef Q_WS_MAEMO_5
         search->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
     }
     int result = search->exec();
 
     if(result == QDialog::Accepted) {
         DeparturesWindow *win = new DeparturesWindow(search->place(), this);
         if(portraitMode) {
+#ifdef Q_WS_MAEMO_5
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
+#endif
         } else {
+#ifdef Q_WS_MAEMO_5
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
+#endif
         }
         win->show();
     }
@@ -123,7 +133,9 @@ void TrafikantenWindow::on_btnNearby_clicked()
         QMaemo5InformationBox::information(this, tr("Requesting your position using GPS/GSM"), QMaemo5InformationBox::DefaultTimeout);
 #endif
         positionSource->setPreferredPositioningMethods(QGeoPositionInfoSource::SatellitePositioningMethods); // set preferred methods
+#ifdef Q_WS_MAEMO_5
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+#endif
         positionSource->startUpdates();
         updateRequestTimer.start(45000); // time out after 45 seconds
     }
@@ -143,7 +155,9 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
         updateRequestTimer.stop();
         positionSearchPerformed = true;
         lastPositionSearch.start();
+#ifdef Q_WS_MAEMO_5
         setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+#endif
         // TODO: Convert from latlong to easting and northing. See http://code.google.com/p/trafikanten/source/browse/src/uk/me/jstott/jcoord/UTMRef.java
         double UTM_F0 = 0.9996;
         double maj = 6378137.000;
@@ -227,20 +241,24 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
         QString easting = QString::number((int)UTMEasting);
         qDebug() << "northing" << northing << "easting" << easting;
         search->searchPosition(easting, northing);
+#ifdef Q_WS_MAEMO_5
         if(portraitMode) {
             search->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
         } else {
             search->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
+#endif
         int result = search->exec();
 
         if(result == QDialog::Accepted) {
             DeparturesWindow *win = new DeparturesWindow(search->place(), this);
+#ifdef Q_WS_MAEMO_5
             if(portraitMode) {
                 win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
             } else {
                 win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
             }
+#endif
             win->show();
         }
     }
@@ -250,7 +268,9 @@ void TrafikantenWindow::updateTimeout() {
     qDebug() << "Timed out";
     positionSource->stopUpdates();
     updateRequestTimer.stop();
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+#endif
     QMessageBox messageBox;
     messageBox.setWindowTitle(tr("Timed out"));
     messageBox.setText(tr("We are terribly sorry, but we're unable to locate your position at the current time. Please try again."));
@@ -261,11 +281,13 @@ void TrafikantenWindow::on_btnRouting_clicked()
 {
     positionSource->stopUpdates();
     updateRequestTimer.stop();
+#ifdef Q_WS_MAEMO_5
     if(portraitMode) {
         travelSearch->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
         travelSearch->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
+#endif
     travelSearch->show();
 }
 
@@ -280,11 +302,13 @@ void TrafikantenWindow::on_btnRecent_clicked()
     positionSource->stopUpdates();
     updateRequestTimer.stop();
     RecentWindow* win = new RecentWindow(RecentWindow::Recent, this);
+#ifdef Q_WS_MAEMO_5
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
+#endif
     win->show();
 }
 
@@ -293,10 +317,12 @@ void TrafikantenWindow::on_btnFavorites_clicked()
     positionSource->stopUpdates();
     updateRequestTimer.stop();
     RecentWindow* win = new RecentWindow(RecentWindow::Favorites, this);
+#ifdef Q_WS_MAEMO_5
     if(portraitMode) {
         win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
     } else {
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
+#endif
     win->show();
 }

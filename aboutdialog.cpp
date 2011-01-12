@@ -7,7 +7,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString description = tr("<h3>%9 %1</h3>"
+    QString description;
+#ifdef Q_WS_MAEMO_5
+    description= tr("<h3>%9 %1</h3>"
             "Based on revision %8 and Qt %2 (%3 bit)<br/>"
             "<br/>"
             "Built on %4 at %5<br />"
@@ -17,8 +19,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
                  QLatin1String(QT_VERSION_STR), QString::number(QSysInfo::WordSize),
                  QLatin1String(__DATE__), QLatin1String(__TIME__), APP_YEAR,
                  APP_AUTHOR, APP_REVISION, tr("Journey Planner for Norway"));
+#endif
 
-    QString aboutText = tr("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+    QString aboutText;
+#ifdef Q_WS_MAEMO_5
+    aboutText = tr("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
                             "p, li { white-space: pre-wrap; }"
                             "</style></head><body style=\"font-size:14pt; font-style:normal;\">"
@@ -45,6 +50,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
                             "<p>You should have received a copy of the GNU General Public License</p>"
                             "<p>along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</p></td></tr></table></body></html>")
             .arg(description);
+#endif
 
     ui->label->setText(aboutText);
 }

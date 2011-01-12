@@ -3,9 +3,11 @@
 
 #include <QtNetwork>
 #include <QtGui>
+#ifdef Q_WS_MAEMO_5
 #include <QMaemo5DatePickSelector>
 #include <QMaemo5TimePickSelector>
 #include <QMaemo5ValueButton>
+#endif
 
 #include "common.h"
 
@@ -68,13 +70,17 @@ private:
     bool portraitMode;
     QNetworkAccessManager *manager;
     Place searchPlace(SearchDialog *search);
+#ifdef Q_WS_MAEMO_5
     QMaemo5DatePickSelector *datePicker;
     QMaemo5TimePickSelector *timePicker;
+#endif
     SearchDialog *searchFromDialog;
     SearchDialog *searchToDialog;
     void showFavoriteMessage(Place place, int mode);
+#ifdef Q_WS_MAEMO_5
     QMaemo5ValueButton *dateButton;
     QMaemo5ValueButton *timeButton;
+#endif
 
 private slots:
     void on_btnNow_clicked();
