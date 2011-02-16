@@ -104,7 +104,11 @@ void TrafikantenWindow::on_btnSearch_clicked()
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
 #endif
         }
-        win->show();
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
+    win->show();
+#endif
     }
 }
 
@@ -259,7 +263,11 @@ void TrafikantenWindow::positionUpdated(const QGeoPositionInfo &info) {
                 win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
             }
 #endif
-            win->show();
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
+    win->show();
+#endif
         }
     }
 }
@@ -288,7 +296,11 @@ void TrafikantenWindow::on_btnRouting_clicked()
         travelSearch->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
 #endif
+#if defined(Q_WS_S60)
+    travelSearch->showMaximized();
+#else
     travelSearch->show();
+#endif
 }
 
 void TrafikantenWindow::on_actionAbout_triggered()
@@ -309,7 +321,11 @@ void TrafikantenWindow::on_btnRecent_clicked()
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
 #endif
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
     win->show();
+#endif
 }
 
 void TrafikantenWindow::on_btnFavorites_clicked()
@@ -324,5 +340,9 @@ void TrafikantenWindow::on_btnFavorites_clicked()
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
     }
 #endif
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
     win->show();
+#endif
 }

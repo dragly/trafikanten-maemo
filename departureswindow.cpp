@@ -15,6 +15,17 @@ DeparturesWindow::DeparturesWindow(Place place, QWidget *parent) :
     setAttribute(Qt::WA_Maemo5StackedWindow);
 #endif
     ui->setupUi(this);
+#ifdef Q_OS_SYMBIAN
+    // First of all, the font is too big in Symbian
+    QFont newFont = ui->lblName->font();
+    newFont.setPointSize(10);
+    ui->lblName->setFont(newFont);
+    // We need to add a back button
+    QAction *backSoftKeyAction = new QAction(tr("Back"), this);
+    backSoftKeyAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backSoftKeyAction,SIGNAL(triggered()),SLOT(close())); // when the back button is pressed, just close this window
+    addAction(backSoftKeyAction);
+#endif
     this->place = place;
     ui->lblNoDepartures->hide();
     Search *search = new Search();
@@ -159,7 +170,11 @@ void DeparturesWindow::on_actionRoute_from_triggered()
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
 #endif
     }
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
     win->show();
+#endif
 }
 
 void DeparturesWindow::on_actionRoute_to_triggered()
@@ -175,7 +190,11 @@ void DeparturesWindow::on_actionRoute_to_triggered()
         win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
 #endif
     }
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
     win->show();
+#endif
 }
 
 void DepartureListModel::doReset() {

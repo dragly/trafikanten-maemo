@@ -15,6 +15,13 @@ TravelSearchWindow::TravelSearchWindow(QWidget *parent) :
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
 #endif
     ui->setupUi(this);
+#ifdef Q_OS_SYMBIAN
+    // We need to add a back button
+    QAction *backSoftKeyAction = new QAction(tr("Back"), this);
+    backSoftKeyAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backSoftKeyAction,SIGNAL(triggered()),SLOT(close())); // when the back button is pressed, just close this window
+    addAction(backSoftKeyAction);
+#endif
     ui->lblNoResultsFounds->hide();
 
 #ifdef Q_WS_MAEMO_5
@@ -430,7 +437,11 @@ void TravelSearchWindow::showFavoriteMessage(Place place, int mode) {
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
 #endif
         }
-        win->show();
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
+    win->show();
+#endif
     }
 }
 
