@@ -13,6 +13,13 @@ RecentWindow::RecentWindow(Mode mode, QWidget *parent) :
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     setAttribute(Qt::WA_Maemo5StackedWindow);
 #endif
+#ifdef Q_OS_SYMBIAN
+    // We need to add a back button
+    QAction *backSoftKeyAction = new QAction(tr("Back"), this);
+    backSoftKeyAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backSoftKeyAction,SIGNAL(triggered()),SLOT(close())); // when the back button is pressed, just close this window
+    addAction(backSoftKeyAction);
+#endif
     ui->setupUi(this);
 
     this->mode = mode;
@@ -142,7 +149,11 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
 #endif
-        win->show();
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
+    win->show();
+#endif
     } else if(search->type == Search::Travel) {
         TravelSearchWindow *win = new TravelSearchWindow(this);
         win->setPlaceFrom(search->placeFrom);
@@ -154,7 +165,11 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
 #endif
-        win->show();
+#if defined(Q_WS_S60)
+    win->showMaximized();
+#else
+    win->show();
+#endif
     }
 }
 

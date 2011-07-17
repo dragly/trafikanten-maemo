@@ -33,11 +33,6 @@
     </item>
     <item>
      <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Journey Planner for Norway</string>
       </property>
@@ -214,15 +209,21 @@
        <widget class="QPushButton" name="btnRecent">
         <property name="minimumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -242,15 +243,21 @@ border-image: url(:/images/recent-pressed.png);
        <widget class="QPushButton" name="btnFavorites">
         <property name="minimumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -270,15 +277,21 @@ border-image: url(:/images/favorites-pressed.png);
        <widget class="QPushButton" name="btnRouting">
         <property name="minimumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -298,15 +311,21 @@ border-image: url(:/images/route-pressed.png);
        <widget class="QPushButton" name="btnSearch">
         <property name="minimumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -326,15 +345,21 @@ border-image: url(:/images/search-pressed.png);
        <widget class="QPushButton" name="btnNearby">
         <property name="minimumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>128</width>
-          <height>128</height>
+          <width>64</width>
+          <height>64</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
@@ -360,7 +385,7 @@ border-image: url(:/images/gps-pressed.png);
      <x>0</x>
      <y>0</y>
      <width>684</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">

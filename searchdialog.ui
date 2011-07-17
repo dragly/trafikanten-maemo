@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>499</width>
-    <height>407</height>
+    <width>284</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>479</width>
-        <height>387</height>
+        <width>264</width>
+        <height>290</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -85,19 +85,6 @@
           <number>30</number>
          </attribute>
         </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>

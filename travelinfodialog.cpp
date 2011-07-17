@@ -7,11 +7,18 @@ TravelInfoDialog::TravelInfoDialog(Travel *travel, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TravelInfoDialog)
 {
+    ui->setupUi(this);
 #ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5AutoOrientation, true);
     setAttribute(Qt::WA_Maemo5StackedWindow);
 #endif
-    ui->setupUi(this);
+#ifdef Q_OS_SYMBIAN
+    // We need to add a back button
+    QAction *backSoftKeyAction = new QAction(tr("Back"), this);
+    backSoftKeyAction->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(backSoftKeyAction,SIGNAL(triggered()),SLOT(close())); // when the back button is pressed, just close this window
+    addAction(backSoftKeyAction);
+#endif
     ui->tblResults->setItemDelegate(new TravelStageListDelegate(this, this));
     ui->tblResults->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 

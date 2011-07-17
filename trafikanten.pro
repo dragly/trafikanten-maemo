@@ -38,7 +38,8 @@ MOBILITY = location
 symbian { 
     TARGET.UID3 = 0xe9d84f35
     
-    # TARGET.CAPABILITY +=
+    TARGET.CAPABILITY += Location
+    TARGET.CAPABILITY += NetworkServices
     TARGET.EPOCSTACKSIZE = 0x14000
     TARGET.EPOCHEAPSIZE = 0x020000 \
         0x800000
@@ -87,12 +88,26 @@ unix {
     APP_VERSION = "(unknown\ version)"
     APP_REVISION = "unknown"
 }
-APP_AUTHOR="Svenn-Arne\ Dragly"
-APP_YEAR="2010-2011"
-DEFINES += APP_AUTHOR=\\\"$${APP_AUTHOR}\\\"
-DEFINES += APP_YEAR=\\\"$${APP_YEAR}\\\"
-DEFINES += APP_VERSION=\\\"$${APP_VERSION}\\\"
-DEFINES += APP_REVISION=\\\"$${APP_REVISION}\\\"
+APP_AUTHOR=Svenn-ArneDragly
+APP_YEAR=2010-2011
+!symbian{
+    DEFINES += APP_AUTHOR=\\\"$${APP_AUTHOR}\\\"
+    DEFINES += APP_YEAR=\\\"$${APP_YEAR}\\\"
+    DEFINES += APP_VERSION=\\\"$${APP_VERSION}\\\"
+    DEFINES += APP_REVISION=\\\"$${APP_REVISION}\\\"
+}
+symbian {
+    DEFINES += APP_AUTHOR=\"$${APP_AUTHOR}\"
+    DEFINES += APP_YEAR=\"$${APP_YEAR}\"
+    DEFINES += APP_VERSION=\"$${APP_VERSION}\"
+    DEFINES += APP_REVISION=\"$${APP_REVISION}\"
+}
 OTHER_FILES +=  debian/control \
     debian/hildon/applications/hildon/trafikanten.desktop \
-    debian/changelog
+    debian/changelog \
+    qtc_packaging/debian_fremantle/rules \
+    qtc_packaging/debian_fremantle/README \
+    qtc_packaging/debian_fremantle/copyright \
+    qtc_packaging/debian_fremantle/control \
+    qtc_packaging/debian_fremantle/compat \
+    qtc_packaging/debian_fremantle/changelog
