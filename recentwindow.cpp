@@ -135,21 +135,25 @@ void RecentWindow::on_tblResults_clicked(QModelIndex index)
     } else if(mode == Recent || mode == Favorites)
     if(search->type == Search::Realtime) {
         DeparturesWindow *win = new DeparturesWindow(search->placeFrom, this);
+#ifdef Q_WS_MAEMO_5
         if(_portraitMode) {
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
         } else {
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
+#endif
         win->show();
     } else if(search->type == Search::Travel) {
         TravelSearchWindow *win = new TravelSearchWindow(this);
         win->setPlaceFrom(search->placeFrom);
         win->setPlaceTo(search->placeTo);
+#ifdef Q_WS_MAEMO_5
         if(_portraitMode) {
             win->setAttribute(Qt::WA_Maemo5PortraitOrientation, true);
         } else {
             win->setAttribute(Qt::WA_Maemo5LandscapeOrientation, true);
         }
+#endif
         win->show();
     }
 }

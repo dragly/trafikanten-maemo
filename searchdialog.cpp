@@ -45,7 +45,9 @@ void SearchDialog::setNormalSearch() {
 
 void SearchDialog::searchPosition(QString easting, QString northing) {
     ui->lblNoResults->hide();
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+#endif
     this->setWindowTitle(tr("Places Nearby"));
     this->easting = easting;
     this->northing = northing;
@@ -107,7 +109,9 @@ void SearchDialog::changeEvent(QEvent *e)
 void SearchDialog::on_btnSearch_clicked()
 {
     ui->lblNoResults->hide();
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, true);
+#endif
     //Getting data
     QString dataUrl = "http://reis.trafikanten.no/topp2009/topp2009ws.asmx";
     QNetworkRequest request = QNetworkRequest(QUrl(dataUrl));
@@ -174,7 +178,9 @@ void SearchDialog::replyFinished(QNetworkReply *reply) {
         ui->tblResults->resizeRowsToContents();
         ui->tblResults->setFixedHeight(ui->tblResults->verticalHeader()->length() + 60);
     }
+#ifdef Q_WS_MAEMO_5
     setAttribute(Qt::WA_Maemo5ShowProgressIndicator, false);
+#endif
 }
 
 void SearchDialog::on_tblResults_clicked(QModelIndex index)
