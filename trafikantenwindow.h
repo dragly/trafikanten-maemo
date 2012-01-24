@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#ifdef Q_WS_MAEMO5
 #include <qnmeapositioninfosource.h>
 #include <qgeopositioninfosource.h>
 #include <qgeosatelliteinfosource.h>
 #include <qgeopositioninfo.h>
 #include <qgeosatelliteinfo.h>
 using namespace QtMobility;
+#endif
 class SearchDialog;
 class TravelSearchWindow;
 namespace Ui {
